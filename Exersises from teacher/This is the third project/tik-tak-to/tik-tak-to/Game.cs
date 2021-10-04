@@ -49,5 +49,15 @@ namespace tik_tak_to
             //ends the game
             _gameBoard.End();
         }
+
+        public static int GetInput()
+        {
+            int choice = -1;
+            
+            if (!int.TryParse(Console.ReadLine(), out choice))
+                choice = -1;
+
+            return choice;
+        }
     }
 }

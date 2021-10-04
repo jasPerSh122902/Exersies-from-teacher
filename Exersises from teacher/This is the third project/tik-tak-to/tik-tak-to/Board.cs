@@ -28,6 +28,16 @@ namespace tik_tak_to
         public void Update()
         {
             //keeps the board on the screen
+            if (Game.GetInput() == _board.Length)
+            {
+                _board[0,0] = _currentToken;
+            }
+
+            if (_currentToken == _player1Token)
+                _currentToken = _player2Token;
+
+            else
+                _currentToken =  _player1Token;
             Console.ReadKey(true);
         }
         /// <summary>
@@ -37,14 +47,14 @@ namespace tik_tak_to
         {
             //this again is the board that the player sees
             Console.WriteLine(_board[0, 0] + "|" + _board[0,1] + "|" + _board[0,2] + "|" +  "\n" +
-                                                   "________\n" +
+                                                  "________\n" +
                               _board[1,0] + "|"  + _board[1,1] + "|" + _board[1,2] + "|" + "\n" +
-                                                   "________\n" +
-                              _board[2,0] + "|" + _board[2,1] + "|" + _board[2,2] + "|");
+                                                  "________\n" +
+                              _board[2,0] + "|"  + _board[2,1] + "|" + _board[2,2] + "|");
         }
         public void End()
         {
-
+            Console.WriteLine("You are winner" + _currentToken);
         }
         /// <summary>
         /// Assigns the spot were the current player is placeing there peice on the grid.
@@ -55,10 +65,10 @@ namespace tik_tak_to
         /// <returns>Return faalse if the indices are out of range</returns>
         public bool SetToken(char token, int posX, int posY)
         {
-            //if (token)
-            //{
-
-            //}
+            if (Game.GetInput() == _board.Length)
+            {
+                _currentToken = _board[posX, posY];
+            }
             return false;
         }
         /// <summary>
