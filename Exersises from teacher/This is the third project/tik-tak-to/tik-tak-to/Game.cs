@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace tik_tak_to
+{
+    class Game
+    {
+        private bool _gameOver = false;
+        private Board _gameBoard;
+
+        /// <summary>
+        /// Begin the game
+        /// </summary>
+        public void Run()
+        {
+            Start();
+
+            while (!_gameOver)
+            {
+                Draw();
+                update();
+            }
+        }
+
+        private void Start()
+        {
+            //loads the board that was made in Board.
+            _gameBoard = new Board();
+            _gameBoard.Start();
+        }
+
+        public void update()
+        {
+            //updates the board for the game on the coding side..
+            _gameBoard.Update();
+        }
+
+        private void Draw()
+        {
+            //updates Game on the visual player side
+            Console.Clear();
+            _gameBoard.Draw();
+
+        }
+
+        private void End()
+        {
+            //ends the game
+            _gameBoard.End();
+        }
+    }
+}
