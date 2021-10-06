@@ -6,7 +6,7 @@ namespace tik_tak_to
 {
     class Game
     {
-        private  bool _gameOver = false;
+        private static  bool _gameOver = false;
         private Board _gameBoard;
 
         /// <summary>
@@ -21,6 +21,8 @@ namespace tik_tak_to
                 Draw();
                 update();
             }
+
+            End();
         }
 
         private void Start()
@@ -47,8 +49,9 @@ namespace tik_tak_to
         public void End()
         {
             //ends the game
-            _gameBoard.End();
             _gameOver = true;
+            _gameBoard.End();
+
         }
 
         public static int GetInput()
@@ -60,5 +63,6 @@ namespace tik_tak_to
 
             return choice;
         }
+
     }
 }

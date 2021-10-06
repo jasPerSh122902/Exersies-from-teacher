@@ -12,14 +12,15 @@ namespace tik_tak_to
         private char _currentToken;
         public char[,] _board;
 
+
         public void Start()
         {
             _player1Token = 'x';
             _player2Token = 'o';
             _currentToken = _player1Token;
             _board = new char[3, 3] { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
-        }
 
+        }
         /// <summary>
         /// gets the input from the player 
         /// sets the player token at the desired spot in the sd array
@@ -28,20 +29,17 @@ namespace tik_tak_to
         /// </summary>
         public void Update()
         {
+            Console.WriteLine("Player " + _currentToken);
 
-            CheckWinner(_currentToken);
+            SetToken(_currentToken, Game.GetInput(), Game.GetInput());
             //keeps the board on the screen
-            //if (Game.GetInput() == 1)
-            //{
-            //    _board[0,0] = _currentToken;
-            //}
 
-            //if (_currentToken == _player1Token)
-            //    _currentToken = _player2Token;
+            if (_currentToken == _player1Token)
+                _currentToken = _player2Token;
 
-            //else
-            //    _currentToken =  _player1Token;
-            //Console.ReadKey(true);
+            else
+                _currentToken = _player1Token;
+            Console.ReadKey(true);
         }
         /// <summary>
         /// this is waht the player is seeing on there end of the game.
@@ -58,6 +56,7 @@ namespace tik_tak_to
         public void End()
         {
             Console.WriteLine("You are winner" + _currentToken);
+            Update();
         }
         /// <summary>
         /// Assigns the spot were the current player is placeing there peice on the grid.
@@ -66,8 +65,22 @@ namespace tik_tak_to
         /// <param name="posX">grid on the board</param>
         /// <param name="posY">grid on the board</param>
         /// <returns>Return faalse if the indices are out of range</returns>
-        public bool SetToken(char token, int posX, int posY)
+        public bool SetToken(char token, int x, int y)
         {
+
+            _board[x, y] = _currentToken;
+            //meant to increment the x in the board corrdinate...
+            for (int i = 0; i < x; i++)
+            {
+                //incremtns the y in the board corrdinate...
+                for (int w = 0; w < y; w++)
+                {
+                    //increments and returns its value.
+                    _board[i, w] = _currentToken;
+
+                    return true;
+                }
+            }
             return false;
         }
         /// <summary>
@@ -83,6 +96,7 @@ namespace tik_tak_to
             Console.WriteLine("Please enter a number ");
             if (Game.GetInput() == 1)
             {
+                //resests the board
                 ClearBoard();
             }
             if (Game.GetInput() == 2)
