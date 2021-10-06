@@ -43,9 +43,19 @@ namespace tik_tak_to
             //updates Game on the visual player side
             Console.Clear();
             _gameBoard.Draw();
-
         }
 
+        public void RestartGame()
+        {
+            Console.WriteLine("Do you want to player again? \n 1. Yes \n 2. No ");
+            int choice = GetInput();
+
+            if (choice == 1)
+                _gameOver = true;
+            else
+                Console.WriteLine("error ");
+
+        }
         public void End()
         {
             //ends the game

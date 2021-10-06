@@ -7,6 +7,7 @@ namespace tik_tak_to
     class Board
     {
         private Game _game;
+        private static bool _gameOver;
         private char _player1Token;
         private char _player2Token;
         private char _currentToken;
@@ -22,6 +23,7 @@ namespace tik_tak_to
             _player2Token = 'o';
             _currentToken = _player1Token;
             _board = new char[3, 3] { { '1', '2', '3' }, { '4', '5', '6' }, { '7', '8', '9' } };
+            _gameOver = false;
 
         }
         /// <summary>
@@ -32,6 +34,8 @@ namespace tik_tak_to
         /// </summary>
         public void Update()
         {
+
+
             Console.WriteLine("Player " + _currentToken);
 
             SetToken(_currentToken, Game.GetInput(), Game.GetInput());
@@ -64,6 +68,7 @@ namespace tik_tak_to
             Console.WriteLine("You are winner" + _currentToken);
             Update();
         }
+
         /// <summary>
         /// Gets the current player and makes them choose there x and y.
         /// </summary>
