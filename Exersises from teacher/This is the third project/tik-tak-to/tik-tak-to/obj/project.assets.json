@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Jaspe\\.nuget\\packages\\": {}
+    "C:\\Users\\s218005\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\the second project\\exersises\\Exersies-from-teacher\\Exersises from teacher\\This is the third project\\tik-tak-to\\tik-tak-to\\tik-tak-to.csproj",
+      "projectUniqueName": "E:\\the second project\\exersises\\Exersies-from-teacher\\Exersises from teacher\\This is the third project\\tik-tak-to\\tik-tak-to\\tik-tak-to.csproj",
       "projectName": "tik-tak-to",
-      "projectPath": "D:\\the second project\\exersises\\Exersies-from-teacher\\Exersises from teacher\\This is the third project\\tik-tak-to\\tik-tak-to\\tik-tak-to.csproj",
-      "packagesPath": "C:\\Users\\Jaspe\\.nuget\\packages\\",
-      "outputPath": "D:\\the second project\\exersises\\Exersies-from-teacher\\Exersises from teacher\\This is the third project\\tik-tak-to\\tik-tak-to\\obj\\",
+      "projectPath": "E:\\the second project\\exersises\\Exersies-from-teacher\\Exersises from teacher\\This is the third project\\tik-tak-to\\tik-tak-to\\tik-tak-to.csproj",
+      "packagesPath": "C:\\Users\\s218005\\.nuget\\packages\\",
+      "outputPath": "E:\\the second project\\exersises\\Exersies-from-teacher\\Exersises from teacher\\This is the third project\\tik-tak-to\\tik-tak-to\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Jaspe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\s218005\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -32,7 +32,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -44,7 +43,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "imports": [
           "net461",
           "net462",
@@ -60,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
