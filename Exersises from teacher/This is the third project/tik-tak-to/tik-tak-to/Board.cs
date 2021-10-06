@@ -11,6 +11,8 @@ namespace tik_tak_to
         private char _player2Token;
         private char _currentToken;
         public char[,] _board;
+        private int winCounter;
+        private int j = 0;
         private int x = 0;
         private int y = 0;
 
@@ -33,6 +35,7 @@ namespace tik_tak_to
             Console.WriteLine("Player " + _currentToken);
 
             SetToken(_currentToken, Game.GetInput(), Game.GetInput());
+            CheckWinner(_currentToken);
             //keeps the board on the screen
 
             if (_currentToken == _player1Token)
@@ -48,11 +51,13 @@ namespace tik_tak_to
         public void Draw()
         {
             //this again is the board that the player sees
-            Console.WriteLine(_board[0, 0] + "|" + _board[0,1] + "|" + _board[0,2] + "|" +  "\n" +
+            Console.WriteLine(_board[0, 0] + "|" + _board[0, 1] + "|" + _board[0, 2] + "|" + "\n" +
                                                   "________\n" +
-                              _board[1,0] + "|"  + _board[1,1] + "|" + _board[1,2] + "|" + "\n" +
+                              _board[1, 0] + "|" + _board[1, 1] + "|" + _board[1, 2] + "|" + "\n" +
                                                   "________\n" +
-                              _board[2,0] + "|"  + _board[2,1] + "|" + _board[2,2] + "|");
+                              _board[2, 0] + "|" + _board[2, 1] + "|" + _board[2, 2] + "|");
+            Console.WriteLine("Type your corrdinate and the first corrnidate is number 1 " + " \nYou got to write one number then press enter then enter another and enter");
+            Console.WriteLine("[0, 0],[0,1] ,[0, 2] ,[1, 0] ,[1, 1] , [1, 2], [2, 0], [2, 1],[2, 2]");
         }
         public void End()
         {
@@ -60,7 +65,7 @@ namespace tik_tak_to
             Update();
         }
         /// <summary>
-        /// Assigns the spot were the current player is placeing there peice on the grid.
+        /// Gets the current player and makes them choose there x and y.
         /// </summary>
         /// <param name="token">Token is the player 1 or 2</param>
         /// <param name="posX">grid on the board</param>
@@ -68,8 +73,6 @@ namespace tik_tak_to
         /// <returns>Return faalse if the indices are out of range</returns>
         public bool SetToken(char token, int x, int y)
         {
- 
-            _board[x, y] = _currentToken;
             //meant to increment the x in the board corrdinate...
             for (int i = 0; i <= x; i++)
             {
@@ -90,25 +93,26 @@ namespace tik_tak_to
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
-        private bool CheckWinner(char token)
+        private void CheckWinner(char token)
         {
 
-            Console.WriteLine("do you want to continue " + "1.Yes " + "2.NO");
-            Console.WriteLine("Please enter a number ");
-            if (Game.GetInput() == 1)
+
+            if (x == _board[0, 0] && x == _board[0, 1] && x == _board[0, 2] || x == _board[1, 0] && x == _board[1, 1] && x == _board[1, 2] || x == _board[2, 0] && x == _board[2, 1] && x == _board[2, 2])
             {
-                //resests the board
-                ClearBoard();
+                Console.WriteLine(_currentToken + " Have won ");
+                End();
             }
-            if (Game.GetInput() == 2)
+            if (y == _board[0, 0] && y == _board[1, 0] && y == _board[2, 0] || y == _board[0, 1] && y == _board[1, 1] && y == _board[2, 1] || y == _board[0, 2] && y == _board[1, 2] && y == _board[2, 2])
             {
-                _game.End();
+                Console.WriteLine(_currentToken + " Have won ");
+                End();
             }
-            else
+            if (j == _board[0, 0] && j == _board[1, 1] && y == _board[2, 2] || j == _board[0, 2] && j == _board[1, 1] && j == _board[2, 0])
             {
-                Console.WriteLine("Error. ");
+                Console.WriteLine(_currentToken + " Have won ");
+                End();
             }
-            return true;
+
         }
         /// <summary>
         /// Resets the board to it;s default state.
