@@ -28,7 +28,7 @@ namespace tik_tak_to
         public void Update()
         {
             //keeps the board on the screen
-            if (Game.GetInput() == _board.Length)
+            if (Game.GetInput() == _board)
             {
                 _board[0,0] = _currentToken;
             }
