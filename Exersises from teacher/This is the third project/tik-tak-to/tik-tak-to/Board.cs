@@ -98,17 +98,17 @@ namespace tik_tak_to
         {
 
 
-            if ((x ==_board[0, 0] && x ==_board[0, 1] && x == _board[0, 2]) || (x == _board[1, 0] && x == _board[1, 1] && x == _board[1, 2]) || (x == _board[2, 0] && x == _board[2, 1] && x == _board[2, 2]))
+            if ((token ==_board[0, 0] && token ==_board[0, 1] && token == _board[0, 2]) || (token == _board[1, 0] && token == _board[1, 1] && token == _board[1, 2]) || (token == _board[2, 0] && token == _board[2, 1] && token == _board[2, 2]))
             {
                 Console.WriteLine(_currentToken + " Have won ");
                 End();
             }
-            if (y == _board[0, 0] && y == _board[1, 0] && y == _board[2, 0] || y == _board[0, 1] && y == _board[1, 1] && y == _board[2, 1] || y == _board[0, 2] && y == _board[1, 2] && y == _board[2, 2])
+            if (token == _board[0, 0] && y == _board[1, 0] && token == _board[2, 0] || token == _board[0, 1] && token == _board[1, 1] && token == _board[2, 1] || token == _board[0, 2] && token == _board[1, 2] && token == _board[2, 2])
             {
                 Console.WriteLine(_currentToken + " Have won ");
                 End();
             }
-            if (j == _board[0, 0] && j == _board[1, 1] && y == _board[2, 2] || j == _board[0, 2] && j == _board[1, 1] && j == _board[2, 0])
+            if (token == _board[0, 0] && token == _board[1, 1] && token == _board[2, 2] || token == _board[0, 2] && token == _board[1, 1] && token == _board[2, 0])
             {
                 Console.WriteLine(_currentToken + " Have won ");
                 End();
