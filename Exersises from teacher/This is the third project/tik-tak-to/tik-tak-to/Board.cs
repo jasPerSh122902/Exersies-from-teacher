@@ -11,7 +11,8 @@ namespace tik_tak_to
         private char _player2Token;
         private char _currentToken;
         public char[,] _board;
-
+        private int x = 0;
+        private int y = 0;
 
         public void Start()
         {
@@ -67,16 +68,16 @@ namespace tik_tak_to
         /// <returns>Return faalse if the indices are out of range</returns>
         public bool SetToken(char token, int x, int y)
         {
-
+ 
             _board[x, y] = _currentToken;
             //meant to increment the x in the board corrdinate...
-            for (int i = 0; i < x; i++)
+            for (int i = 0; i <= x; i++)
             {
                 //incremtns the y in the board corrdinate...
-                for (int w = 0; w < y; w++)
+                for (int w = 0; w <= y; w++)
                 {
                     //increments and returns its value.
-                    _board[i, w] = _currentToken;
+                    _board[x, y] = _currentToken;
 
                     return true;
                 }

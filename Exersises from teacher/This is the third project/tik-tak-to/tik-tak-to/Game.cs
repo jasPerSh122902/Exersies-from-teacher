@@ -59,7 +59,7 @@ namespace tik_tak_to
             int choice = -1;
             
             if (!int.TryParse(Console.ReadLine(), out choice))
-                choice = -1;
+                choice = 0;
 
             return choice;
         }
