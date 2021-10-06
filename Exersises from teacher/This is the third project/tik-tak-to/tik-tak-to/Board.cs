@@ -82,6 +82,7 @@ namespace tik_tak_to
                     //increments and returns its value.
                     _board[x, y] = _currentToken;
 
+                    CheckWinner(_currentToken);
                     return true;
                 }
             }
@@ -97,7 +98,7 @@ namespace tik_tak_to
         {
 
 
-            if (x == _board[0, 0] && x == _board[0, 1] && x == _board[0, 2] || x == _board[1, 0] && x == _board[1, 1] && x == _board[1, 2] || x == _board[2, 0] && x == _board[2, 1] && x == _board[2, 2])
+            if ((x ==_board[0, 0] && x ==_board[0, 1] && x == _board[0, 2]) || (x == _board[1, 0] && x == _board[1, 1] && x == _board[1, 2]) || (x == _board[2, 0] && x == _board[2, 1] && x == _board[2, 2]))
             {
                 Console.WriteLine(_currentToken + " Have won ");
                 End();
