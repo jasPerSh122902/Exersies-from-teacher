@@ -6,10 +6,11 @@ namespace tik_tak_to
 {
     class Board
     {
+        private Game _game;
         private char _player1Token;
         private char _player2Token;
         private char _currentToken;
-        private char[,] _board;
+        public char[,] _board;
 
         public void Start()
         {
@@ -27,18 +28,20 @@ namespace tik_tak_to
         /// </summary>
         public void Update()
         {
+
+            CheckWinner(_currentToken);
             //keeps the board on the screen
-            if (Game.GetInput() == _board[3, 3])
-            {
-                _board[0,0] = _currentToken;
-            }
+            //if (Game.GetInput() == 1)
+            //{
+            //    _board[0,0] = _currentToken;
+            //}
 
-            if (_currentToken == _player1Token)
-                _currentToken = _player2Token;
+            //if (_currentToken == _player1Token)
+            //    _currentToken = _player2Token;
 
-            else
-                _currentToken =  _player1Token;
-            Console.ReadKey(true);
+            //else
+            //    _currentToken =  _player1Token;
+            //Console.ReadKey(true);
         }
         /// <summary>
         /// this is waht the player is seeing on there end of the game.
@@ -65,10 +68,6 @@ namespace tik_tak_to
         /// <returns>Return faalse if the indices are out of range</returns>
         public bool SetToken(char token, int posX, int posY)
         {
-            if (Game.GetInput() == _board.Length)
-            {
-                _currentToken = _board[posX, posY];
-            }
             return false;
         }
         /// <summary>
@@ -79,6 +78,21 @@ namespace tik_tak_to
         /// <returns></returns>
         private bool CheckWinner(char token)
         {
+
+            Console.WriteLine("do you want to continue " + "1.Yes " + "2.NO");
+            Console.WriteLine("Please enter a number ");
+            if (Game.GetInput() == 1)
+            {
+                ClearBoard();
+            }
+            if (Game.GetInput() == 2)
+            {
+                _game.End();
+            }
+            else
+            {
+                Console.WriteLine("Error. ");
+            }
             return true;
         }
         /// <summary>
@@ -86,7 +100,8 @@ namespace tik_tak_to
         /// </summary>
         public void ClearBoard()
         {
-          
+            Console.Clear();
+            Draw();
         }
     }
 }
