@@ -78,20 +78,11 @@ namespace tik_tak_to
         /// <returns>Return faalse if the indices are out of range</returns>
         public bool SetToken(char token, int x, int y)
         {
-            //meant to increment the x in the board corrdinate...
-            for (int i = 0; i <= x; i++)
-            {
-                //incremtns the y in the board corrdinate...
-                for (int w = 0; w <= y; w++)
-                {
-                    //increments and returns its value.
-                    _board[x, y] = _currentToken;
+            //increments and returns its value.
+            _board[x, y] = _currentToken;
 
-                    CheckWinner(_currentToken);
-                    return true;
-                }
-            }
-            return false;
+            CheckWinner(_currentToken);
+            return true;
         }
         /// <summary>
         /// check if there is a 3 line win for the player...
