@@ -6,7 +6,6 @@ namespace Exersises_from_teacher
 {
     class Game
     {
-        
         public void Run()
         {
             int[] numbers = new int[] { 1, 2, 3, 4, 5 };

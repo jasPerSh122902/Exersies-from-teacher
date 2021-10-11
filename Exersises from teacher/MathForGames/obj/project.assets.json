@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "MathLibaray/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/MathLibaray.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MathLibaray.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "MathLibaray/1.0.0": {
+      "type": "project",
+      "path": "../MathLibaray/MathLibaray.csproj",
+      "msbuildProject": "../MathLibaray/MathLibaray.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "MathLibaray >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\s218005\\.nuget\\packages\\": {}
@@ -13,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\the second project\\exersises\\Exersies-from-teacher\\MathForGame\\MathForGames\\MathForGames\\MathForGames.csproj",
+      "projectUniqueName": "E:\\the second project\\exersises\\Exersies-from-teacher\\Exersises from teacher\\MathForGames\\MathForGames.csproj",
       "projectName": "MathForGames",
-      "projectPath": "E:\\the second project\\exersises\\Exersies-from-teacher\\MathForGame\\MathForGames\\MathForGames\\MathForGames.csproj",
+      "projectPath": "E:\\the second project\\exersises\\Exersies-from-teacher\\Exersises from teacher\\MathForGames\\MathForGames.csproj",
       "packagesPath": "C:\\Users\\s218005\\.nuget\\packages\\",
-      "outputPath": "E:\\the second project\\exersises\\Exersies-from-teacher\\MathForGame\\MathForGames\\MathForGames\\obj\\",
+      "outputPath": "E:\\the second project\\exersises\\Exersies-from-teacher\\Exersises from teacher\\MathForGames\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\s218005\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -32,7 +51,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\the second project\\exersises\\Exersies-from-teacher\\Exersises from teacher\\MathLibaray\\MathLibaray.csproj": {
+              "projectPath": "E:\\the second project\\exersises\\Exersies-from-teacher\\Exersises from teacher\\MathLibaray\\MathLibaray.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
