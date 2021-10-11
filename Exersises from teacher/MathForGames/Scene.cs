@@ -41,9 +41,9 @@ namespace MathForGames
                 if (!_actors[i].Started)
                     _actors[i].Start();
 
-
+                _actors[i].Update();
             }
-               
+              
         }
 
         /// <summary>

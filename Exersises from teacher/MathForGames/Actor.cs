@@ -42,6 +42,7 @@ namespace MathForGames
         public  virtual void Update()
         {
             _position.X = Postion.X + 1;
+            _position.Y = Postion.Y + 1;
             
         }
 
