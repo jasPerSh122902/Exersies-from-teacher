@@ -1,0 +1,14 @@
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\bin\Debug\netcoreapp3.1\MathForGames.exe
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\bin\Debug\netcoreapp3.1\MathForGames.deps.json
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\bin\Debug\netcoreapp3.1\MathForGames.runtimeconfig.json
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\bin\Debug\netcoreapp3.1\MathForGames.runtimeconfig.dev.json
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\bin\Debug\netcoreapp3.1\MathForGames.dll
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\bin\Debug\netcoreapp3.1\MathForGames.pdb
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\bin\Debug\netcoreapp3.1\MathLibaray.dll
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\bin\Debug\netcoreapp3.1\MathLibaray.pdb
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\obj\Debug\netcoreapp3.1\MathForGames.csprojAssemblyReference.cache
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\obj\Debug\netcoreapp3.1\MathForGames.AssemblyInfoInputs.cache
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\obj\Debug\netcoreapp3.1\MathForGames.AssemblyInfo.cs
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\obj\Debug\netcoreapp3.1\MathForGames.csproj.CopyComplete
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\obj\Debug\netcoreapp3.1\MathForGames.dll
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\obj\Debug\netcoreapp3.1\MathForGames.pdb

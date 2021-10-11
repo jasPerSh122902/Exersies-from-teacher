@@ -1,0 +1,8 @@
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathLibaray\bin\Debug\netstandard2.0\MathLibaray.deps.json
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathLibaray\bin\Debug\netstandard2.0\MathLibaray.dll
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathLibaray\bin\Debug\netstandard2.0\MathLibaray.pdb
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathLibaray\obj\Debug\netstandard2.0\MathLibaray.csprojAssemblyReference.cache
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathLibaray\obj\Debug\netstandard2.0\MathLibaray.AssemblyInfoInputs.cache
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathLibaray\obj\Debug\netstandard2.0\MathLibaray.AssemblyInfo.cs
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathLibaray\obj\Debug\netstandard2.0\MathLibaray.dll
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathLibaray\obj\Debug\netstandard2.0\MathLibaray.pdb
