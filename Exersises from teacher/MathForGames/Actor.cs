@@ -14,7 +14,7 @@ namespace MathForGames
         private Vector2 _position;
         private bool _started;
 
-        public bool started
+        public bool Started
         {
             get { return _started; }
         }
@@ -35,7 +35,7 @@ namespace MathForGames
 
         public virtual void Start()
         {
-
+            _started = true;
         }
 
         public  virtual void Update()

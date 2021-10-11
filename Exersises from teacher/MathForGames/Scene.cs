@@ -19,6 +19,9 @@ namespace MathForGames
             _actors = new Actor[0];
         }
 
+        /// <summary>
+        /// calls start for all of the actors in the actors array
+        /// </summary>
         public void Start()
         {
             for (int i = 0; i < _actors.Length; i++)
@@ -28,9 +31,19 @@ namespace MathForGames
             
         }
 
+        /// <summary>
+        /// calls the update for the actors in the actors array
+        /// </summary>
         public void Update()
         {
+            for (int i = 0; i < _actors.Length; i++)
+            {
+                if (!_actors[i].Started)
+                    _actors[i].Start();
 
+
+            }
+               
         }
 
         public void Draw()

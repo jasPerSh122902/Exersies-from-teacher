@@ -47,7 +47,6 @@ namespace MathForGames
         private void Update()
         {
             _scenes[_currentSceneIndex].Update();
-            _actor.Update();
         }
 
         /// <summary>
@@ -58,7 +57,6 @@ namespace MathForGames
             Console.Clear();
 
             _scenes[_currentSceneIndex].Draw();
-            _actor.Draw();
         }
         /// <summary>
         /// end the appliction 
@@ -66,7 +64,6 @@ namespace MathForGames
         private void End()
         {
             _scenes[_currentSceneIndex].End();
-            _actor.Draw();
         }
 
         /// <summary>
