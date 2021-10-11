@@ -6,9 +6,17 @@ using MathLibaray;
 
 namespace MathForGames
 {
+    /// <summary>
+    /// is there so i can hold the type for icon for actors or player
+    /// </summary>
+    struct Icon
+    {
+        public char Symbol;
+        public ConsoleColor color;
+    }
     class Actor
     {
-        private char _icon;
+        private Icon _icon;
         private string _name;
         //can make the vector2 because i used the using mathLIbaray;
         private Vector2 _position;
@@ -27,9 +35,10 @@ namespace MathForGames
             set { _position = value; }
         }
 
-        public Actor(char icon, Vector2 position, string name = "Actor")
+        public Actor(char icon, Vector2 position, string name = "Actor", ConsoleColor color = ConsoleColor.Cyan)
         {
-            _icon = icon;
+            //updatede the Icon with the struct and made it take a symbol and a color
+            _icon = new Icon { Symbol = icon, color = color};
             _position = position;
             _name = name;
         }
@@ -42,14 +51,18 @@ namespace MathForGames
         public  virtual void Update()
         {
             _position.X = Postion.X + 1;
-            _position.Y = Postion.Y + 1;
             
         }
 
         public virtual void Draw()
         {
             Console.SetCursorPosition((int)Postion.X, (int)Postion.Y);
-            Console.Write(_icon);
+            //made it print the color for the ground for icon...
+            Console.ForegroundColor = _icon.color;
+            //then prints the symbol...
+            Console.Write(_icon.Symbol);
+            //resets the color.
+            Console.ResetColor();
         }
 
         public void End()
