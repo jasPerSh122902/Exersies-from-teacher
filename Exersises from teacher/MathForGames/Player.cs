@@ -39,7 +39,7 @@ namespace MathForGames
                 moveDirection = new Vector2 { X = -1 };
             if (keyPessed == ConsoleKey.D)
                 moveDirection = new Vector2 { X = 1 };
-            if (keyPessed == ConsoleKey.S)
+            if (keyPessed == ConsoleKey.W)
                 moveDirection = new Vector2 { Y = -1 };
             if (keyPessed == ConsoleKey.S)
                 moveDirection = new Vector2 { Y = 1 };
