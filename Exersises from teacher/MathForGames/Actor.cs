@@ -56,13 +56,7 @@ namespace MathForGames
 
         public virtual void Draw()
         {
-            Console.SetCursorPosition((int)Postion.X, (int)Postion.Y);
-            //made it print the color for the ground for icon...
-            Console.ForegroundColor = _icon.color;
-            //then prints the symbol...
-            Console.Write(_icon.Symbol);
-            //resets the color.
-            Console.ResetColor();
+            Engine.Render(_icon, _position);
         }
 
         public void End()

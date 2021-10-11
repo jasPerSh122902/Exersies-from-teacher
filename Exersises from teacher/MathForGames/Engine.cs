@@ -41,13 +41,18 @@ namespace MathForGames
             Scene scene = new Scene();
             Actor actor = new Actor('P', new MathLibaray.Vector2 { X = 0, Y = 0 }, "Actor1", ConsoleColor.Magenta);
             Actor actor2 = new Actor('E', new MathLibaray.Vector2 { X = 1, Y = 1 }, "Actor2", ConsoleColor.Green);
+            Actor actor3 = new Actor('I', new MathLibaray.Vector2 { X = 2, Y = 2 }, "Actor3", ConsoleColor.Blue);
 
+            //adds the actor to the scene and takes in that actor
             scene.AddActor(actor);
             scene.AddActor(actor2);
+            scene.AddActor(actor3);
 
             _currentSceneIndex = AddScene(scene);
 
             _scenes[_currentSceneIndex].Start();
+
+
         }
 
         /// <summary>
@@ -63,9 +68,35 @@ namespace MathForGames
         /// </summary>
         private void Draw()
         {
-            Console.Clear();
+            
+            //clear the the current screen in the last frame
+            _burffer = new Icon[Console.WindowWidth, Console.WindowHeight - 1];
+            //resests the cursors positon back to 0,0 to draw over.
+            Console.SetCursorPosition(0, 0);
 
+            //add all of the icons back to the buffer
             _scenes[_currentSceneIndex].Draw();
+
+            //incraments through the buffer
+            for (int y = 0; y <_burffer.GetLength(1); y++)
+            {
+                for (int x = 0; x < _burffer.GetLength(0); x++)
+                {
+                    if (_burffer[x, y].Symbol == '\0')
+                        _burffer[x, y].Symbol = ' ';
+
+                    //sets the color of the buffers items
+                    Console.ForegroundColor = _burffer[x, y].color;
+                    //sets the symbol of the buffers items
+                    Console.Write(_burffer[x, y].Symbol);
+
+                    //makes the cursorVisible false now there is no cursor
+                    Console.CursorVisible = false;
+                }
+
+                //skip a line once the end of the row has been reached.
+                Console.WriteLine();
+            }
         }
         /// <summary>
         /// end the appliction 
@@ -104,12 +135,35 @@ namespace MathForGames
             return _scenes.Length - 1;
         }
 
-        public static void Render(Icon icon, Vector2 position)
+        /// <summary>
+        /// get the next key that was typed in the input stream.
+        /// </summary>
+        /// <returns>The key that was pressed</returns>
+        public static ConsoleKey GetNewtKey()
         {
+            //if there are no keys being pressed...
+            if (!Console.KeyAvailable)
+                //...return
+                return 0;
+            //Return the current key being pressed
+            return Console.ReadKey(true).Key;
+        }
+        /// <summary>
+        /// adds the icon to the buffer to print to the screeen in the next draw call;
+        /// prints the icon t the given position in the buffer
+        /// </summary>
+        /// <param name="icon">the icon to draw</param>
+        /// <param name="position">and the position the icon is in</param>
+        /// <returns></returns>
+        public static bool Render(Icon icon, Vector2 position)
+        {
+            //if the position in the y and x are in the out of bounds...
             if (position.X < 0 || position.X >= _burffer.GetLength(0) || position.Y < 0 || position.Y >= _burffer.GetLength(0))
-                return;
-
-
+                //return false.
+                return false;
+            //Else set the buffer at the index of the given position to be the icon
+            _burffer[(int)position.X, (int)position.Y] = icon;
+            return true;
         }
     }
 }
