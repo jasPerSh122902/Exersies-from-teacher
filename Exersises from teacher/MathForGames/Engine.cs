@@ -42,11 +42,13 @@ namespace MathForGames
             Actor actor = new Actor('P', new MathLibaray.Vector2 { X = 0, Y = 0 }, "Actor1", ConsoleColor.Magenta);
             Actor actor2 = new Actor('E', new MathLibaray.Vector2 { X = 1, Y = 1 }, "Actor2", ConsoleColor.Green);
             Actor actor3 = new Actor('I', new MathLibaray.Vector2 { X = 2, Y = 2 }, "Actor3", ConsoleColor.Blue);
+            Player player = new Player('Q', 5, 5, 1, "Player", ConsoleColor.DarkBlue);
 
             //adds the actor to the scene and takes in that actor
             scene.AddActor(actor);
             scene.AddActor(actor2);
             scene.AddActor(actor3);
+            scene.AddActor(player);
 
             _currentSceneIndex = AddScene(scene);
 
