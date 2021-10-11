@@ -12,6 +12,7 @@ namespace MathForGames
         private string _name;
         //can make the vector2 because i used the using mathLIbaray;
         private Vector2 _position;
+        //made started a bool so we can see if actors is there or not.
         private bool _started;
 
         public bool Started

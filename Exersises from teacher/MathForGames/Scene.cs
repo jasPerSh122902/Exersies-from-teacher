@@ -22,7 +22,7 @@ namespace MathForGames
         /// <summary>
         /// calls start for all of the actors in the actors array
         /// </summary>
-        public void Start()
+        public virtual void Start()
         {
             for (int i = 0; i < _actors.Length; i++)
                 _actors[i].Start();
@@ -34,7 +34,7 @@ namespace MathForGames
         /// <summary>
         /// calls the update for the actors in the actors array
         /// </summary>
-        public void Update()
+        public virtual void Update()
         {
             for (int i = 0; i < _actors.Length; i++)
             {
@@ -46,13 +46,22 @@ namespace MathForGames
                
         }
 
-        public void Draw()
+        /// <summary>
+        /// calls Draw for the actors in the actors array
+        /// </summary>
+        public virtual void Draw()
         {
-
+            for (int i = 0; i < _actors.Length; i++)
+                _actors[i].Draw();
         }
-        public void End()
-        {
 
+        /// <summary>
+        /// calls end for actors in the actors array
+        /// </summary>
+        public virtual void End()
+        {
+            for (int i = 0; i < _actors.Length; i++)
+                _actors[i].End();
         }
 
         /// <summary>
@@ -83,7 +92,7 @@ namespace MathForGames
         /// </summary>
         /// <param name="actor">the actor in that scene</param>
         /// <returns>returns a bool called actorRemoved</returns>
-        public bool RemoveActor(Actor actor)
+        public virtual bool RemoveActor(Actor actor)
         {
             //create a varialbe to store if the removal was successful
             bool actorRemoved = false;
