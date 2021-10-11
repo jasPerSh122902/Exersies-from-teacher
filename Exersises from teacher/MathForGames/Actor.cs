@@ -35,6 +35,22 @@ namespace MathForGames
             set { _position = value; }
         }
 
+        /// <summary>
+        /// takes the Actor constructor and add the float x and y but takes out y
+        /// </summary>
+        /// <param name="x">is the replace the Vector2</param>
+        /// <param name="y">is the replacement for the veoctor2</param>
+        public Actor(char icon, float x, float y, string name = "Actor", ConsoleColor color = ConsoleColor.Cyan) :
+            this(icon, new Vector2 { X = x,Y = y}, name, color) {}
+
+
+        /// <summary>
+        /// Is a constructor for the actor that hold is definition.
+        /// </summary>
+        /// <param name="icon">The icon that all this information applies to</param>
+        /// <param name="position">is the loctation that the icon is in</param>
+        /// <param name="name">current Actor name</param>
+        /// <param name="color">The color that the neame or icon will be</param>
         public Actor(char icon, Vector2 position, string name = "Actor", ConsoleColor color = ConsoleColor.Cyan)
         {
             //updatede the Icon with the struct and made it take a symbol and a color
@@ -50,7 +66,6 @@ namespace MathForGames
 
         public  virtual void Update()
         {
-            _position.X = Postion.X + 1;
             
         }
 
