@@ -12,6 +12,13 @@ namespace MathForGames
         private string _name;
         //can make the vector2 because i used the using mathLIbaray;
         private Vector2 _position;
+        private bool _started;
+
+        public bool started
+        {
+            get { return _started; }
+        }
+
 
         public Vector2 Postion
         {
