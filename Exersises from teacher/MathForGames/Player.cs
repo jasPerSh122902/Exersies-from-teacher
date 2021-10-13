@@ -49,5 +49,10 @@ namespace MathForGames
             Postion += Velocity;
 
         }
+
+        public override void OnCollision(Actor actor)
+        {
+            Engine.CloseApplication();
+        }
     }
 }

@@ -34,6 +34,10 @@ namespace MathForGames
             get { return _position; }
             set { _position = value; }
         }
+        public Icon Icon
+        {
+            get { return _icon; }
+        }
 
         /// <summary>
         /// takes the Actor constructor and add the float x and y but takes out y
@@ -78,5 +82,15 @@ namespace MathForGames
         {
 
         }
+
+        /// <summary>
+        /// Startes when the player hits a target.
+        /// </summary>
+        public virtual void OnCollision(Actor actor)
+        {
+
+        }
+
+
     }
 }
