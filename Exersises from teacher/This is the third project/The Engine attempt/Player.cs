@@ -58,7 +58,8 @@ namespace MathForGames
             }
             if (actor.Name == "Bullet")
             {
-                Velocity -= Postion;
+                Postion = Velocity;
+                
                 
             }
             if (actor.Name == "Boss")

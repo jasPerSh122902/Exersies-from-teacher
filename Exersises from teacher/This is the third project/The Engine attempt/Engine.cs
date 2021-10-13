@@ -251,7 +251,6 @@ namespace MathForGames
         /// </summary>
         public static void CloseApplication()
         {
-
             _applicationShouldClose = true;
         }
     }
