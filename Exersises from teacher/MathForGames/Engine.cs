@@ -43,7 +43,7 @@ namespace MathForGames
             Actor actor = new Actor('P', new MathLibaray.Vector2 { X = 0, Y = 0 }, "Actor1", ConsoleColor.Magenta);
             Actor actor2 = new Actor('E', new MathLibaray.Vector2 { X = 1, Y = 0 }, "Actor2", ConsoleColor.Green);
             Actor actor3 = new Actor('I', new MathLibaray.Vector2 { X = 2, Y = 0 }, "Actor3", ConsoleColor.Blue);
-            Player player = new Player('Q', 2, 1, 3, "Player", ConsoleColor.DarkBlue);
+            Player player = new Player('Q', 2, 1,1, "Player", ConsoleColor.DarkBlue);
 
             //adds the actor to the scene and takes in that actor
             scene.AddActor(actor);
@@ -59,7 +59,7 @@ namespace MathForGames
         }
 
         /// <summary>
-        /// Updates the Engine
+        /// Updates the Engine and was going 
         /// </summary>
         private void Update()
         {
