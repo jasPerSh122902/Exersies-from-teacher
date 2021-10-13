@@ -40,16 +40,84 @@ namespace MathForGames
         private void Start()
         {
             Scene scene = new Scene();
-            Actor actor = new Actor('P', new MathLibaray.Vector2 { X = 0, Y = 0 }, "Actor1", ConsoleColor.Magenta);
-            Actor actor2 = new Actor('E', new MathLibaray.Vector2 { X = 1, Y = 0 }, "Actor2", ConsoleColor.Green);
-            Actor actor3 = new Actor('I', new MathLibaray.Vector2 { X = 2, Y = 0 }, "Actor3", ConsoleColor.Blue);
+            Actor actor = new Actor('P', new MathLibaray.Vector2 { X = 0, Y = 0 }, "Wall", ConsoleColor.Magenta);
+            Actor actor2 = new Actor('E', new MathLibaray.Vector2 { X = 1, Y = 0 }, "Wall", ConsoleColor.Green);
+            Actor actor3 = new Actor('I', new MathLibaray.Vector2 { X = 2, Y = 0 }, "Wall", ConsoleColor.Blue);
+            //left wall
+            Actor actor4 = new Actor('l', new MathLibaray.Vector2 { X = 2, Y = 4 }, "Wall", ConsoleColor.Magenta);
+            Actor actor5 = new Actor('l', new MathLibaray.Vector2 { X = 2, Y = 3 }, "Wall", ConsoleColor.Green);
+            Actor actor6 = new Actor('l', new MathLibaray.Vector2 { X = 2, Y = 2 }, "Wall", ConsoleColor.Blue);
+            Actor actor22 = new Actor('l', new MathLibaray.Vector2 { X = 7, Y = 8 }, "Wall", ConsoleColor.Magenta);
+            Actor actor23 = new Actor('l', new MathLibaray.Vector2 { X = 7, Y = 7 }, "Wall", ConsoleColor.Green);
+
+            //right wall
+            Actor actor7 = new Actor('l', new MathLibaray.Vector2 { X = 4, Y = 4 }, "Wall", ConsoleColor.Magenta);
+            Actor actor8 = new Actor('l', new MathLibaray.Vector2 { X = 4, Y = 3 }, "Wall", ConsoleColor.Green);
+            Actor actor9 = new Actor('l', new MathLibaray.Vector2 { X = 4, Y = 2 }, "Wall", ConsoleColor.Blue);
+            Actor actor18 = new Actor('l', new MathLibaray.Vector2 { X = 9, Y = 7 }, "Wall", ConsoleColor.Magenta);
+            Actor actor19 = new Actor('l', new MathLibaray.Vector2 { X = 9, Y = 6 }, "Wall", ConsoleColor.Green);
+            Actor actor20 = new Actor('l', new MathLibaray.Vector2 { X = 9, Y = 5 }, "Wall", ConsoleColor.Blue);
+            Actor actor24 = new Actor('l', new MathLibaray.Vector2 { X = 9, Y = 8 }, "Wall", ConsoleColor.Blue);
+            //The path
+            Actor actor11 = new Actor('-', new MathLibaray.Vector2 { X = 5, Y = 6 }, "Wall", ConsoleColor.Magenta);
+            Actor actor12 = new Actor('-', new MathLibaray.Vector2 { X = 6, Y = 6 }, "Wall", ConsoleColor.Green);
+            Actor actor13 = new Actor('-', new MathLibaray.Vector2 { X = 7, Y = 6 }, "Wall", ConsoleColor.Blue);
+            Actor actor15 = new Actor('_', new MathLibaray.Vector2 { X = 5, Y = 4 }, "Wall", ConsoleColor.Magenta);
+            Actor actor16 = new Actor('_', new MathLibaray.Vector2 { X = 6, Y = 4 }, "Wall", ConsoleColor.Green);
+            Actor actor17 = new Actor('_', new MathLibaray.Vector2 { X = 7, Y = 4 }, "Wall", ConsoleColor.Blue);
+            Actor actor21 = new Actor('_', new MathLibaray.Vector2 { X = 8, Y = 4 }, "Wall", ConsoleColor.Blue);
+            //perjectiles
+            Actor actor10 = new Actor('X', new MathLibaray.Vector2 { X = 2, Y = 5 }, "Bullet", ConsoleColor.Blue);
+            Actor actor14 = new Actor('X', new MathLibaray.Vector2 { X = 3, Y = 6 }, "Bullet", ConsoleColor.Blue);
+            Actor actor25 = new Actor('X', new MathLibaray.Vector2 { X = 8, Y = 10 }, "Bullet", ConsoleColor.Blue);
+            Actor actor26 = new Actor('X', new MathLibaray.Vector2 { X = 10, Y = 9 }, "Bullet", ConsoleColor.Blue);
+            //The Boss
+            Actor actor27 = new Actor('W', new MathLibaray.Vector2 { X = 6, Y = 9 }, "Boss", ConsoleColor.Blue);
+
+
             Player player = new Player('Q', 2, 1,1, "Player", ConsoleColor.DarkBlue);
 
             //adds the actor to the scene and takes in that actor
             scene.AddActor(actor);
             scene.AddActor(actor2);
             scene.AddActor(actor3);
+            //left wall
+            scene.AddActor(actor4);
+            scene.AddActor(actor5);
+            scene.AddActor(actor6);
+            scene.AddActor(actor22);
+            scene.AddActor(actor23);
+
+
+            //right wall
+            scene.AddActor(actor7);
+            scene.AddActor(actor8);
+            scene.AddActor(actor9);
+            scene.AddActor(actor18);
+            scene.AddActor(actor19);
+            scene.AddActor(actor20);
+            scene.AddActor(actor24);
+
+            //the path
+            scene.AddActor(actor11);
+            scene.AddActor(actor12);
+            scene.AddActor(actor13);
+            scene.AddActor(actor15);
+            scene.AddActor(actor16);
+            scene.AddActor(actor17);
+            scene.AddActor(actor21);
+
+            //The projectiles
+            scene.AddActor(actor10);
+            scene.AddActor(actor14);
+            scene.AddActor(actor25);
+            scene.AddActor(actor26);
+
+            //player
             scene.AddActor(player);
+
+            //Boss
+            scene.AddActor(actor27);
 
             _currentSceneIndex = AddScene(scene);
 
@@ -132,7 +200,11 @@ namespace MathForGames
             {
                 //puts it in side the array.
                 tempArray[i] = _scenes[i];
+
+                if (i > _scenes.Length)
+                    End();
             }
+
 
             //set the last index to be the scene.
             tempArray[_scenes.Length] = scene;
@@ -179,6 +251,7 @@ namespace MathForGames
         /// </summary>
         public static void CloseApplication()
         {
+
             _applicationShouldClose = true;
         }
     }
