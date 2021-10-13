@@ -21,7 +21,7 @@ namespace MathLibaray
 
         public static Vector2 operator -(Vector2 lhs, Vector2 rhs)
         {
-            return new Vector2 { X = lhs.X + rhs.X, Y = lhs.Y + rhs.Y };
+            return new Vector2 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y };
         }
 
         public static Vector2 operator /(Vector2 lhs, _speed rhs)
@@ -35,6 +35,15 @@ namespace MathLibaray
         public static Vector2 operator *(Vector2 lhs, _speed rhs)
         {
             return new Vector2 { };
+        }
+
+        public static Vector2 operator >=(Vector2 lhs, Vector2 rhs)
+        {
+            return new Vector2 { };
+        }
+        public static Vector2 operator <=(Vector2 lhs, Vector2 rhs)
+        {
+            return new Vector2 { lhs.X - rhs.X = 0, lhs.Y - rhs.Y = 0};
         }
     }
 
