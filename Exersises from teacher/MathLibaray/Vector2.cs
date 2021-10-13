@@ -65,7 +65,7 @@ namespace MathLibaray
         /// </summary>
         /// <param name="lhs">Is the main number being compared is not equal</param>
         /// <param name="rhs">is the value that is used to compare lhs</param>
-        /// <returns></returns>
+        /// <returns>If they are not equal then true is equal false.</returns>
         public static bool operator !=(Vector2 lhs, Vector2 rhs)
         {
             return lhs.X != rhs.X || lhs.Y != rhs.Y;
