@@ -9,7 +9,13 @@ namespace MathForGames
     {
         private float _speed;
         private Vector2 _velocity;
+        public static int _health = 5;
 
+        public int Health
+        {
+            get { return _health; }
+            set { _health = value; }
+        }
         public float Speed
         {
             get { return _speed; }
@@ -26,6 +32,7 @@ namespace MathForGames
             : base( icon , x , y , name , color)
         {
             _speed = speed;
+            _health = 5;
 
         }
 
@@ -58,16 +65,13 @@ namespace MathForGames
             }
             if (actor.Name == "Bullet")
             {
-                Postion = Velocity;
-                
-                
+                _health--;
+                Postion = Velocity; 
             }
             if (actor.Name == "Boss")
             {
                 Engine.CloseApplication();
             }
-            else
-                Engine.CloseApplication();
         }
     }
 }

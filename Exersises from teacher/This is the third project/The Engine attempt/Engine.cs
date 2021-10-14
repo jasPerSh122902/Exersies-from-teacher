@@ -18,7 +18,9 @@ namespace MathForGames
         /// </summary>
         public void Run()
         {
+
             //calles the entrire application
+
             Start();
 
             //loops till application is done
@@ -39,43 +41,49 @@ namespace MathForGames
         /// </summary>
         private void Start()
         {
+            Console.WriteLine("Lives " + Player._health);
+            Console.Write("You must make it to Wompus but beware of his traps.\n" +
+                "You must not loose you lives good luck.");
+            Console.Read();
             Scene scene = new Scene();
-            Actor actor = new Actor('P', new MathLibaray.Vector2 { X = 0, Y = 0 }, "Wall", ConsoleColor.Magenta);
-            Actor actor2 = new Actor('E', new MathLibaray.Vector2 { X = 1, Y = 0 }, "Wall", ConsoleColor.Green);
-            Actor actor3 = new Actor('I', new MathLibaray.Vector2 { X = 2, Y = 0 }, "Wall", ConsoleColor.Blue);
+            //the Actor has to take a caractor and a x, y then the name you will call it then a color.
+
+            Actor actor = new Actor('P', 0, 0, "Wall", ConsoleColor.Magenta);
+            Actor actor2 = new Actor('E', 1, 0, "Wall", ConsoleColor.Green);
+            Actor actor3 = new Actor('I', 2, 0, "Wall", ConsoleColor.Blue);
             //left wall
-            Actor actor4 = new Actor('l', new MathLibaray.Vector2 { X = 2, Y = 4 }, "Wall", ConsoleColor.Magenta);
-            Actor actor5 = new Actor('l', new MathLibaray.Vector2 { X = 2, Y = 3 }, "Wall", ConsoleColor.Green);
-            Actor actor6 = new Actor('l', new MathLibaray.Vector2 { X = 2, Y = 2 }, "Wall", ConsoleColor.Blue);
-            Actor actor22 = new Actor('l', new MathLibaray.Vector2 { X = 7, Y = 8 }, "Wall", ConsoleColor.Magenta);
-            Actor actor23 = new Actor('l', new MathLibaray.Vector2 { X = 7, Y = 7 }, "Wall", ConsoleColor.Green);
+            Actor actor4 = new Actor('l', 2, 4, "Wall", ConsoleColor.Magenta);
+            Actor actor5 = new Actor('l', 2, 3, "Wall", ConsoleColor.Green);
+            Actor actor6 = new Actor('l', 2, 2, "Wall", ConsoleColor.Blue);
+            Actor actor22 = new Actor('l', 7, 8, "Wall", ConsoleColor.Magenta);
+            Actor actor23 = new Actor('l', 7, 7, "Wall", ConsoleColor.Green);
 
             //right wall
-            Actor actor7 = new Actor('l', new MathLibaray.Vector2 { X = 4, Y = 4 }, "Wall", ConsoleColor.Magenta);
-            Actor actor8 = new Actor('l', new MathLibaray.Vector2 { X = 4, Y = 3 }, "Wall", ConsoleColor.Green);
-            Actor actor9 = new Actor('l', new MathLibaray.Vector2 { X = 4, Y = 2 }, "Wall", ConsoleColor.Blue);
-            Actor actor18 = new Actor('l', new MathLibaray.Vector2 { X = 9, Y = 7 }, "Wall", ConsoleColor.Magenta);
-            Actor actor19 = new Actor('l', new MathLibaray.Vector2 { X = 9, Y = 6 }, "Wall", ConsoleColor.Green);
-            Actor actor20 = new Actor('l', new MathLibaray.Vector2 { X = 9, Y = 5 }, "Wall", ConsoleColor.Blue);
-            Actor actor24 = new Actor('l', new MathLibaray.Vector2 { X = 9, Y = 8 }, "Wall", ConsoleColor.Blue);
+            Actor actor7 = new Actor('l', 4, 4, "Wall", ConsoleColor.Magenta);
+            Actor actor8 = new Actor('l', 4, 3, "Wall", ConsoleColor.Green);
+            Actor actor9 = new Actor('l', 4, 2, "Wall", ConsoleColor.Blue);
+            Actor actor18 = new Actor('l', 9, 7, "Wall", ConsoleColor.Magenta);
+            Actor actor19 = new Actor('l', 9, 6, "Wall", ConsoleColor.Green);
+            Actor actor20 = new Actor('l', 9, 5, "Wall", ConsoleColor.Blue);
+            Actor actor24 = new Actor('l', 9, 8, "Wall", ConsoleColor.Blue);
             //The path
-            Actor actor11 = new Actor('-', new MathLibaray.Vector2 { X = 5, Y = 6 }, "Wall", ConsoleColor.Magenta);
-            Actor actor12 = new Actor('-', new MathLibaray.Vector2 { X = 6, Y = 6 }, "Wall", ConsoleColor.Green);
-            Actor actor13 = new Actor('-', new MathLibaray.Vector2 { X = 7, Y = 6 }, "Wall", ConsoleColor.Blue);
-            Actor actor15 = new Actor('_', new MathLibaray.Vector2 { X = 5, Y = 4 }, "Wall", ConsoleColor.Magenta);
-            Actor actor16 = new Actor('_', new MathLibaray.Vector2 { X = 6, Y = 4 }, "Wall", ConsoleColor.Green);
-            Actor actor17 = new Actor('_', new MathLibaray.Vector2 { X = 7, Y = 4 }, "Wall", ConsoleColor.Blue);
-            Actor actor21 = new Actor('_', new MathLibaray.Vector2 { X = 8, Y = 4 }, "Wall", ConsoleColor.Blue);
+            Actor actor11 = new Actor('-', 5, 6, "Wall", ConsoleColor.Magenta);
+            Actor actor12 = new Actor('-', 6, 6, "Wall", ConsoleColor.Green);
+            Actor actor13 = new Actor('-', 7, 6, "Wall", ConsoleColor.Blue);
+            Actor actor15 = new Actor('_', 5, 4, "Wall", ConsoleColor.Magenta);
+            Actor actor16 = new Actor('_', 6, 4, "Wall", ConsoleColor.Green);
+            Actor actor17 = new Actor('_', 7, 4, "Wall", ConsoleColor.Blue);
+            Actor actor21 = new Actor('_', 8, 4, "Wall", ConsoleColor.Blue);
             //perjectiles
-            Actor actor10 = new Actor('X', new MathLibaray.Vector2 { X = 2, Y = 5 }, "Bullet", ConsoleColor.Blue);
-            Actor actor14 = new Actor('X', new MathLibaray.Vector2 { X = 3, Y = 6 }, "Bullet", ConsoleColor.Blue);
-            Actor actor25 = new Actor('X', new MathLibaray.Vector2 { X = 8, Y = 10 }, "Bullet", ConsoleColor.Blue);
-            Actor actor26 = new Actor('X', new MathLibaray.Vector2 { X = 10, Y = 9 }, "Bullet", ConsoleColor.Blue);
+            Actor actor10 = new Actor('X', 2, 5, "Bullet", ConsoleColor.Blue);
+            Actor actor14 = new Actor('X', 3, 6, "Bullet", ConsoleColor.Blue);
+            Actor actor25 = new Actor('X', 8, 10, "Bullet", ConsoleColor.Blue);
+            Actor actor26 = new Actor('X', 10, 9, "Bullet", ConsoleColor.Blue);
             //The Boss
-            Actor actor27 = new Actor('W', new MathLibaray.Vector2 { X = 6, Y = 9 }, "Boss", ConsoleColor.Blue);
+            Actor actor27 = new Actor('W', 6, 9, "Boss", ConsoleColor.Blue);
 
 
-            Player player = new Player('Q', 2, 1,1, "Player", ConsoleColor.DarkBlue);
+            Player player = new Player('Q', 2, 1, 1, "Player", ConsoleColor.DarkBlue);
 
             //adds the actor to the scene and takes in that actor
             scene.AddActor(actor);
@@ -131,12 +139,16 @@ namespace MathForGames
         /// </summary>
         private void Update()
         {
-
+            Console.WriteLine(Player._health);
             _scenes[_currentSceneIndex].Update();
 
             while (Console.KeyAvailable)
                 Console.ReadKey(true);
 
+            if (Player._health == 0)
+            {
+                _applicationShouldClose = true;
+            }
 
         }
 
@@ -145,7 +157,7 @@ namespace MathForGames
         /// </summary>
         private void Draw()
         {
-            
+
             //clear the the current screen in the last frame
             _burffer = new Icon[Console.WindowWidth, Console.WindowHeight - 1];
             //resests the cursors positon back to 0,0 to draw over.

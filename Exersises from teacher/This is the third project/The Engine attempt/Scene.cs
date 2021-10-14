@@ -35,6 +35,7 @@ namespace MathForGames
         /// </summary>
         public virtual void Update()
         {
+
             for (int i = 0; i < _actors.Length; i++)
             {
                 if (!_actors[i].Started)
@@ -50,6 +51,9 @@ namespace MathForGames
                     if (_actors[i].Postion == _actors[j].Postion && j != i)
                         //then start on Collision for actor 1 by making actor 2 be collied with.
                         _actors[i].OnCollision(_actors[j]);
+ 
+                    
+
 
                 }
 
