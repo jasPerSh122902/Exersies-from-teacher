@@ -32,6 +32,7 @@ namespace MathForGames
             : base( icon , x , y , name , color)
         {
             _speed = speed;
+            _health = 5;
 
         }
 
@@ -70,6 +71,10 @@ namespace MathForGames
             if (actor.Name == "Boss")
             {
                 Engine.CloseApplication();
+            }
+            if (actor.Name == "Player")
+            {
+                Postion += Velocity;
             }
         }
 

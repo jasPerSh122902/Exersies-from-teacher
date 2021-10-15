@@ -41,7 +41,6 @@ namespace MathForGames
         /// </summary>
         private void Start()
         {
-            Console.WriteLine("Lives " + Player._health);
             Console.Write("You must make it to Wompus but beware of his traps.\n" +
                 "You must not loose you lives good luck.");
             Console.Read();
@@ -54,7 +53,6 @@ namespace MathForGames
         /// </summary>
         private void Update()
         {
-            Console.WriteLine(Player._health);
             _scenes[_currentSceneIndex].Update();
 
             while (Console.KeyAvailable)
@@ -222,7 +220,10 @@ namespace MathForGames
 
 
             Player player = new Player('Q', 2, 1, 1, "Player", ConsoleColor.DarkBlue);
-            Player player2 = new Player('Z', 5, 2, 1, "Player", ConsoleColor.Green);
+            Actor actor28 = new Actor('Z', 5, 2, "Player", ConsoleColor.Green);
+
+            UIText Ui = new UIText(10, 0, "Health", ConsoleColor.DarkYellow, 10, 10, "Lives " + Player._health );
+
 
             //adds the actor to the scene and takes in that actor
             scene.AddActor(actor);
@@ -262,8 +263,10 @@ namespace MathForGames
 
             //player
             scene.AddActor(player);
-            scene.AddActor(player2);
+            scene.AddActor(actor28);
 
+            //UI for Player
+            scene.AddActor(Ui);
             //Boss
             scene.AddActor(actor27);
 
