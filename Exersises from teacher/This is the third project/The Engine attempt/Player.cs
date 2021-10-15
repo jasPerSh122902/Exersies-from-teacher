@@ -9,7 +9,7 @@ namespace MathForGames
     {
         private float _speed;
         private Vector2 _velocity;
-        public static int _health = 5;
+        public  static int _health = 5;
 
         public int Health
         {
@@ -65,7 +65,7 @@ namespace MathForGames
             }
             if (actor.Name == "Bullet")
             {
-                _health--;
+                Health--;
                 Postion = Velocity; 
             }
             if (actor.Name == "Boss")

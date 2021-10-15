@@ -54,6 +54,7 @@ namespace MathForGames
         private void Update()
         {
             _scenes[_currentSceneIndex].Update();
+            _scenes[_currentSceneIndex].UpdateUI();
 
             while (Console.KeyAvailable)
                 Console.ReadKey(true);
@@ -78,6 +79,7 @@ namespace MathForGames
 
             //add all of the icons back to the buffer
             _scenes[_currentSceneIndex].Draw();
+            _scenes[_currentSceneIndex].DrawUIElemts();
 
             //incraments through the buffer
             for (int y = 0; y < _burffer.GetLength(1); y++)
@@ -222,7 +224,7 @@ namespace MathForGames
             Player player = new Player('Q', 2, 1, 1, "Player", ConsoleColor.DarkBlue);
             Actor actor28 = new Actor('Z', 5, 2, "Player", ConsoleColor.Green);
 
-            UIText Ui = new UIText(10, 0, "Health", ConsoleColor.DarkYellow, 10, 10, "Lives " + Player._health );
+            UIText Ui = new UIText(4, 0, "Health", ConsoleColor.DarkYellow, 10, 1, "Lives " + Player._health );
 
 
             //adds the actor to the scene and takes in that actor
@@ -266,7 +268,7 @@ namespace MathForGames
             scene.AddActor(actor28);
 
             //UI for Player
-            scene.AddActor(Ui);
+            scene.AddUIElement(Ui);
             //Boss
             scene.AddActor(actor27);
 

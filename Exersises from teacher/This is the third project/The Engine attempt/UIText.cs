@@ -70,6 +70,14 @@ namespace MathForGames
 
                 Engine.Render(currentLetter, new MathLibaray.Vector2 { X = cursorPosX, Y = cursorPosY });
 
+                if (currentLetter.Symbol == '\n')
+                {
+                    cursorPosX = (int)Postion.X;
+                    cursorPosY++;
+                    //the continue key word allow me to go into a loop and hit the continue...
+                    //...it will leave the rest of the loop and go back to the top.
+                    continue;
+                }
                 cursorPosX++;
 
                 if (cursorPosX > (int)Postion.X + Width)
