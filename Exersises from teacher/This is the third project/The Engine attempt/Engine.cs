@@ -13,6 +13,7 @@ namespace MathForGames
         private static int _currentSceneIndex;
         private Scene[] _scenes = new Scene[0];
         private static Icon[,] _burffer;
+
         /// <summary>
         /// is the call to start the application
         /// </summary>
@@ -102,6 +103,7 @@ namespace MathForGames
                 Console.WriteLine();
             }
         }
+
         /// <summary>
         /// end the appliction 
         /// </summary>
@@ -158,6 +160,7 @@ namespace MathForGames
             //Return the current key being pressed
             return Console.ReadKey(true).Key;
         }
+
         /// <summary>
         /// adds the icon to the buffer to print to the screeen in the next draw call;
         /// prints the icon t the given position in the buffer
@@ -175,6 +178,7 @@ namespace MathForGames
             _burffer[(int)position.X, (int)position.Y] = icon;
             return true;
         }
+
         /// <summary>
         /// Closes the application
         /// </summary>
@@ -246,13 +250,13 @@ namespace MathForGames
             scene.AddActor(actor);
             scene.AddActor(actor2);
             scene.AddActor(actor3);
+
             //left wall
             scene.AddActor(actor4);
             scene.AddActor(actor5);
             scene.AddActor(actor6);
             scene.AddActor(actor22);
             scene.AddActor(actor23);
-
 
             //right wall
             scene.AddActor(actor7);
