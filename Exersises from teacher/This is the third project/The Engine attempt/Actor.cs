@@ -44,6 +44,11 @@ namespace MathForGames
         }
 
         /// <summary>
+        /// Is meant to be a defaul constructor for actor.
+        /// </summary>
+        public Actor() { }
+
+        /// <summary>
         /// takes the Actor constructor and add the float x and y but takes out y
         /// </summary>
         /// <param name="x">is the replace the Vector2</param>
@@ -84,7 +89,7 @@ namespace MathForGames
 
         public void End()
         {
-
+            
         }
 
        

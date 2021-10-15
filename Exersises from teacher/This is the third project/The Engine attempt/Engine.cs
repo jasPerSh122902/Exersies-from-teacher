@@ -27,9 +27,8 @@ namespace MathForGames
             while (!_applicationShouldClose)
             {
                 Update();
-                Draw();
-
                 Thread.Sleep(70);
+                Draw();
             }
 
             //is the call to end the entire appliction
@@ -61,6 +60,7 @@ namespace MathForGames
 
             if (Player._health == 0)
             {
+                
                 _applicationShouldClose = true;
             }
 
@@ -107,7 +107,9 @@ namespace MathForGames
         /// </summary>
         private void End()
         {
+            
             _scenes[_currentSceneIndex].End();
+
         }
 
         /// <summary>
@@ -224,8 +226,10 @@ namespace MathForGames
             Player player = new Player('Q', 2, 1, 1, "Player", ConsoleColor.DarkBlue);
             Actor actor28 = new Actor('Z', 5, 2, "Player", ConsoleColor.Green);
 
-            UIText Ui = new UIText(4, 0, "Health", ConsoleColor.DarkYellow, 10, 1, "Lives " + Player._health );
 
+            UIText Ui = new UIText(4, 0, "Health", ConsoleColor.DarkYellow, 10, 1, "Lives " + Player._health );
+            UIText Ui2 = new UIText(8, 0, "Health", ConsoleColor.DarkYellow, 20, 1, "You have won and got to wompus congrast");
+            PlayerHud playerHud = new PlayerHud(player, Ui);
 
             //adds the actor to the scene and takes in that actor
             scene.AddActor(actor);
@@ -269,6 +273,11 @@ namespace MathForGames
 
             //UI for Player
             scene.AddUIElement(Ui);
+            if (player.Health == 0)
+                scene.AddUIElement(Ui2);
+            
+            scene.AddActor(playerHud);
+
             //Boss
             scene.AddActor(actor27);
 

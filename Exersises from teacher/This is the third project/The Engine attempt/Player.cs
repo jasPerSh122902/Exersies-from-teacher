@@ -9,7 +9,7 @@ namespace MathForGames
     {
         private float _speed;
         private Vector2 _velocity;
-        public  static int _health = 5;
+        public  static int _health;
 
         public int Health
         {
@@ -32,7 +32,7 @@ namespace MathForGames
             : base( icon , x , y , name , color)
         {
             _speed = speed;
-            _health = 5;
+            _health = 1;
 
         }
 
