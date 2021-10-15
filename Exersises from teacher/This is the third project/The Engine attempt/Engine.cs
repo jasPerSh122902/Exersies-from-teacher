@@ -183,6 +183,9 @@ namespace MathForGames
             _applicationShouldClose = true;
         }
 
+        /// <summary>
+        /// Calls the actors and players and is meant to hold all of them for use.
+        /// </summary>
         public virtual void PrintActor()
         {
             Scene scene = new Scene();
@@ -191,6 +194,7 @@ namespace MathForGames
             Actor actor = new Actor('P', 0, 0, "Wall", ConsoleColor.Magenta);
             Actor actor2 = new Actor('E', 1, 0, "Wall", ConsoleColor.Green);
             Actor actor3 = new Actor('I', 2, 0, "Wall", ConsoleColor.Blue);
+
             //left wall
             Actor actor4 = new Actor('l', 2, 4, "Wall", ConsoleColor.Magenta);
             Actor actor5 = new Actor('l', 2, 3, "Wall", ConsoleColor.Green);
@@ -206,6 +210,7 @@ namespace MathForGames
             Actor actor19 = new Actor('l', 9, 6, "Wall", ConsoleColor.Green);
             Actor actor20 = new Actor('l', 9, 5, "Wall", ConsoleColor.Blue);
             Actor actor24 = new Actor('l', 9, 8, "Wall", ConsoleColor.Blue);
+
             //The path
             Actor actor11 = new Actor('-', 5, 6, "Wall", ConsoleColor.Magenta);
             Actor actor12 = new Actor('-', 6, 6, "Wall", ConsoleColor.Green);
@@ -214,21 +219,27 @@ namespace MathForGames
             Actor actor16 = new Actor('_', 6, 4, "Wall", ConsoleColor.Green);
             Actor actor17 = new Actor('_', 7, 4, "Wall", ConsoleColor.Blue);
             Actor actor21 = new Actor('_', 8, 4, "Wall", ConsoleColor.Blue);
+
             //perjectiles
             Actor actor10 = new Actor('X', 2, 5, "Bullet", ConsoleColor.Blue);
             Actor actor14 = new Actor('X', 3, 6, "Bullet", ConsoleColor.Blue);
             Actor actor25 = new Actor('X', 8, 10, "Bullet", ConsoleColor.Blue);
             Actor actor26 = new Actor('X', 10, 9, "Bullet", ConsoleColor.Blue);
+
             //The Boss
             Actor actor27 = new Actor('W', 6, 9, "Boss", ConsoleColor.Blue);
 
-
+            //Players
             Player player = new Player('Q', 2, 1, 1, "Player", ConsoleColor.DarkBlue);
             Actor actor28 = new Actor('Z', 5, 2, "Player", ConsoleColor.Green);
 
-
+            //Ui for the player
             UIText Ui = new UIText(4, 0, "Health", ConsoleColor.DarkYellow, 10, 1, "Lives " + Player._health );
+
+            //end of the game Ui
             UIText Ui2 = new UIText(8, 0, "Health", ConsoleColor.DarkYellow, 20, 1, "You have won and got to wompus congrast");
+
+            //the way the Ui updates visualy
             PlayerHud playerHud = new PlayerHud(player, Ui);
 
             //adds the actor to the scene and takes in that actor
@@ -273,9 +284,12 @@ namespace MathForGames
 
             //UI for Player
             scene.AddUIElement(Ui);
+            //is meant to call Ui2 when player dies
+            //dos not work
             if (player.Health == 0)
                 scene.AddUIElement(Ui2);
             
+            //Prints the playerHud
             scene.AddActor(playerHud);
 
             //Boss
