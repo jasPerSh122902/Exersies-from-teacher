@@ -25,6 +25,7 @@ namespace MathForGames
             //calles the entrire application
             Start();
 
+            //made the three float for delta time to function
             float currentTime = 0;
             float lastTime = 0;
             float deltaTime = 0;
@@ -41,6 +42,7 @@ namespace MathForGames
                 deltaTime = currentTime - lastTime;
 
                 Update();
+
                 Draw();
 
                 //gets the currentTime and saves it
@@ -63,6 +65,8 @@ namespace MathForGames
 
             _stopwatch.Start();
 
+            //prevously made a function to hold the actors and players to make...
+            //the Start function smaller
             Scene scene = new Scene();
             Actor actor = new Actor('P', 10, 0, Color.GOLD, "Actor1");
             Actor actor2 = new Actor('E', 50, 0, Color.LIGHTGRAY, "Actor2");
