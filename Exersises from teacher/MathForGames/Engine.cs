@@ -25,13 +25,26 @@ namespace MathForGames
             //calles the entrire application
             Start();
 
+            float currentTime = 0;
+            float lastTime = 0;
+            float deltaTime = 0;
 
 
             //loops till application is done
             while (!_applicationShouldClose || Raylib.WindowShouldClose())
             {
+                //getss the time from the Stopwatch timer
+                currentTime = Stopwatch.GetTimestamp();
+
+                //uses the last time that is at the end of the loop to subtact from the currentTime...
+                //... to get the deltaTime.
+                deltaTime = currentTime - lastTime;
+
                 Update();
                 Draw();
+
+                //gets the currentTime and saves it
+                lastTime = currentTime;
             }
 
 
