@@ -8,12 +8,34 @@ namespace MathLibaray
         public float X;
         public float Y;
 
-
+        //made instece of Vector2
         public Vector2(float x, float y)
         {
             X = x;
             Y = y;
         }
+
+        /// <summary>
+        /// Gets the length of the vectors
+        /// </summary>
+        public float Magnitude
+        {
+            get { return (float)Math.Sqrt(X * X + Y * Y); }
+        }
+
+        /// <summary>
+        /// Get the length of the vecotr to have a magnidue is equal to one.
+        /// </summary>
+        /// <returns>The result of the normalization. Returns an empty vector if the magnitude is zero.</returns>
+        public Vector2 Normalize()
+        {
+            if (Magnitude == 0)
+                return new Vector2();
+
+            return this / Magnitude;
+
+        }
+
         //overrides the plus function 
         public static Vector2 operator +(Vector2 lhs, Vector2 rhs)
         {
@@ -75,6 +97,8 @@ namespace MathLibaray
         {
             return lhs.X != rhs.X || lhs.Y != rhs.Y;
         }
+
+
     }
 
 
