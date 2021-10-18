@@ -6,10 +6,13 @@ using Raylib_cs;
 
 namespace MathForGames
 {
-    class Player : Actor
+    class Enemey : Actor
     {
         private float _speed;
         private Vector2 _velocity;
+        private Player _player;
+
+
 
         public float Speed
         {
@@ -23,25 +26,21 @@ namespace MathForGames
             set { _velocity = value; }
         }
 
-        public Player(char icon, float x, float y, float speed, Color color, string name = "Player")
-            : base(icon, x, y,speed, color, name)
+
+        public Enemey(char icon, float x, float y, float speed, Color color,Player player, string name = "Enemy")
+            : base(icon, x, y, speed, color, name)
         {
+            //i need to the player = palyer I need to get the this.
             _speed = speed;
+            player =
 
         }
 
-
-
         public override void Update(float deltaTime)
         {
-            //get the player input direction
-            int xDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
-                + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
-            int yDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
-                + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
             //Create a vector tht stores the move input
-            Vector2 moveDirection = new Vector2(xDiretion, yDiretion);
+            Vector2 moveDirection = new Vector2( _player.Postion.X * Postion.X,_player.Postion.Y * Postion.Y );
 
             //caculates the veclocity 
             Velocity = moveDirection.Normalized * Speed * deltaTime;
@@ -52,9 +51,6 @@ namespace MathForGames
 
         }
 
-        public override void OnCollision(Actor actor)
-        {
 
-        }
     }
 }

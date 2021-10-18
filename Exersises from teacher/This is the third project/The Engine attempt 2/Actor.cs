@@ -22,6 +22,8 @@ namespace MathForGames
         private Vector2 _position;
         //made started a bool so we can see if actors is there or not.
         private bool _started;
+        private float _speed;
+        
 
         public bool Started
         {
@@ -31,6 +33,11 @@ namespace MathForGames
         public string Name
         {
             get { return _name; }
+        }
+
+        public float Speed
+        {
+            get { return _speed; }
         }
 
         public Vector2 Postion
@@ -43,13 +50,17 @@ namespace MathForGames
             get { return _icon; }
         }
 
+        public Actor()
+        {
+
+        }
         /// <summary>
         /// takes the Actor constructor and add the float x and y but takes out y
         /// </summary>
         /// <param name="x">is the replace the Vector2</param>
         /// <param name="y">is the replacement for the veoctor2</param>
-        public Actor(char icon, float x, float y, Color color, string name = "Actor") :
-            this(icon, new Vector2 { X = x, Y = y }, color, name)
+        public Actor(char icon, float x, float y, float speed, Color color, string name = "Actor") :
+            this(icon, new Vector2 { X = x, Y = y }, color,speed, name)
         { }
 
 
@@ -60,13 +71,15 @@ namespace MathForGames
         /// <param name="position">is the loctation that the icon is in</param>
         /// <param name="name">current Actor name</param>
         /// <param name="color">The color that the neame or icon will be</param>
-        public Actor(char icon, Vector2 position, Color color, string name = "Actor")
+        public Actor(char icon, Vector2 position, Color color, float speed , string name = "Actor")
         {
             //updatede the Icon with the struct and made it take a symbol and a color
             _icon = new Icon { Symbol = icon, color = color };
             _position = position;
             _name = name;
+           
         }
+
 
         public virtual void Start()
         {
@@ -75,7 +88,8 @@ namespace MathForGames
 
         public virtual void Update(float deltaTime)
         {
-            //Console.WriteLine(_name + ":" + Postion.X + ":" + Postion.Y);
+            
+            Console.WriteLine(_name + ":" + Postion.X + ":" + Postion.Y);
         }
 
         public virtual void Draw()

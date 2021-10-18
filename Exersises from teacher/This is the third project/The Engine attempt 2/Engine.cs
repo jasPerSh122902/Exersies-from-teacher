@@ -16,7 +16,6 @@ namespace MathForGames
         private Stopwatch _stopwatch = new Stopwatch();
 
 
-
         /// <summary>
         /// is the call to start the application
         /// </summary>
@@ -68,10 +67,14 @@ namespace MathForGames
             //prevously made a function to hold the actors and players to make...
             //the Start function smaller
             Scene scene = new Scene();
-            Actor actor = new Actor('P', 10, 0, Color.GOLD, "Actor1");
-            Actor actor2 = new Actor('E', 50, 0, Color.LIGHTGRAY, "Actor2");
-            Actor actor3 = new Actor('I', 85, 0, Color.LIME, "Actor3");
+
+
             Player player = new Player('Q', 110, 1, 150, Color.RAYWHITE, "Player");
+            Actor actor3 = new Actor('I', 85, 0, 500, Color.LIME, "Actor3");
+            Enemey actor = new Enemey('P', 10, 0, 0, Color.GOLD, "Actor1");
+            Actor actor2 = new Actor('E', 50, 0, 0, Color.LIGHTGRAY, "Actor2");
+            
+
 
             //adds the actor to the scene and takes in that actor
             scene.AddActor(actor);

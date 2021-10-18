@@ -10,6 +10,7 @@ namespace MathForGames
         private string _text;
         private int _width;
         private int _height;
+        private float _speed;
 
         /// <summary>
         /// Is the text that is located in the actor
@@ -37,6 +38,14 @@ namespace MathForGames
             set { _height = value; }
         }
 
+        public float Speed
+        {
+            get
+            {
+                return _speed;
+            }
+        }
+
 
         /// <summary>
         /// Sets the starting values for the text box
@@ -48,8 +57,8 @@ namespace MathForGames
         /// <param name="width">long the text box is </param>
         /// <param name="height">how high you text box is</param>
         /// <param name="text">The words that is with in the UI</param>
-        public UIText(float x, float y, String name, Color color, int width, int height, string text = "")
-            : base('\0', x, y, color, name)
+        public UIText(float x, float y, String name, Color color,float speed, int width, int height, string text = "")
+            : base('\0', x, y,speed, color, name)
         {
             Text = text;
             Width = width;
