@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Raylib_cs;
 
 namespace MathForGames
 {
@@ -47,8 +48,8 @@ namespace MathForGames
         /// <param name="width">long the text box is </param>
         /// <param name="height">how high you text box is</param>
         /// <param name="text">The words that is with in the UI</param>
-        public UIText(float x, float y, String name, ConsoleColor color, int width, int height, string text = "") 
-            : base('\0', x, y, name, color)
+        public UIText(float x, float y, String name,Color color, int width, int height, string text = "") 
+            : base('\0', x, y,color, name )
         {
             Text = text;
             Width = width;
@@ -68,7 +69,7 @@ namespace MathForGames
             {
                 currentLetter.Symbol = textChars[i];
 
-                Engine.Render(currentLetter, new MathLibaray.Vector2 { X = cursorPosX, Y = cursorPosY });
+                
 
                 if (currentLetter.Symbol == '\n')
                 {

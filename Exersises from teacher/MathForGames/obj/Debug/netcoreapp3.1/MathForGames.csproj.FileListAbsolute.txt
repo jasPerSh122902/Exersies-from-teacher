@@ -12,3 +12,8 @@ E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\Mat
 E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\obj\Debug\netcoreapp3.1\MathForGames.csproj.CopyComplete
 E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\obj\Debug\netcoreapp3.1\MathForGames.dll
 E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\obj\Debug\netcoreapp3.1\MathForGames.pdb
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\bin\Debug\netcoreapp3.1\Raylib-cs.dll
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\libraylib.so
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\libraylib.dylib
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\raylib.dll
+E:\the second project\exersises\Exersies-from-teacher\Exersises from teacher\MathForGames\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\raylib.dll

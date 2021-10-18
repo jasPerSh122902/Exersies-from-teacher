@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MathLibaray;
-
+using Raylib_cs;
 
 namespace MathForGames
 {
@@ -12,7 +12,7 @@ namespace MathForGames
     struct Icon
     {
         public char Symbol;
-        public ConsoleColor color;
+        public Color color;
     }
     class Actor
     {
@@ -44,8 +44,8 @@ namespace MathForGames
         /// </summary>
         /// <param name="x">is the replace the Vector2</param>
         /// <param name="y">is the replacement for the veoctor2</param>
-        public Actor(char icon, float x, float y, string name = "Actor", ConsoleColor color = ConsoleColor.Cyan) :
-            this(icon, new Vector2 { X = x,Y = y}, name, color) {}
+        public Actor(char icon, float x, float y, Color color , string name = "Actor" ) :
+            this(icon, new Vector2 { X = x,Y = y}, color, name) {}
 
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace MathForGames
         /// <param name="position">is the loctation that the icon is in</param>
         /// <param name="name">current Actor name</param>
         /// <param name="color">The color that the neame or icon will be</param>
-        public Actor(char icon, Vector2 position, string name = "Actor", ConsoleColor color = ConsoleColor.Cyan)
+        public Actor(char icon, Vector2 position,Color color, string name = "Actor"  )
         {
             //updatede the Icon with the struct and made it take a symbol and a color
             _icon = new Icon { Symbol = icon, color = color};
@@ -75,7 +75,7 @@ namespace MathForGames
 
         public virtual void Draw()
         {
-            Engine.Render(_icon, _position);
+            Raylib.DrawText(Icon.Symbol.ToString(), (int)Postion.X, (int)Postion.Y, 50, Icon.color);
         }
 
         public void End()

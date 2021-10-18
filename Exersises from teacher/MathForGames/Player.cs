@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MathLibaray;
+using Raylib_cs;
 
 namespace MathForGames
 {
@@ -22,8 +23,8 @@ namespace MathForGames
             set { _velocity = value; }
         }
 
-        public Player(char icon, float x, float y, float speed, string name = "Actor", ConsoleColor color = ConsoleColor.Cyan) 
-            : base( icon , x , y , name , color)
+        public Player(char icon, float x, float y, float speed, Color color, string name = "Actor"  ) 
+            : base( icon , x , y ,color, name  )
         {
             _speed = speed;
 
@@ -31,18 +32,13 @@ namespace MathForGames
 
         public override void Update()
         {
-            Vector2 moveDirection = new Vector2();
+            //bro this is boolean majic
+            int xDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
+                + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
+            int yDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
+                + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
-            ConsoleKey keyPessed = Engine.GetNewtKey();
-
-            if (keyPessed == ConsoleKey.A)
-                moveDirection = new Vector2 { X = -1 };
-            if (keyPessed == ConsoleKey.D)
-                moveDirection = new Vector2 { X = 1 };
-            if (keyPessed == ConsoleKey.W)
-                moveDirection = new Vector2 { Y = -1 };
-            if (keyPessed == ConsoleKey.S)
-                moveDirection = new Vector2 { Y = 1 };
+            Vector2 moveDirection = new Vector2(xDiretion, yDiretion);
 
             Velocity = moveDirection * Speed;
 

@@ -9,6 +9,11 @@ namespace MathLibaray
         public float Y;
 
 
+        public Vector2(float x, float y)
+        {
+            X = x;
+            Y = y;
+        }
         //overrides the plus function 
         public static Vector2 operator +(Vector2 lhs, Vector2 rhs)
         {
