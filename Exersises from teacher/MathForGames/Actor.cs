@@ -28,6 +28,10 @@ namespace MathForGames
             get { return _started; }
         }
 
+        public string Name
+        {
+            get { return _name; }
+        }
 
         public Vector2 Postion
         {
@@ -71,7 +75,7 @@ namespace MathForGames
 
         public virtual void Update(float deltaTime)
         {
-
+            //Console.WriteLine(_name + ":" + Postion.X + ":" + Postion.Y);
         }
 
         public virtual void Draw()

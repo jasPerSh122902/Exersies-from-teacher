@@ -44,6 +44,7 @@ namespace MathForGames
             //caculates the veclocity 
             Velocity = moveDirection.Normalized * Speed * deltaTime;
 
+            base.Update(deltaTime);
             //moves the player
             Postion += Velocity;
 
@@ -51,7 +52,15 @@ namespace MathForGames
 
         public override void OnCollision(Actor actor)
         {
-            Engine.CloseApplication();
+            if (actor.Name == "Actor1")
+            {
+                Console.WriteLine("Collision occured ");
+                Engine.CloseApplication();
+            }
+            
+               
+            
+           
         }
     }
 }
