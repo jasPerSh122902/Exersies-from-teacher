@@ -79,7 +79,7 @@ namespace MathForGames
         {
             
             //clear the the current screen in the last frame
-            _burffer = new Icon[Console.WindowWidth, Console.WindowHeight - 1];
+            _burffer = new Icon[Console.WindowWidth -1, Console.WindowHeight - 1];
             //resests the cursors positon back to 0,0 to draw over.
             Console.SetCursorPosition(0, 0);
 
