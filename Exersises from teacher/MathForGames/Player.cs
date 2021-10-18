@@ -42,7 +42,7 @@ namespace MathForGames
             Vector2 moveDirection = new Vector2(xDiretion, yDiretion);
 
             //caculates the veclocity 
-            Velocity = moveDirection * Speed * deltaTime;
+            Velocity = moveDirection.Normalized * Speed * deltaTime;
 
             //moves the player
             Postion += Velocity;

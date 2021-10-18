@@ -24,6 +24,17 @@ namespace MathLibaray
         }
 
         /// <summary>
+        /// Get the normalized version of this vector without changing it.
+        /// </summary>
+        public Vector2 Normalized
+        {
+            get
+            {
+                Vector2 value = this;
+                return value.Normalize();
+            }
+        }
+        /// <summary>
         /// Get the length of the vecotr to have a magnidue is equal to one.
         /// </summary>
         /// <returns>The result of the normalization. Returns an empty vector if the magnitude is zero.</returns>
