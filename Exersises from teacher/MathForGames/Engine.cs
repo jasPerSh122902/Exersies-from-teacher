@@ -34,7 +34,7 @@ namespace MathForGames
             while (!_applicationShouldClose || Raylib.WindowShouldClose())
             {
                 //getss the time from the Stopwatch timer
-                currentTime = Stopwatch.GetTimestamp();
+                currentTime = _stopwatch.ElapsedMilliseconds;
 
                 //uses the last time that is at the end of the loop to subtact from the currentTime...
                 //... to get the deltaTime.
