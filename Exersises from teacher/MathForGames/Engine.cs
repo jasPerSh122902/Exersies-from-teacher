@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Diagnostics;
 using MathLibaray;
 using Raylib_cs;
 
@@ -12,7 +13,9 @@ namespace MathForGames
         private static bool _applicationShouldClose = false;
         private static int _currentSceneIndex;
         private Scene[] _scenes = new Scene[0];
-        private static Icon[,] _burffer;
+        private Stopwatch _stopwatch = new Stopwatch();
+
+        
 
         /// <summary>
         /// is the call to start the application
@@ -22,12 +25,15 @@ namespace MathForGames
             //calles the entrire application
             Start();
 
+
+
             //loops till application is done
             while (!_applicationShouldClose || Raylib.WindowShouldClose())
             {
                 Update();
                 Draw();
             }
+
 
             //is the call to end the entire appliction
             End();
@@ -40,8 +46,9 @@ namespace MathForGames
         {
             //created a window using raylib
             Raylib.InitWindow(800, 450, "The math for game. ");
+            Raylib.SetTargetFPS(400);
 
-
+            _stopwatch.Start();
 
             Scene scene = new Scene();
             Actor actor = new Actor('P', 10, 0, Color.GOLD, "Actor1");
