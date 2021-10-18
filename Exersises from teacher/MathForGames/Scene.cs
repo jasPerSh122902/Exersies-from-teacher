@@ -26,22 +26,22 @@ namespace MathForGames
         {
             for (int i = 0; i < _actors.Length; i++)
                 _actors[i].Start();
-            
 
-            
+
+
         }
 
         /// <summary>
         /// calls the update for the actors in the actors array
         /// </summary>
-        public virtual void Update()
+        public virtual void Update(float deltaTime)
         {
             for (int i = 0; i < _actors.Length; i++)
             {
                 if (!_actors[i].Started)
                     _actors[i].Start();
 
-                _actors[i].Update();
+                _actors[i].Update(deltaTime);
 
                 //incremtns thorgh the actors array
                 for (int j = 0; j < _actors.Length; j++)
@@ -55,7 +55,7 @@ namespace MathForGames
 
 
             }
-              
+
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace MathForGames
             Actor[] temArray = new Actor[_actors.Length + 1];
 
             //incremens through the actors array
-            for (int i = 0; i < _actors.Length; i++ )
+            for (int i = 0; i < _actors.Length; i++)
             {
                 temArray[i] = _actors[i];
             }
@@ -129,11 +129,11 @@ namespace MathForGames
                 //if none of that is needed return true.
                 else
                     actorRemoved = true;
-                
+
             }
 
             //will only happen if the actor is being removed and will the set actors with temArray.
-            if(actorRemoved)
+            if (actorRemoved)
                 _actors = temArray;
 
             //...then returns

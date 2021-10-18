@@ -15,7 +15,7 @@ namespace MathForGames
         private Scene[] _scenes = new Scene[0];
         private Stopwatch _stopwatch = new Stopwatch();
 
-        
+
 
         /// <summary>
         /// is the call to start the application
@@ -41,7 +41,7 @@ namespace MathForGames
                 //... to get the deltaTime.
                 deltaTime = currentTime - lastTime;
 
-                Update();
+                Update(deltaTime);
 
                 Draw();
 
@@ -87,12 +87,12 @@ namespace MathForGames
         }
 
         /// <summary>
-        /// Updates the Engine 
+        /// Updates the Engine when it is called
         /// </summary>
-        private void Update()
+        private void Update(float deltaTime)
         {
 
-            _scenes[_currentSceneIndex].Update();
+            _scenes[_currentSceneIndex].Update(deltaTime);
 
             while (Console.KeyAvailable)
                 Console.ReadKey(true);

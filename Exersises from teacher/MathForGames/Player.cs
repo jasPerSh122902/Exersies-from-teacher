@@ -23,14 +23,14 @@ namespace MathForGames
             set { _velocity = value; }
         }
 
-        public Player(char icon, float x, float y, float speed, Color color, string name = "Actor"  ) 
-            : base( icon , x , y ,color, name  )
+        public Player(char icon, float x, float y, float speed, Color color, string name = "Actor")
+            : base(icon, x, y, color, name)
         {
             _speed = speed;
 
         }
 
-        public override void Update()
+        public override void Update(float deltaTime)
         {
             //bro this is boolean majic
             int xDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
