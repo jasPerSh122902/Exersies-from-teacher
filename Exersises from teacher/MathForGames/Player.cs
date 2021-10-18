@@ -32,16 +32,19 @@ namespace MathForGames
 
         public override void Update(float deltaTime)
         {
-            //bro this is boolean majic
+            //get the player input direction
             int xDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
             int yDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
+            //Create a vector tht stores the move input
             Vector2 moveDirection = new Vector2(xDiretion, yDiretion);
 
-            Velocity = moveDirection * Speed;
+            //caculates the veclocity 
+            Velocity = moveDirection * Speed * deltaTime;
 
+            //moves the player
             Postion += Velocity;
 
         }

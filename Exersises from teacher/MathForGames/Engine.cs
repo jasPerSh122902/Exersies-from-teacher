@@ -35,7 +35,7 @@ namespace MathForGames
             while (!_applicationShouldClose || Raylib.WindowShouldClose())
             {
                 //getss the time from the Stopwatch timer
-                currentTime = _stopwatch.ElapsedMilliseconds;
+                currentTime = _stopwatch.ElapsedMilliseconds / 1000.0f;
 
                 //uses the last time that is at the end of the loop to subtact from the currentTime...
                 //... to get the deltaTime.
@@ -61,7 +61,7 @@ namespace MathForGames
         {
             //created a window using raylib
             Raylib.InitWindow(800, 450, "The math for game. ");
-            Raylib.SetTargetFPS(400);
+            Raylib.SetTargetFPS(0);
 
             _stopwatch.Start();
 
