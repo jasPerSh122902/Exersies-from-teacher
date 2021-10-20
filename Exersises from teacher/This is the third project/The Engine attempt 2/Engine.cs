@@ -14,6 +14,7 @@ namespace MathForGames
         private static int _currentSceneIndex;
         private Scene[] _scenes = new Scene[0];
         private Stopwatch _stopwatch = new Stopwatch();
+        private Player _player;
 
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace MathForGames
             Scene scene = new Scene();
 
 
-            Player player = new Player('Q', 110, 1, 150, Color.RAYWHITE, "Player");
+            Player player = new Player('Q', 110, 1, 150, 100, Color.RAYWHITE, "Player");
             //adds the collision to the player
             player.CollisionRadius = 30;
             Enemey enemy = new Enemey('P', 10, 0, 100, player, Color.GOLD, "Enemy");
@@ -78,8 +79,8 @@ namespace MathForGames
             Actor actor2 = new Actor('E', 50, 0, 0, Color.LIGHTGRAY, "Actor2");
             Actor actor3 = new Actor('I', 85, 0, 500, Color.LIME, "Actor3");
             UIText Ui = new UIText(0, 50, "TextBox", Color.BLUE, 0, 100, 200, 20,"This is thest Text. That dos nothing. ");
-
-
+           
+            //There was a bullet instece here keep in mind
 
             //adds the actor to the scene and takes in that actor
             scene.AddActor(enemy);
@@ -87,6 +88,9 @@ namespace MathForGames
             scene.AddActor(actor3);
             scene.AddActor(player);
             scene.AddActor(Ui);
+
+            //the add bullet was here
+
 
             _currentSceneIndex = AddScene(scene);
 
@@ -100,6 +104,7 @@ namespace MathForGames
         /// </summary>
         private void Update(float deltaTime)
         {
+
 
             _scenes[_currentSceneIndex].Update(deltaTime);
 
