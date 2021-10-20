@@ -47,9 +47,39 @@ namespace MathForGames
             //caculates the veclocity 
             Velocity = moveDirection.Normalized * Speed * deltaTime;
 
+            if (GetTargetInSight())
+                Postion += Velocity;
+
             base.Update(deltaTime);
 
-            Postion += Velocity;
+           
+        }
+
+        /// <summary>
+        /// Get the Sight of the enemy 
+        /// </summary>
+        /// <returns>return the feild of vey for the enemy and returns
+        /// the possiple distace to get of of veiw</returns>
+        public bool GetTargetInSight()
+        {
+            float distace; 
+            Vector2 directionOfTarget = (_player.Postion - Postion).Normalized;
+
+            distace = (_player.Postion - Postion).Magnitude;
+
+            if (Vector2.DotProduct(directionOfTarget, Forward) < 2)
+            {
+                //The > 0.70 is the angle that is the enemys field of view or visian
+                return Vector2.DotProduct(directionOfTarget, Forward) > .70 && distace < 150; ;
+            }
+            
+            //returns the DotProduct greater than 0
+            return Vector2.DotProduct(directionOfTarget, Forward) > 0;
+        }
+
+        public void Oncollision(Actor actor)
+        {
+
         }
     }
 }

@@ -34,6 +34,7 @@ namespace MathLibaray
                 return value.Normalize();
             }
         }
+
         /// <summary>
         /// Get the length of the vecotr to have a magnidue is equal to one.
         /// </summary>
@@ -47,9 +48,23 @@ namespace MathLibaray
 
         }
 
+        /// <param name="lhs">The left hand side of the operation</param>
+        /// <param name="rhs">The right hand side of the operation</param>
+        /// <returns>The dot product of the first vector on to the second</returns>
         public static float DotProduct(Vector2 lhs, Vector2 rhs)
         {
             return (lhs.X * rhs.X) + (lhs.Y * rhs.Y); 
+        }
+
+        /// <summary>
+        /// Is the distace formual but condinced
+        /// </summary>
+        /// <param name="lhs">The x and y 1 in the distance formula</param>
+        /// <param name="rhs">The x and y 2 in the distance formula</param>
+        /// <returns>returns the Magnitude or the D in the distance fromual</returns>
+        public static float Distance(Vector2 lhs, Vector2 rhs)
+        {
+            return (rhs - lhs).Magnitude;
         }
 
         //overrides the plus function 

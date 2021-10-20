@@ -23,6 +23,7 @@ namespace MathForGames
         //made started a bool so we can see if actors is there or not.
         private bool _started;
         private float _speed;
+        private Vector2 _forward = new Vector2(1,0);
         
 
         public bool Started
@@ -48,6 +49,12 @@ namespace MathForGames
         public Icon Icon
         {
             get { return _icon; }
+        }
+
+        public Vector2 Forward
+        {
+            get { return _forward; }
+            set { _forward = value; }
         }
 
         public Actor()
