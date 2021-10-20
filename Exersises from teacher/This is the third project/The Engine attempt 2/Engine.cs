@@ -73,6 +73,7 @@ namespace MathForGames
             Enemey enemy = new Enemey('P', 10, 0, 100, player, Color.GOLD, "Enemy");
             Actor actor2 = new Actor('E', 50, 0, 0, Color.LIGHTGRAY, "Actor2");
             Actor actor3 = new Actor('I', 85, 0, 500, Color.LIME, "Actor3");
+            UIText Ui = new UIText(0, 50, "TextBox", Color.BLUE, 0, 100, 200, 20, "This is thest Text. That dos nothing. ");
 
 
 
@@ -81,6 +82,7 @@ namespace MathForGames
             scene.AddActor(actor2);
             scene.AddActor(actor3);
             scene.AddActor(player);
+            scene.AddActor(Ui);
 
             _currentSceneIndex = AddScene(scene);
 
