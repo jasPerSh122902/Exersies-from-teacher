@@ -24,7 +24,8 @@ namespace MathForGames
         private bool _started;
         private float _speed;
         private Vector2 _forward = new Vector2(1,0);
-        
+        private float _collisionRadius;
+
 
         public bool Started
         {
@@ -57,10 +58,15 @@ namespace MathForGames
             set { _forward = value; }
         }
 
-        public Actor()
+        public float CollisionRadius
         {
-
+            get { return _collisionRadius; }
+            set { _collisionRadius = value; }
         }
+
+        //emptyiy actor class
+        public Actor() { }
+
         /// <summary>
         /// takes the Actor constructor and add the float x and y but takes out y
         /// </summary>
@@ -115,6 +121,19 @@ namespace MathForGames
         public virtual void OnCollision(Actor actor)
         {
 
+        }
+
+        /// <summary>
+        /// Checks if theis actor collided with anoth actor
+        /// </summary>
+        /// <param name="other">The actor to check collision with</param>
+        /// <returns>True if the distance between the actors is less than the radii of the two combined</returns>
+        public virtual bool CheckForCollision(Actor other)
+        {
+            float combineRadii = other.CollisionRadius + CollisionRadius;
+            float distance = Vector2.Distance(Postion, other.Postion);
+
+            return distance <= combineRadii;
         }
     }
 }

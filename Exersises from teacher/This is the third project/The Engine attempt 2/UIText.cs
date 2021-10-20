@@ -15,6 +15,7 @@ namespace MathForGames
         public int _fontSize;
 
 
+
         /// <summary>
         /// Is the text that is located in the actor
         /// </summary>

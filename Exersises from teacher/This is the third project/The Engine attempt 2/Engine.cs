@@ -70,10 +70,14 @@ namespace MathForGames
 
 
             Player player = new Player('Q', 110, 1, 150, Color.RAYWHITE, "Player");
+            //adds the collision to the player
+            player.CollisionRadius = 30;
             Enemey enemy = new Enemey('P', 10, 0, 100, player, Color.GOLD, "Enemy");
+            //adds the collsion to the enemy
+            enemy.CollisionRadius = 10;
             Actor actor2 = new Actor('E', 50, 0, 0, Color.LIGHTGRAY, "Actor2");
             Actor actor3 = new Actor('I', 85, 0, 500, Color.LIME, "Actor3");
-            UIText Ui = new UIText(0, 50, "TextBox", Color.BLUE, 0, 100, 200, 20, "This is thest Text. That dos nothing. ");
+            UIText Ui = new UIText(0, 50, "TextBox", Color.BLUE, 0, 100, 200, 20,"This is thest Text. That dos nothing. ");
 
 
 

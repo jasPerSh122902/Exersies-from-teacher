@@ -54,7 +54,8 @@ namespace MathForGames
 
         public override void OnCollision(Actor actor)
         {
-
+            if (actor is Enemey)
+                Engine.CloseApplication();
         }
     }
 }
