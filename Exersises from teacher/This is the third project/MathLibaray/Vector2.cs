@@ -47,6 +47,11 @@ namespace MathLibaray
 
         }
 
+        public static float DotProduct(Vector2 lhs, Vector2 rhs)
+        {
+            return (lhs.X * rhs.X) + (lhs.Y * rhs.Y); 
+        }
+
         //overrides the plus function 
         public static Vector2 operator +(Vector2 lhs, Vector2 rhs)
         {
