@@ -27,12 +27,12 @@ namespace MathForGames
         }
 
 
-        public Enemey(char icon, float x, float y, float speed, Color color,Player player, string name = "Enemy")
+        public Enemey(char icon, float x, float y, float speed, Player player, Color color, string name = "Enemy")
             : base(icon, x, y, speed, color, name)
         {
             //i need to the player = palyer I need to get the this.
             _speed = speed;
-            player =
+            _player = player;
 
         }
 
@@ -40,17 +40,16 @@ namespace MathForGames
         {
 
             //Create a vector tht stores the move input
-            Vector2 moveDirection = new Vector2( _player.Postion.X * Postion.X,_player.Postion.Y * Postion.Y );
+            Vector2 moveDirection = new Vector2();
+
+            moveDirection = _player.Postion - Postion;
 
             //caculates the veclocity 
             Velocity = moveDirection.Normalized * Speed * deltaTime;
 
             base.Update(deltaTime);
-            //moves the player
+
             Postion += Velocity;
-
         }
-
-
     }
 }
