@@ -18,8 +18,6 @@ namespace MathForGames
         Stopwatch _stopwatch = new Stopwatch();
         private Vector2 _velocity;
         public Scene _scene;
-        //Enemey enemey =
-        private Player _palyer;
         
        
 
@@ -41,7 +39,7 @@ namespace MathForGames
             set { _health = value; }
         }
 
-        public Player(char icon, float x, float y, float speed, int health,Scene scene, Color color, float cooldownTimer, string name = "Player")
+        public Player(char icon, float x, float y, float speed, int health, Scene scene, Color color, float cooldownTimer, string name = "Player")
             : base(icon, x, y, speed, color, name)
         {
             _speed = speed;
@@ -72,12 +70,10 @@ namespace MathForGames
             if ((xDirectionBullet != 0 || yDirectionBullet != 0) && (currentTime >= _lastTime + .05 || _lastTime == 0))
             {
                 _lastTime = currentTime;
-                Bullet bullet = new Bullet('.', Color.GOLD, Postion, 100, xDirectionBullet, yDirectionBullet, "Bullet");
-                bullet.CollisionRadius = 1;
+                Bullet bullet = new Bullet('.', Color.BLANK, Postion, 100, xDirectionBullet, 2, yDirectionBullet, "Bullet");
                 _scene.AddActor(bullet);
 
             }
-
 
             //Create a vector tht stores the move input
             Vector2 moveDirection = new Vector2(xDiretion, yDiretion);
@@ -88,7 +84,6 @@ namespace MathForGames
             base.Update(deltaTime);
             //moves the player
             Postion += Velocity;
-
         }
 
         public override void OnCollision(Actor actor)

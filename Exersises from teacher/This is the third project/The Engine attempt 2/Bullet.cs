@@ -9,35 +9,25 @@ namespace MathForGames
     class Bullet : Actor
     {
         private float _speed;
-        private Icon _icon;
-        private string _name;
         private int _xDirection;
         private int _yDirection;
         private Vector2 _velocity;
         private Vector2 _moveDirection;
-
-        private Player _palyer;
-
-        public string Name
-        {
-            get { return _name; }
-        }
+        private float _collisionRaidus;
+        private Scene scene;
 
         public float Speed
         {
             get { return _speed; }
         }
 
-        public Icon Icon
-        {
-            get { return _icon; }
-        }
-        public Bullet(char Icon, Color color,Vector2 posistion, float speed, int xDirection, int yDirection, string name = "Bullet") 
+        public Bullet(char Icon, Color color,Vector2 posistion, float speed, int xDirection,float CollisionRadius, int yDirection, string name = "Bullet") 
             :base(Icon, posistion, color, name)
         {
             _speed = speed;
             _xDirection = xDirection;
             _yDirection = yDirection;
+            _collisionRaidus = CollisionRadius;
 
         }
 
@@ -45,15 +35,15 @@ namespace MathForGames
         {
             _moveDirection = new Vector2(_xDirection, _yDirection);
             _velocity = _moveDirection * Speed * deltaTime;
-
             Postion += _velocity;
         }
 
         public override void OnCollision(Actor actor)
         {
-            if (actor.Name == "Player")
+            if (actor is Enemey)
             {
-                
+                Console.WriteLine("askdjfalskdjflasdjf");
+                scene.RemoveActor(actor);
             }
         }
     }

@@ -107,6 +107,7 @@ namespace MathForGames
 
         public virtual void Draw()
         {
+            Raylib.DrawCircleLines((int)Postion.X, (int)Postion.Y, 5, Color.BLUE);
             Raylib.DrawText(Icon.Symbol.ToString(), (int)Postion.X, (int)Postion.Y, 50, Icon.color);
         }
 
