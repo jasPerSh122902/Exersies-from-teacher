@@ -11,7 +11,8 @@ namespace MathForGames
         private float _speed;
         private Vector2 _velocity;
         private Player _player;
-
+        private int _health = 1;
+        public Scene scene;
 
 
         public float Speed
@@ -26,14 +27,21 @@ namespace MathForGames
             set { _velocity = value; }
         }
 
+        public int Health
+        {
+            get { return _health; }
+            set { _health = value; }
+        }
 
-        public Enemey(char icon, float x, float y, float speed, Player player, Color color, string name = "Enemy")
+
+        public Enemey(char icon, float x, float y, float speed,int health, Player player, Color color, string name = "Enemy")
             : base(icon, x, y, speed, color, name)
         {
             //i need to the player = palyer I need to get the this.
             _speed = speed;
             _player = player;
-
+            _health = health;
+            health = 1;
         }
 
         public override void Update(float deltaTime)
@@ -77,7 +85,15 @@ namespace MathForGames
 
         public void Oncollision(Actor actor)
         {
-
+            if (actor is Bullet)
+            {
+                _health -= 1;
+                Console.WriteLine("o2iakjdflaskjdflaskdjflaskjdf");
+                if (_health == 0)
+                {
+                    scene.RemoveActor(actor);
+                }
+            }
         }
     }
 }

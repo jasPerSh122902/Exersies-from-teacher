@@ -11,8 +11,12 @@ namespace MathForGames
         private float _speed;
         private Icon _icon;
         private string _name;
-        public Player _player;
+        private int _xDirection;
+        private int _yDirection;
+        private Vector2 _velocity;
+        private Vector2 _moveDirection;
 
+        private Player _palyer;
 
         public string Name
         {
@@ -28,12 +32,29 @@ namespace MathForGames
         {
             get { return _icon; }
         }
-        public Bullet(char Icon, Player player, Color color, float speed, string name = "Bullet")
+        public Bullet(char Icon, Color color,Vector2 posistion, float speed, int xDirection, int yDirection, string name = "Bullet") 
+            :base(Icon, posistion, color, name)
         {
-            _player = player;
             _speed = speed;
+            _xDirection = xDirection;
+            _yDirection = yDirection;
 
+        }
 
+        public override void Update(float deltaTime)
+        {
+            _moveDirection = new Vector2(_xDirection, _yDirection);
+            _velocity = _moveDirection * Speed * deltaTime;
+
+            Postion += _velocity;
+        }
+
+        public override void OnCollision(Actor actor)
+        {
+            if (actor.Name == "Player")
+            {
+                
+            }
         }
     }
 }

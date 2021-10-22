@@ -4,16 +4,24 @@ using System.Text;
 using MathLibaray;
 using Raylib_cs;
 using System.Threading;
+using System.Diagnostics;
 
 namespace MathForGames
 {
     class Player : Actor
     {
         private float _speed;
-        private Vector2 _velocity;
-        private Bullet bullet;
-        private Player player;
+
         private int _health = 5;
+        private float _cooldownTimer;
+        private float _lastTime;
+        Stopwatch _stopwatch = new Stopwatch();
+        private Vector2 _velocity;
+        public Scene _scene;
+        //Enemey enemey =
+        private Player _palyer;
+        
+       
 
         public float Speed
         {
@@ -33,19 +41,20 @@ namespace MathForGames
             set { _health = value; }
         }
 
-        public Player(char icon, float x, float y, float speed, int health, Color color, string name = "Player")
+        public Player(char icon, float x, float y, float speed, int health,Scene scene, Color color, float cooldownTimer, string name = "Player")
             : base(icon, x, y, speed, color, name)
         {
             _speed = speed;
             _health = health;
-
+            _scene = scene;
+            _cooldownTimer = cooldownTimer;
         }
 
 
 
         public override void Update(float deltaTime)
         {
-            Scene scene = new Scene();
+
 
             //get the player input direction
             int xDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
@@ -53,10 +62,22 @@ namespace MathForGames
             int yDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
-            Bullet bullet = new Bullet('*', player, Color.GOLD, 50, "Bullet");
+            int xDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
+                   + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT));
+            int yDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
+                + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN));
 
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_Q))
-                scene.AddActor(bullet);
+            float currentTime = _stopwatch.ElapsedMilliseconds / 1000.0f;
+
+            if ((xDirectionBullet != 0 || yDirectionBullet != 0) && (currentTime >= _lastTime + .05 || _lastTime == 0))
+            {
+                _lastTime = currentTime;
+                Bullet bullet = new Bullet('.', Color.GOLD, Postion, 100, xDirectionBullet, yDirectionBullet, "Bullet");
+                bullet.CollisionRadius = 1;
+                _scene.AddActor(bullet);
+
+            }
+
 
             //Create a vector tht stores the move input
             Vector2 moveDirection = new Vector2(xDiretion, yDiretion);
@@ -68,24 +89,13 @@ namespace MathForGames
             //moves the player
             Postion += Velocity;
 
-
         }
 
         public override void OnCollision(Actor actor)
         {
             if (actor is Enemey)
             {
-                Health--;
-
-                if (Health == 0)
-                {
-                    Engine.CloseApplication();
-                }
-            }
-
-            if (actor is Bullet)
-            {
-                
+                Engine.CloseApplication();
             }
         }
     }

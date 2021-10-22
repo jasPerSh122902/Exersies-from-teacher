@@ -70,20 +70,20 @@ namespace MathForGames
             Scene scene = new Scene();
 
 
-            Player player = new Player('Q', 110, 1, 150, 100, Color.RAYWHITE, "Player");
+            Player player = new Player('Q', 110, 100, 150, 100, scene, Color.RAYWHITE, 1, "Player");
             //adds the collision to the player
             player.CollisionRadius = 30;
-            Enemey enemy = new Enemey('P', 10, 0, 100, player, Color.GOLD, "Enemy");
+            Enemey actor = new Enemey('P', 10, 0, 100, 1, player, Color.GOLD, "Enemy");
             //adds the collsion to the enemy
-            enemy.CollisionRadius = 10;
-            Actor actor2 = new Actor('E', 50, 0, 0, Color.LIGHTGRAY, "Actor2");
-            Actor actor3 = new Actor('I', 85, 0, 500, Color.LIME, "Actor3");
-            UIText Ui = new UIText(0, 50, "TextBox", Color.BLUE, 0, 100, 200, 20,"This is thest Text. That dos nothing. ");
-           
+            actor.CollisionRadius = 10;
+            Enemey actor2 = new Enemey('E', 50, 0, 500, 1, player, Color.LIGHTGRAY, "Actor2");
+            Enemey actor3 = new Enemey('I', 85, 0, 500, 1, player, Color.LIME, "Actor3");
+            UIText Ui = new UIText(0, 50, "TextBox", Color.BLUE, 0, 100, 200, 20, "This is thest Text. That dos nothing. ");
+
             //There was a bullet instece here keep in mind
 
             //adds the actor to the scene and takes in that actor
-            scene.AddActor(enemy);
+            scene.AddActor(actor);
             scene.AddActor(actor2);
             scene.AddActor(actor3);
             scene.AddActor(player);
