@@ -21,7 +21,39 @@ namespace MathForGames
             get { return _height; }
             set { _height = value; }
         }
-            
+        
+        public float Left
+        {
+            get
+            {
+                return Owner.Postion.X + -(_width /2) ;
+            }
+        }
+
+        public float Right
+        {
+            get
+            {
+                return Owner.Postion.X + _width / 2;
+            }
+        }
+
+        public float Top
+        {
+            get
+            {
+                return Owner.Postion.Y + -(_height / 2);
+            }
+        }
+
+        public float Bottom
+        {
+            get
+            {
+                return Owner.Postion.Y + Height / 2 ;
+            }
+        }
+
         public AABBCollider()
         {
 
