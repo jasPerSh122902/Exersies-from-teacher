@@ -66,9 +66,21 @@ namespace MathForGames
 
             if ((xDirectionBullet != 0 || yDirectionBullet != 0) && (currentTime >= _lastTime + .05 || _lastTime == 0))
             {
-                _lastTime = currentTime;
-                Bullet bullet = new Bullet('.', Color.BLANK, Postion, 100, xDirectionBullet, 2, yDirectionBullet, "Bullet");
-                _scene.AddActor(bullet);
+                if (_lastTime > currentTime)
+                {
+
+                }
+                else
+                {
+                    _lastTime = currentTime;
+                    Bullet bullet = new Bullet('.', Color.BLANK, Postion, 100, xDirectionBullet, 2, yDirectionBullet, "Bullet");
+
+                    CircleCollider BulletCollider = new CircleCollider(1, bullet);
+                    bullet.Collider = BulletCollider;
+
+                    _scene.AddActor(bullet);
+                }
+
 
             }
 

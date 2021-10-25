@@ -72,12 +72,12 @@ namespace MathForGames
             Player player = new Player('Q', 110, 100, 150, 100, scene, Color.RAYWHITE, 1, "Player");
 
             //adds the collision to the player
-            CircleCollider playerCollider = new CircleCollider(50, player);
+            CircleCollider playerCollider = new CircleCollider(5, player);
             player.Collider = playerCollider;
             Enemey actor = new Enemey('P', 10, 0, 100, 1, player, Color.GOLD, "Enemy");
 
             //adds the collsion to the enemy
-            CircleCollider enemyCollider = new CircleCollider(25, actor);
+            CircleCollider enemyCollider = new CircleCollider(5, actor);
             actor.Collider = enemyCollider;
 
             Enemey actor2 = new Enemey('E', 50, 0, 500, 1, player, Color.LIGHTGRAY, "Actor2");

@@ -134,6 +134,8 @@ namespace MathForGames
                 return false;
 
             return Collider.CheckCollision(other);
+
+            
         }
     }
 }
