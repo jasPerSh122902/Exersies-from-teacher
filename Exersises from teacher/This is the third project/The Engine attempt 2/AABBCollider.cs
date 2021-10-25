@@ -77,5 +77,23 @@ namespace MathForGames
             _width = width;
             _height = height;
         }
+
+        public override bool CheckCollisionAABB(AABBCollider other)
+        {
+            if (other.Owner == Owner)
+                return false;
+
+            //This checkes each oppossit side is lest than a nother (normaly the first two are there for the Other or second object is less than the main object...
+            //... The last two is to check if the main object is lest than the second object.
+            if (other.Left <= Right &&
+                other.Top <= Bottom &&
+                Left <= other.Right &&
+                Top <= other.Bottom)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
