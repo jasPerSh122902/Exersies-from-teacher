@@ -73,12 +73,14 @@ namespace MathForGames
 
             //adds the collision to the player
             CircleCollider playerCollider = new CircleCollider(5, player);
-            player.Collider = playerCollider;
+            AABBCollider playerBoxCollider = new AABBCollider(34, 42, player);
+            player.Collider = playerBoxCollider;
             Enemey actor = new Enemey('P', 10, 0, 100, 1, player, Color.GOLD, "Enemy");
 
             //adds the collsion to the enemy
             CircleCollider enemyCollider = new CircleCollider(5, actor);
-            actor.Collider = enemyCollider;
+            AABBCollider enemyBoxCollider = new AABBCollider(50, 50, actor);
+            actor.Collider = enemyBoxCollider;
 
             Enemey actor2 = new Enemey('E', 50, 0, 500, 1, player, Color.LIGHTGRAY, "Actor2");
             Enemey actor3 = new Enemey('I', 85, 0, 500, 1, player, Color.LIME, "Actor3");

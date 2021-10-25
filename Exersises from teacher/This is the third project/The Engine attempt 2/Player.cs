@@ -72,7 +72,7 @@ namespace MathForGames
                 else
                 {
                     _lastTime = currentTime;
-                    Bullet bullet = new Bullet('.', Color.BLANK, Postion, 100, xDirectionBullet, 2, yDirectionBullet, "Bullet");
+                    Bullet bullet = new Bullet('.', Color.PINK, Postion, 100, xDirectionBullet, 10, yDirectionBullet, "Bullet");
 
                     CircleCollider BulletCollider = new CircleCollider(1, bullet);
                     bullet.Collider = BulletCollider;
@@ -98,6 +98,12 @@ namespace MathForGames
             {
                 Engine.CloseApplication();
             }
+        }
+
+        public override void Draw()
+        {
+            base.Draw();
+            Collider.Draw();
         }
     }
 }

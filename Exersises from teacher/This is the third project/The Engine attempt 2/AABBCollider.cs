@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MathLibaray;
+using Raylib_cs;
 
 namespace MathForGames
 {
@@ -72,6 +73,12 @@ namespace MathForGames
             }
         }
 
+        /// <summary>
+        /// The constructor for AABB collider
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="owner"></param>
         public AABBCollider(float width, float height, Actor owner) : base(owner, ColliderType.AABB)
         {
             _width = width;
@@ -80,11 +87,13 @@ namespace MathForGames
 
         public override bool CheckCollisionAABB(AABBCollider other)
         {
+            //Return false if this owner is checking for a collision against itself
             if (other.Owner == Owner)
                 return false;
 
             //This checkes each oppossit side is lest than a nother (normaly the first two are there for the Other or second object is less than the main object...
             //... The last two is to check if the main object is lest than the second object.
+            //Return true if There is an overlap between boxes.
             if (other.Left <= Right &&
                 other.Top <= Bottom &&
                 Left <= other.Right &&
@@ -94,6 +103,20 @@ namespace MathForGames
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Is the draw function
+        /// </summary>
+        public override void Draw()
+        {
+            //is meant to draw the collider that is the rectangle
+            Raylib.DrawRectangleLines((int)Left, (int)Top, (int)Width, (int)Height, Color.PINK);
+        }
+
+        public override bool CheckCollisionCircle(CircleCollider other)
+        {
+            return other.CheckCollisionAABB(this);
         }
     }
 }

@@ -52,12 +52,18 @@ namespace MathForGames
             get { return _icon; }
         }
 
+        /// <summary>
+        /// Is meant to indicate where the front of the actor is.
+        /// </summary>
         public Vector2 Forward
         {
             get { return _forward; }
             set { _forward = value; }
         }
 
+        /// <summary>
+        /// IS the collider for the actor 
+        /// </summary>
         public Collider Collider
         {
             get { return _coollider; }
@@ -93,22 +99,35 @@ namespace MathForGames
            
         }
 
+        /// <summary>
+        /// Is the start of the actor
+        /// </summary>
         public virtual void Start()
         {
             _started = true;
         }
 
+        /// <summary>
+        /// Updtated the position for the actor
+        /// </summary>
+        /// <param name="deltaTime"></param>
         public virtual void Update(float deltaTime)
         {
             Console.WriteLine(_name + ":" + Postion.X  + ":" + Postion.Y );
         }
 
+        /// <summary>
+        /// Draw the actor and draws the collision for actors.
+        /// </summary>
         public virtual void Draw()
         {
-            Raylib.DrawCircleLines((int)Postion.X + 15, (int)Postion.Y + 19, 5, Color.BLUE);
-            Raylib.DrawText(Icon.Symbol.ToString(), (int)Postion.X, (int)Postion.Y, 50, Icon.color);
+            Raylib.DrawText(Icon.Symbol.ToString(), (int)Postion.X - 15, (int)Postion.Y - 25, 50, Icon.color);
         }
 
+
+        /// <summary>
+        /// The end for actor
+        /// </summary>
         public void End()
         {
 

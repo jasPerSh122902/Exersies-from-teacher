@@ -95,5 +95,11 @@ namespace MathForGames
                 }
             }
         }
+
+        public override void Draw()
+        {
+            base.Draw();
+            //Collider.Draw();
+        }
     }
 }
