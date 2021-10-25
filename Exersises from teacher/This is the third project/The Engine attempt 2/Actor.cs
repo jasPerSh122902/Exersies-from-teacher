@@ -24,7 +24,7 @@ namespace MathForGames
         private bool _started;
         private float _speed;
         private Vector2 _forward = new Vector2(1,0);
-        private float _collisionRadius;
+        private Collider _coollider;
 
 
         public bool Started
@@ -58,10 +58,10 @@ namespace MathForGames
             set { _forward = value; }
         }
 
-        public float CollisionRadius
+        public Collider Collider
         {
-            get { return _collisionRadius; }
-            set { _collisionRadius = value; }
+            get { return _coollider; }
+            set { _coollider = value; }
         }
 
         //emptyiy actor class
@@ -93,7 +93,6 @@ namespace MathForGames
            
         }
 
-
         public virtual void Start()
         {
             _started = true;
@@ -102,12 +101,12 @@ namespace MathForGames
         public virtual void Update(float deltaTime)
         {
             
-            Console.WriteLine(_name + ":" + Postion.X + ":" + Postion.Y);
+            Console.WriteLine(_name + ":" + Postion.X  + ":" + Postion.Y );
         }
 
         public virtual void Draw()
         {
-            Raylib.DrawCircleLines((int)Postion.X, (int)Postion.Y, 5, Color.BLUE);
+            Raylib.DrawCircleLines((int)Postion.X + 15, (int)Postion.Y + 19, 5, Color.BLUE);
             Raylib.DrawText(Icon.Symbol.ToString(), (int)Postion.X, (int)Postion.Y, 50, Icon.color);
         }
 
@@ -131,10 +130,10 @@ namespace MathForGames
         /// <returns>True if the distance between the actors is less than the radii of the two combined</returns>
         public virtual bool CheckForCollision(Actor other)
         {
-            float combineRadii = other.CollisionRadius + CollisionRadius;
-            float distance = Vector2.Distance(Postion, other.Postion);
+            if (Collider == null || other.Collider == null)
+                return false;
 
-            return distance <= combineRadii;
+            return Collider.CheckCollision(other);
         }
     }
 }

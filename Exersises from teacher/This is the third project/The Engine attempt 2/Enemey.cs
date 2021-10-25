@@ -78,7 +78,7 @@ namespace MathForGames
             Vector2 directionOfTarget = (_player.Postion - Postion).Normalized;
 
             distace = (_player.Postion - Postion).Magnitude;
-            //75 is the degress in crease it for the feild of view
+            //55 is the degress increase it for the feild of view
             return (Math.Acos(Vector2.DotProduct(directionOfTarget, Forward))
                 * 180 / Math.PI < 55) && distace < 150; ;
         }

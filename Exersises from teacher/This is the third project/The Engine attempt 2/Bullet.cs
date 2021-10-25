@@ -15,6 +15,8 @@ namespace MathForGames
         private Vector2 _moveDirection;
         private float _collisionRaidus;
         private Scene scene;
+        private float _currentTime;
+        private float _lastTime;
 
         public float Speed
         {
@@ -43,6 +45,7 @@ namespace MathForGames
             if (actor is Enemey)
             {
                 Console.WriteLine("askdjfalskdjflasdjf");
+                //The romove actor dos not work right now
                 scene.RemoveActor(actor);
             }
         }
