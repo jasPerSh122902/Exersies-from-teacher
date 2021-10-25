@@ -14,7 +14,7 @@ namespace MathForGames
         private static int _currentSceneIndex;
         private Scene[] _scenes = new Scene[0];
         private Stopwatch _stopwatch = new Stopwatch();
-        private Player _player;
+
 
 
         /// <summary>
@@ -69,18 +69,20 @@ namespace MathForGames
             //the Start function smaller
             Scene scene = new Scene();
 
-
             Player player = new Player('Q', 110, 100, 150, 100, scene, Color.RAYWHITE, 1, "Player");
+
             //adds the collision to the player
-            player.CollisionRadius = 30;
+            CircleCollider playerCollider = new CircleCollider(50, player);
+            player.Collider = playerCollider;
             Enemey actor = new Enemey('P', 10, 0, 100, 1, player, Color.GOLD, "Enemy");
+
             //adds the collsion to the enemy
-            actor.CollisionRadius = 10;
+            CircleCollider enemyCollider = new CircleCollider(25, actor);
+            actor.Collider = enemyCollider;
+
             Enemey actor2 = new Enemey('E', 50, 0, 500, 1, player, Color.LIGHTGRAY, "Actor2");
             Enemey actor3 = new Enemey('I', 85, 0, 500, 1, player, Color.LIME, "Actor3");
             UIText Ui = new UIText(0, 50, "TextBox", Color.BLUE, 0, 100, 200, 20, "This is thest Text. That dos nothing. ");
-
-            //There was a bullet instece here keep in mind
 
             //adds the actor to the scene and takes in that actor
             scene.AddActor(actor);
@@ -89,13 +91,9 @@ namespace MathForGames
             scene.AddActor(player);
             scene.AddActor(Ui);
 
-            //the add bullet was here
-
-
             _currentSceneIndex = AddScene(scene);
 
             _scenes[_currentSceneIndex].Start();
-
 
         }
 
@@ -104,14 +102,10 @@ namespace MathForGames
         /// </summary>
         private void Update(float deltaTime)
         {
-
-
             _scenes[_currentSceneIndex].Update(deltaTime);
 
             while (Console.KeyAvailable)
                 Console.ReadKey(true);
-
-
         }
 
         /// <summary>

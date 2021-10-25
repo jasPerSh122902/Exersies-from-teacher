@@ -130,6 +130,7 @@ namespace MathForGames
         /// <returns>True if the distance between the actors is less than the radii of the two combined</returns>
         public virtual bool CheckForCollision(Actor other)
         {
+            //Returns false if eithe actor dosen't have a collider.
             if (Collider == null || other.Collider == null)
                 return false;
 

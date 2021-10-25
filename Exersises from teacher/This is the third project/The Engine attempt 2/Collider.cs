@@ -11,8 +11,6 @@ namespace MathForGames
     }
     abstract class Collider
     {
-
-        
         private Actor _owner;
         private ColliderType _colliderType;
 
@@ -35,7 +33,14 @@ namespace MathForGames
 
         public bool CheckCollision(Actor other)
         {
-            
+            if (other.Collider.ColliderType == ColliderType.CIRCLE)
+                return CheckCollisionCircle((CircleCollider)other.Collider);
+
+            return false;
         }
+
+        public virtual bool CheckCollisionCircle(CircleCollider other) { return false; }
+
+        //public virtual bool CheckCollisionAABB (AABBCollider other) { return false; }
     }
 }

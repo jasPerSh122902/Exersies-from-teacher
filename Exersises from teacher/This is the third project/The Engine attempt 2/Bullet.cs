@@ -46,7 +46,7 @@ namespace MathForGames
             {
                 Console.WriteLine("askdjfalskdjflasdjf");
                 //The romove actor dos not work right now
-                scene.RemoveActor(actor);
+                //scene.RemoveActor(actor);
             }
         }
     }

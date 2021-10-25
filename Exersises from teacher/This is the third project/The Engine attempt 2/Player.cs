@@ -11,15 +11,12 @@ namespace MathForGames
     class Player : Actor
     {
         private float _speed;
-
         private int _health = 5;
         private float _cooldownTimer;
         private float _lastTime;
         Stopwatch _stopwatch = new Stopwatch();
         private Vector2 _velocity;
         public Scene _scene;
-        
-       
 
         public float Speed
         {
