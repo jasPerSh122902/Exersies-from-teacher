@@ -54,7 +54,7 @@ namespace MathForGames
             }
         }
 
-        public AABBCollider()
+        public AABBCollider(Actor actor, ColliderType )
         {
 
         }

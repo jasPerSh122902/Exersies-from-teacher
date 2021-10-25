@@ -49,8 +49,6 @@ namespace MathForGames
 
         public override void Update(float deltaTime)
         {
-
-
             //get the player input direction
             int xDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
@@ -64,11 +62,12 @@ namespace MathForGames
 
             float currentTime = _stopwatch.ElapsedMilliseconds / 1000.0f;
 
+
             if ((xDirectionBullet != 0 || yDirectionBullet != 0) && (currentTime >= _lastTime + .05 || _lastTime == 0))
             {
                 if (_lastTime > currentTime)
                 {
-
+                    
                 }
                 else
                 {
@@ -80,8 +79,6 @@ namespace MathForGames
 
                     _scene.AddActor(bullet);
                 }
-
-
             }
 
             //Create a vector tht stores the move input

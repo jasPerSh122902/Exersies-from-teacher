@@ -33,6 +33,10 @@ namespace MathForGames
 
         }
 
+        public override void Start()
+        {
+            _currentTime = 0;
+        }
         public override void Update(float deltaTime)
         {
             _moveDirection = new Vector2(_xDirection, _yDirection);

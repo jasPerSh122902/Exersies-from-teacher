@@ -12,7 +12,7 @@ namespace MathForGames
         private Vector2 _velocity;
         private Player _player;
         private int _health = 1;
-        public Scene scene;
+        public Scene _scene;
 
 
         public float Speed
@@ -91,7 +91,7 @@ namespace MathForGames
                 Console.WriteLine("o2iakjdflaskjdflaskdjflaskjdf");
                 if (_health == 0)
                 {
-                    scene.RemoveActor(actor);
+                    _scene.RemoveActor(actor);
                 }
             }
         }
