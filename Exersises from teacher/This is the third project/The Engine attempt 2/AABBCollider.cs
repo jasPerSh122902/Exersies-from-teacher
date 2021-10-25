@@ -72,9 +72,10 @@ namespace MathForGames
             }
         }
 
-        public AABBCollider(Actor actor, ColliderType )
+        public AABBCollider(float width, float height, Actor owner) : base(owner, ColliderType.AABB)
         {
-
+            _width = width;
+            _height = height;
         }
     }
 }
