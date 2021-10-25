@@ -41,6 +41,6 @@ namespace MathForGames
 
         public virtual bool CheckCollisionCircle(CircleCollider other) { return false; }
 
-        //public virtual bool CheckCollisionAABB (AABBCollider other) { return false; }
+        public virtual bool CheckCollisionAABB (AABBCollider other) { return false; }
     }
 }
