@@ -100,7 +100,6 @@ namespace MathForGames
 
         public virtual void Update(float deltaTime)
         {
-            
             Console.WriteLine(_name + ":" + Postion.X  + ":" + Postion.Y );
         }
 
