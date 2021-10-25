@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using MathLibaray;
 using Raylib_cs;
+using System.Diagnostics;
 
 namespace MathForGames
 {
@@ -14,15 +15,32 @@ namespace MathForGames
         private Vector2 _velocity;
         private Vector2 _moveDirection;
         private float _collisionRaidus;
-        private Scene scene;
-        private float _currentTime;
+        private Scene _scene;
+        private float _cooldownTimer;
         private float _lastTime;
+        Stopwatch _stopwatch = new Stopwatch();
 
         public float Speed
         {
             get { return _speed; }
         }
 
+        public Bullet()
+        {
+
+        }
+
+        /// <summary>
+        /// is the construct of bullet
+        /// </summary>
+        /// <param name="Icon">The </param>
+        /// <param name="color"></param>
+        /// <param name="posistion"></param>
+        /// <param name="speed"></param>
+        /// <param name="xDirection"></param>
+        /// <param name="CollisionRadius"></param>
+        /// <param name="yDirection"></param>
+        /// <param name="name"></param>
         public Bullet(char Icon, Color color,Vector2 posistion, float speed, int xDirection,float CollisionRadius, int yDirection, string name = "Bullet") 
             :base(Icon, posistion, color, name)
         {
@@ -35,11 +53,22 @@ namespace MathForGames
 
         public override void Start()
         {
-            _currentTime = 0;
+
         }
         public override void Update(float deltaTime)
         {
-            _moveDirection = new Vector2(_xDirection, _yDirection);
+            float currentTime = _stopwatch.ElapsedMilliseconds;
+            Bullet bullet = new Bullet();
+
+            if (_lastTime > .50f)
+            {
+                _scene.RemoveActor(bullet);
+            }
+            if (_cooldownTimer >= currentTime)
+            {
+                _lastTime = currentTime;
+            }
+                _moveDirection = new Vector2(_xDirection, _yDirection);
             _velocity = _moveDirection * Speed * deltaTime;
             Postion += _velocity;
         }

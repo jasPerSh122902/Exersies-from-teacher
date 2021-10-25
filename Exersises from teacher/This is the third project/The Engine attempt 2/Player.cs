@@ -13,7 +13,7 @@ namespace MathForGames
         private float _speed;
         private int _health = 5;
         private float _cooldownTimer;
-        private float _lastTime;
+        private float _lastTime ;
         Stopwatch _stopwatch = new Stopwatch();
         private Vector2 _velocity;
         public Scene _scene;
@@ -60,19 +60,18 @@ namespace MathForGames
             int yDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN));
 
-            float currentTime = _stopwatch.ElapsedMilliseconds / 1000.0f;
+            float currentTime = _stopwatch.ElapsedMilliseconds;
 
-
-            if ((xDirectionBullet != 0 || yDirectionBullet != 0) && (currentTime >= _lastTime + .05 || _lastTime == 0))
+            if ((xDirectionBullet != 0 || yDirectionBullet != 0) && (currentTime >= _lastTime))
             {
-                if (_lastTime > currentTime)
+                Bullet bullet = new Bullet('#', Color.PINK, Postion, 100, xDirectionBullet, 10, yDirectionBullet, "Bullet");
+                if (_lastTime > .50f)
                 {
-                    
+                   _scene.RemoveActor(bullet);
                 }
-                else
+                if (_cooldownTimer >= currentTime)
                 {
                     _lastTime = currentTime;
-                    Bullet bullet = new Bullet('.', Color.PINK, Postion, 100, xDirectionBullet, 10, yDirectionBullet, "Bullet");
 
                     CircleCollider BulletCollider = new CircleCollider(1, bullet);
                     bullet.Collider = BulletCollider;
