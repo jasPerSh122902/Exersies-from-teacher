@@ -37,7 +37,7 @@ namespace MathLibaray
         /// <param name="radians">The result of the rotation</param>
         public static Matrix3 CreateRotation(float radians)
         {
-
+            return new Matrix3((x)Math.PI(y));
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace MathLibaray
         /// <param name="y">The y position of the new matrix</param>
         public static Matrix3 CreateTranslation(float x, float y)
         {
-
+            return new Matrix3(x + y);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace MathLibaray
         /// <returns>The result of the scale</returns>
         public static Matrix3 CreateScale(float x, float y)
         {
-
+            return new Matrix3(x * y);
         }
 
         /// <summary>
