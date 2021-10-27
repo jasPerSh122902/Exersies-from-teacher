@@ -34,8 +34,8 @@ namespace MathForGames
             set { _health = value; }
         }
 
-        public Player( float x, float y, float speed, int health, Scene scene,  float cooldownTimer, string name = "Player", string path = "Images/player.png")
-            : base( x, y, speed, name, path)
+        public Player(float x, float y, float speed, int health, Scene scene, float cooldownTimer, string name = "Player", string path = "Images/player.png")
+            : base(x, y, speed, name, path)
         {
             _speed = speed;
             _health = health;
@@ -62,15 +62,15 @@ namespace MathForGames
             int yDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN));
 
-           
+
             //
-            if ((xDirectionBullet != 0  || yDirectionBullet != 0) && (deltaTime <= _cooldownTimer))
+            if ((xDirectionBullet != 0 || yDirectionBullet != 0) && (deltaTime <= _cooldownTimer))
             {
 
                 Bullet bullet = new Bullet('#', Color.PINK, Postion, 100, xDirectionBullet, 10, yDirectionBullet, "Bullet");
                 if (_cooldownTimer > .50f)
                 {
-                  _scene.RemoveActor(bullet);
+                    _scene.RemoveActor(bullet);
                 }
                 if (_cooldownTimer >= deltaTime)
                 {

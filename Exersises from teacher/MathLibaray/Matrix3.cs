@@ -6,7 +6,6 @@ namespace MathLibaray
 {
     public struct Matrix3
     {
-        //is all of the places in the matrix;
         public float M00, M01, M02, M10, M11, M12, M20, M21, M22;
 
         //The basic constrctor of the Matrix3
@@ -25,6 +24,7 @@ namespace MathLibaray
         {
             get
             {
+                //is all of the places in the matrix;
                 return new Matrix3(1, 0, 0,
                                    0, 1, 0,
                                    0, 0, 1);

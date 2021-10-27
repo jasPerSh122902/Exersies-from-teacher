@@ -23,10 +23,10 @@ namespace MathForGames
         //made started a bool so we can see if actors is there or not.
         private bool _started;
         private float _speed;
-        private Vector2 _forward = new Vector2(1,0);
+        private Vector2 _forward = new Vector2(1, 0);
         private Matrix _transform = Matrix.Identity;
         private Collider _coollider;
-        
+
 
 
 
@@ -99,7 +99,7 @@ namespace MathForGames
             _icon = new Icon { Symbol = icon, color = color };
             _position = position;
             _name = name;
-           
+
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace MathForGames
         /// <param name="deltaTime"></param>
         public virtual void Update(float deltaTime)
         {
-            Console.WriteLine(_name + ":" + Postion.X  + ":" + Postion.Y );
+            Console.WriteLine(_name + ":" + Postion.X + ":" + Postion.Y);
         }
 
         /// <summary>
@@ -157,7 +157,17 @@ namespace MathForGames
 
             return Collider.CheckCollision(other);
 
-            
+
+        }
+        /// <summary>
+        /// Changes the scale of the actor
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public void SetScale(float x, float y)
+        {
+            _transform.M00 = x;
+            _transform.M11 = y;
         }
     }
 }

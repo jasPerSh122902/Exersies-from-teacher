@@ -37,8 +37,12 @@ namespace MathForGames
 
         public Vector2 Postion
         {
-            get { return _position; }
-            set { _position = value; }
+            get { return new Vector2(_transform.M02, _transform.M12); }
+            set
+            {
+                _transform.M02 = value.X;
+                _transform.M12 = value.Y;
+            }
         }
 
         /// <summary>
@@ -95,7 +99,8 @@ namespace MathForGames
 
         public virtual void Draw()
         {
-            Engine.Render(_icon, _position);
+            if (_sprite != null)
+                _sprite.Draw(_transform);
         }
 
         public void End()
@@ -121,6 +126,17 @@ namespace MathForGames
             return Collider.CheckCollision(other);
 
 
+        }
+
+        /// <summary>
+        /// Changes the scale of the actor
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public void SetScale(float x, float y)
+        {
+            _transform.M00 = x;
+            _transform.M11 = y;
         }
     }
 }

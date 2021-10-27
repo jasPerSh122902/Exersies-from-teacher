@@ -60,7 +60,7 @@ namespace MathForGames
             int cursorPosX = (int)Postion.X;
             int cursorPosY = (int)Postion.Y;
 
-            Icon currentLetter = new Icon { color = Icon.color };
+            Icon currentLetter = new Icon { color = ConsoleColor.Green };
 
             char[] textChars = Text.ToCharArray();
 

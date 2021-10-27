@@ -69,7 +69,7 @@ namespace MathForGames
             //the Start function smaller
             Scene scene = new Scene();
 
-            Player player = new Player( 110, 100, 150, 100, scene, Color.RAYWHITE, 1, "Player", "Images/bullet.png");
+            Player player = new Player(110, 100, 150, 100, scene, Color.RAYWHITE, 1, "Player", "Images/bullet.png");
 
             //adds the collision to the player
             CircleCollider playerCollider = new CircleCollider(5, player);
@@ -77,7 +77,7 @@ namespace MathForGames
             player.Collider = playerBoxCollider;
             player.SetScale(50, 50);
 
-            Enemey actor = new Enemey( 10, 0, 100, 1, player, Color.GOLD, "Images/enemy.png");
+            Enemey actor = new Enemey(10, 0, 100, 1, player, Color.GOLD, "Images/enemy.png");
 
             //adds the collsion to the enemy
             CircleCollider enemyCollider = new CircleCollider(5, actor);
@@ -85,8 +85,8 @@ namespace MathForGames
             actor.Collider = enemyBoxCollider;
             enemey.SetScale(50, 50);
 
-            Enemey actor2 = new Enemey( 50, 0, 500, 1, player, "Actor2", "Images/enemy.png");
-            Enemey actor3 = new Enemey( 85, 0, 500, 1, player, "Actor3","Images/enemy.png");
+            Enemey actor2 = new Enemey(50, 0, 500, 1, player, "Actor2", "Images/enemy.png");
+            Enemey actor3 = new Enemey(85, 0, 500, 1, player, "Actor3", "Images/enemy.png");
             UIText Ui = new UIText(0, 50, "TextBox", Color.BLUE, 0, 100, 200, 20, "This is thest Text. That dos nothing. ");
 
             //adds the actor to the scene and takes in that actor

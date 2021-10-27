@@ -34,8 +34,8 @@ namespace MathForGames
         }
 
 
-        public Enemey(char icon, float x, float y, float speed,int health, Player player, Color color, string name = "Enemy")
-            : base(icon, x, y, speed, color, name)
+        public Enemey( float x, float y, float speed,int health, Player player, string name = "Enemy", string path = "Images/enemy.png")
+            : base( x, y, speed, name)
         {
             //i need to the player = palyer I need to get the this.
             _speed = speed;

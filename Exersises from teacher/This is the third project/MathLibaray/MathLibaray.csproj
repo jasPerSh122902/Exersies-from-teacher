@@ -6,8 +6,15 @@
 
   <ItemGroup>
     <Reference Include="MathLibaray">
-      <HintPath>..\build\MathLibaray\bin\Debug\netstandard2.0\MathLibaray.dll</HintPath>
+      <HintPath>bin\Debug\netstandard2.0\MathLibaray.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Matrix3.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CustomToolNamespace></CustomToolNamespace>
+    </Compile>
   </ItemGroup>
 
 </Project>

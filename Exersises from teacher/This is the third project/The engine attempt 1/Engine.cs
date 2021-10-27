@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using MathLibaray;
+using Raylib_cs;
 
 namespace MathForGames
 {
@@ -41,6 +42,7 @@ namespace MathForGames
         /// </summary>
         private void Start()
         {
+
             Console.Write("You must make it to Wompus but beware of his traps.\n" +
                 "You must not loose you lives good luck.");
             Console.Read();
@@ -234,8 +236,10 @@ namespace MathForGames
             Actor actor27 = new Actor( 6, 9, "Boss", "");
 
             //Players
-            Player player = new Player( 2, 1, 1, "Player", "");
-            Actor actor28 = new Actor( 5, 2, "Player", "");
+            Player player = new Player( 2, 1, 1, "Player", "player.png");
+            player.SetScale(50, 50);
+            Actor actor28 = new Actor( 5, 2, "Player", "Images/enemy.png");
+            actor28.SetScale(50, 50);
 
             //Ui for the player
             UIText Ui = new UIText(4, 0, "Health", ConsoleColor.DarkYellow, 10, 1, "Lives " + Player._health );

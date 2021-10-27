@@ -13,6 +13,7 @@ namespace MathLibaray
             Y = y;
         }
 
+        
         /// <summary>
         /// Gets the length of the vector
         /// </summary>
@@ -128,6 +129,4 @@ namespace MathLibaray
             return lhs.X != rhs.X || lhs.Y != rhs.Y;
         }
     }
-
-
 }
