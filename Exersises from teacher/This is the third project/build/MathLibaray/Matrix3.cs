@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MathForGames
+namespace MathForGames.MathLibaray
 {
     class Matrix3
     {
