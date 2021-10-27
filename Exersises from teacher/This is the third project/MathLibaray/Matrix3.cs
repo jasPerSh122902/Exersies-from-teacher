@@ -30,5 +30,25 @@ namespace MathLibaray
                                    0, 0, 1);
             }
         }
+
+        /// <summary>
+        /// Creates a new matrix that has been rotated by the given value in radians
+        /// </summary>
+        /// <param name="radians">the result of the rotation</param>
+        /// <returns></returns>
+       public static Matrix3 CreateRotation(float radians)
+        {
+
+        }
+
+        public static Matrix3 CreateTranslation(Vector2 translation)
+        {
+
+        }
+        
+        public static Matrix3 CreateScale()
+        {
+
+        }
     }
 }

@@ -69,7 +69,7 @@ namespace MathForGames
             //the Start function smaller
             Scene scene = new Scene();
 
-            Player player = new Player(110, 100, 150, 100, scene, Color.RAYWHITE, 1, "Player", "Images/bullet.png");
+            Player player = new Player(110, 100, 150, 100, scene, "Player", "Images/bullet.png");
 
             //adds the collision to the player
             CircleCollider playerCollider = new CircleCollider(5, player);

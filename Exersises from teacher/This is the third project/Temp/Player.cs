@@ -34,13 +34,12 @@ namespace MathForGames
             set { _health = value; }
         }
 
-        public Player(float x, float y, float speed, int health, Scene scene, float cooldownTimer, string name = "Player", string path = "Images/player.png")
+        public Player(float x, float y, float speed, int health, Scene scene, string name = "Player", string path = "Images/player.png")
             : base(x, y, speed, name, path)
         {
             _speed = speed;
             _health = health;
             _scene = scene;
-            _cooldownTimer = cooldownTimer;
         }
 
 
@@ -62,23 +61,16 @@ namespace MathForGames
             int yDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN));
 
-
-            //
-            if ((xDirectionBullet != 0 || yDirectionBullet != 0) && (deltaTime <= _cooldownTimer))
+            if ((xDirectionBullet != 0 || yDirectionBullet != 0))
             {
 
                 Bullet bullet = new Bullet('#', Color.PINK, Postion, 100, xDirectionBullet, 10, yDirectionBullet, "Bullet");
-                if (_cooldownTimer > .50f)
-                {
-                    _scene.RemoveActor(bullet);
-                }
-                if (_cooldownTimer >= deltaTime)
-                {
-                    CircleCollider BulletCollider = new CircleCollider(1, bullet);
-                    bullet.Collider = BulletCollider;
-                    _scene.AddActor(bullet);
-                    _cooldownTimer += deltaTime;
-                }
+
+                CircleCollider BulletCollider = new CircleCollider(1, bullet);
+                bullet.Collider = BulletCollider;
+                _scene.AddActor(bullet);
+                _cooldownTimer += deltaTime;
+
             }
 
             //Create a vector tht stores the move input

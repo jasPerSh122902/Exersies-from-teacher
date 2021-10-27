@@ -24,12 +24,11 @@ namespace MathForGames
         private bool _started;
         private float _speed;
         private Vector2 _forward = new Vector2(1, 0);
-        private Matrix _transform = Matrix.Identity;
+        private Matrix3 _transform = Matrix3.Identity;
+        private Martirx3 _translation = Matrix3.Identity;
+        private Matrix3 _rotation = Matrix3.Identity;
+        private Matrix3 _scale = Matrix3.Identity;
         private Collider _coollider;
-
-
-
-
         public bool Started
         {
             get { return _started; }
@@ -116,6 +115,7 @@ namespace MathForGames
         /// <param name="deltaTime"></param>
         public virtual void Update(float deltaTime)
         {
+            _transform = _translation * _rotation * _scale;
             Console.WriteLine(_name + ":" + Postion.X + ":" + Postion.Y);
         }
 
