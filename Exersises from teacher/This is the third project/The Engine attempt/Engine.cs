@@ -195,47 +195,47 @@ namespace MathForGames
             Scene scene = new Scene();
             //the Actor has to take a caractor and a x, y then the name you will call it then a color.
 
-            Actor actor = new Actor('P', 0, 0, "Wall", ConsoleColor.Magenta);
-            Actor actor2 = new Actor('E', 1, 0, "Wall", ConsoleColor.Green);
-            Actor actor3 = new Actor('I', 2, 0, "Wall", ConsoleColor.Blue);
+            //Actor actor = new Actor('P', 0, 0, "Wall", ConsoleColor.Magenta);
+            //Actor actor2 = new Actor('E', 1, 0, "Wall", ConsoleColor.Green);
+            //Actor actor3 = new Actor('I', 2, 0, "Wall", ConsoleColor.Blue);
 
-            //left wall
-            Actor actor4 = new Actor('l', 2, 4, "Wall", ConsoleColor.Magenta);
-            Actor actor5 = new Actor('l', 2, 3, "Wall", ConsoleColor.Green);
-            Actor actor6 = new Actor('l', 2, 2, "Wall", ConsoleColor.Blue);
-            Actor actor22 = new Actor('l', 7, 8, "Wall", ConsoleColor.Magenta);
-            Actor actor23 = new Actor('l', 7, 7, "Wall", ConsoleColor.Green);
+            ////left wall
+            //Actor actor4 = new Actor('l', 2, 4, "Wall", ConsoleColor.Magenta);
+            //Actor actor5 = new Actor('l', 2, 3, "Wall", ConsoleColor.Green);
+            //Actor actor6 = new Actor('l', 2, 2, "Wall", ConsoleColor.Blue);
+            //Actor actor22 = new Actor('l', 7, 8, "Wall", ConsoleColor.Magenta);
+            //Actor actor23 = new Actor('l', 7, 7, "Wall", ConsoleColor.Green);
 
-            //right wall
-            Actor actor7 = new Actor('l', 4, 4, "Wall", ConsoleColor.Magenta);
-            Actor actor8 = new Actor('l', 4, 3, "Wall", ConsoleColor.Green);
-            Actor actor9 = new Actor('l', 4, 2, "Wall", ConsoleColor.Blue);
-            Actor actor18 = new Actor('l', 9, 7, "Wall", ConsoleColor.Magenta);
-            Actor actor19 = new Actor('l', 9, 6, "Wall", ConsoleColor.Green);
-            Actor actor20 = new Actor('l', 9, 5, "Wall", ConsoleColor.Blue);
-            Actor actor24 = new Actor('l', 9, 8, "Wall", ConsoleColor.Blue);
+            ////right wall
+            //Actor actor7 = new Actor('l', 4, 4, "Wall", ConsoleColor.Magenta);
+            //Actor actor8 = new Actor('l', 4, 3, "Wall", ConsoleColor.Green);
+            //Actor actor9 = new Actor('l', 4, 2, "Wall", ConsoleColor.Blue);
+            //Actor actor18 = new Actor('l', 9, 7, "Wall", ConsoleColor.Magenta);
+            //Actor actor19 = new Actor('l', 9, 6, "Wall", ConsoleColor.Green);
+            //Actor actor20 = new Actor('l', 9, 5, "Wall", ConsoleColor.Blue);
+            //Actor actor24 = new Actor('l', 9, 8, "Wall", ConsoleColor.Blue);
 
-            //The path
-            Actor actor11 = new Actor('-', 5, 6, "Wall", ConsoleColor.Magenta);
-            Actor actor12 = new Actor('-', 6, 6, "Wall", ConsoleColor.Green);
-            Actor actor13 = new Actor('-', 7, 6, "Wall", ConsoleColor.Blue);
-            Actor actor15 = new Actor('_', 5, 4, "Wall", ConsoleColor.Magenta);
-            Actor actor16 = new Actor('_', 6, 4, "Wall", ConsoleColor.Green);
-            Actor actor17 = new Actor('_', 7, 4, "Wall", ConsoleColor.Blue);
-            Actor actor21 = new Actor('_', 8, 4, "Wall", ConsoleColor.Blue);
+            ////The path
+            //Actor actor11 = new Actor('-', 5, 6, "Wall", ConsoleColor.Magenta);
+            //Actor actor12 = new Actor('-', 6, 6, "Wall", ConsoleColor.Green);
+            //Actor actor13 = new Actor('-', 7, 6, "Wall", ConsoleColor.Blue);
+            //Actor actor15 = new Actor('_', 5, 4, "Wall", ConsoleColor.Magenta);
+            //Actor actor16 = new Actor('_', 6, 4, "Wall", ConsoleColor.Green);
+            //Actor actor17 = new Actor('_', 7, 4, "Wall", ConsoleColor.Blue);
+            //Actor actor21 = new Actor('_', 8, 4, "Wall", ConsoleColor.Blue);
 
-            //perjectiles
-            Actor actor10 = new Actor('X', 2, 5, "Bullet", ConsoleColor.Blue);
-            Actor actor14 = new Actor('X', 3, 6, "Bullet", ConsoleColor.Blue);
-            Actor actor25 = new Actor('X', 8, 10, "Bullet", ConsoleColor.Blue);
-            Actor actor26 = new Actor('X', 10, 9, "Bullet", ConsoleColor.Blue);
+            ////perjectiles
+            //Actor actor10 = new Actor('X', 2, 5, "Bullet", ConsoleColor.Blue);
+            //Actor actor14 = new Actor('X', 3, 6, "Bullet", ConsoleColor.Blue);
+            //Actor actor25 = new Actor('X', 8, 10, "Bullet", ConsoleColor.Blue);
+            //Actor actor26 = new Actor('X', 10, 9, "Bullet", ConsoleColor.Blue);
 
             //The Boss
-            Actor actor27 = new Actor('W', 6, 9, "Boss", ConsoleColor.Blue);
+            Actor actor27 = new Actor( 6, 9, "Boss", "");
 
             //Players
-            Player player = new Player('Q', 2, 1, 1, "Player", ConsoleColor.DarkBlue);
-            Actor actor28 = new Actor('Z', 5, 2, "Player", ConsoleColor.Green);
+            Player player = new Player( 2, 1, 1, "Player", "");
+            Actor actor28 = new Actor( 5, 2, "Player", "");
 
             //Ui for the player
             UIText Ui = new UIText(4, 0, "Health", ConsoleColor.DarkYellow, 10, 1, "Lives " + Player._health );
@@ -247,40 +247,40 @@ namespace MathForGames
             PlayerHud playerHud = new PlayerHud(player, Ui);
 
             //adds the actor to the scene and takes in that actor
-            scene.AddActor(actor);
-            scene.AddActor(actor2);
-            scene.AddActor(actor3);
+            //scene.AddActor(actor);
+            //scene.AddActor(actor2);
+            //scene.AddActor(actor3);
 
-            //left wall
-            scene.AddActor(actor4);
-            scene.AddActor(actor5);
-            scene.AddActor(actor6);
-            scene.AddActor(actor22);
-            scene.AddActor(actor23);
+            ////left wall
+            //scene.AddActor(actor4);
+            //scene.AddActor(actor5);
+            //scene.AddActor(actor6);
+            //scene.AddActor(actor22);
+            //scene.AddActor(actor23);
 
-            //right wall
-            scene.AddActor(actor7);
-            scene.AddActor(actor8);
-            scene.AddActor(actor9);
-            scene.AddActor(actor18);
-            scene.AddActor(actor19);
-            scene.AddActor(actor20);
-            scene.AddActor(actor24);
+            ////right wall
+            //scene.AddActor(actor7);
+            //scene.AddActor(actor8);
+            //scene.AddActor(actor9);
+            //scene.AddActor(actor18);
+            //scene.AddActor(actor19);
+            //scene.AddActor(actor20);
+            //scene.AddActor(actor24);
 
-            //the path
-            scene.AddActor(actor11);
-            scene.AddActor(actor12);
-            scene.AddActor(actor13);
-            scene.AddActor(actor15);
-            scene.AddActor(actor16);
-            scene.AddActor(actor17);
-            scene.AddActor(actor21);
+            ////the path
+            //scene.AddActor(actor11);
+            //scene.AddActor(actor12);
+            //scene.AddActor(actor13);
+            //scene.AddActor(actor15);
+            //scene.AddActor(actor16);
+            //scene.AddActor(actor17);
+            //scene.AddActor(actor21);
 
-            //The projectiles
-            scene.AddActor(actor10);
-            scene.AddActor(actor14);
-            scene.AddActor(actor25);
-            scene.AddActor(actor26);
+            ////The projectiles
+            //scene.AddActor(actor10);
+            //scene.AddActor(actor14);
+            //scene.AddActor(actor25);
+            //scene.AddActor(actor26);
 
             //player
             scene.AddActor(player);

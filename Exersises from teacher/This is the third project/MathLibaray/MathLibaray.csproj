@@ -4,4 +4,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="MathLibaray">
+      <HintPath>..\build\MathLibaray\bin\Debug\netstandard2.0\MathLibaray.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

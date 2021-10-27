@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MathLibaray;
-
+using Raylib_cs;
 
 namespace MathForGames
 {
@@ -22,7 +22,9 @@ namespace MathForGames
         private Vector2 _position;
         //made started a bool so we can see if actors is there or not.
         private bool _started;
-
+        private Matrix3 _transform = Matrix3.Identity;
+        private Sprite _sprite;
+        private Collider _coollider;
         public bool Started
         {
             get { return _started; }
@@ -38,9 +40,14 @@ namespace MathForGames
             get { return _position; }
             set { _position = value; }
         }
-        public Icon Icon
+
+        /// <summary>
+        /// IS the collider for the actor 
+        /// </summary>
+        public Collider Collider
         {
-            get { return _icon; }
+            get { return _coollider; }
+            set { _coollider = value; }
         }
 
         /// <summary>
@@ -53,8 +60,9 @@ namespace MathForGames
         /// </summary>
         /// <param name="x">is the replace the Vector2</param>
         /// <param name="y">is the replacement for the veoctor2</param>
-        public Actor(char icon, float x, float y, string name = "Actor", ConsoleColor color = ConsoleColor.Cyan) :
-            this(icon, new Vector2 { X = x,Y = y}, name, color) {}
+        public Actor(float x, float y, string name = "Actor", string path = "") :
+            this(new Vector2 { X = x, Y = y }, name, path)
+        { }
 
 
         /// <summary>
@@ -64,12 +72,15 @@ namespace MathForGames
         /// <param name="position">is the loctation that the icon is in</param>
         /// <param name="name">current Actor name</param>
         /// <param name="color">The color that the neame or icon will be</param>
-        public Actor(char icon, Vector2 position, string name = "Actor", ConsoleColor color = ConsoleColor.Cyan)
+        public Actor(Vector2 position, string name = "Actor", string path = "")
         {
             //updatede the Icon with the struct and made it take a symbol and a color
-            _icon = new Icon { Symbol = icon, color = color};
+
             _position = position;
             _name = name;
+
+            if (path != "")
+                _sprite = new Sprite(path);
         }
 
         public virtual void Start()
@@ -101,6 +112,15 @@ namespace MathForGames
 
         }
 
+        public virtual bool CheckForCollision(Actor other)
+        {
+            //Returns false if eithe actor dosen't have a collider.
+            if (Collider == null || other.Collider == null)
+                return false;
 
+            return Collider.CheckCollision(other);
+
+
+        }
     }
 }

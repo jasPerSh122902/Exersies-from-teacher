@@ -28,8 +28,8 @@ namespace MathForGames
             set { _velocity = value; }
         }
 
-        public Player(char icon, float x, float y, float speed, string name = "Actor", ConsoleColor color = ConsoleColor.Cyan) 
-            : base( icon , x , y , name , color)
+        public Player( float x, float y, float speed, string name = "Actor", string path = "") 
+            : base( x , y , name , path )
         {
             _speed = speed;
             _health = 1;

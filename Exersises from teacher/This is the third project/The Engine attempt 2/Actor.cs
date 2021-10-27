@@ -25,6 +25,7 @@ namespace MathForGames
         private float _speed;
         private Vector2 _forward = new Vector2(1,0);
         private Collider _coollider;
+       
 
 
         public bool Started

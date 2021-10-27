@@ -48,7 +48,7 @@ namespace MathForGames
         /// <param name="height">how high you text box is</param>
         /// <param name="text">The words that is with in the UI</param>
         public UIText(float x, float y, String name, ConsoleColor color, int width, int height, string text = "") 
-            : base('\0', x, y, name, color)
+            : base( x, y, name, "")
         {
             Text = text;
             Width = width;

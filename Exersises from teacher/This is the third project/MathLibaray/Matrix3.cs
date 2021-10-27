@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MathForGames.MathLibaray
+namespace MathLibaray
 {
     public struct Matrix3
     {
-        //is all of the places in the matrix;
         public float M00, M01, M02, M10, M11, M12, M20, M21, M22;
 
         //The basic constrctor of the Matrix3
-        public Matrix3(float m00, float m01, float m02,
+        public  Matrix3(float m00, float m01, float m02,
                        float m10, float m11, float m12,
                        float m20, float m21, float m22)
         {
@@ -25,6 +24,7 @@ namespace MathForGames.MathLibaray
         {
             get
             {
+                //is all of the places in the matrix;
                 return new Matrix3(1, 0, 0,
                                    0, 1, 0,
                                    0, 0, 1);
