@@ -46,7 +46,10 @@ namespace MathForGames
         }
 
 
-
+        /// <summary>
+        /// Updates the players infromation on the screen and console.
+        /// </summary>
+        /// <param name="deltaTime"></param>
         public override void Update(float deltaTime)
         {
             //get the player input direction
@@ -55,29 +58,31 @@ namespace MathForGames
             int yDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
+            //gets the palyers input direction for the shoot by using arrow key
             int xDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
                    + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT));
             int yDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN));
 
-            float currentTime = _stopwatch.ElapsedMilliseconds;
-
-            if ((xDirectionBullet != 0 || yDirectionBullet != 0) && (currentTime >= _lastTime))
+            _lastTime += deltaTime;
+            //
+            if ((xDirectionBullet != 0  || yDirectionBullet != 0) && (deltaTime >= _lastTime))
             {
+
                 Bullet bullet = new Bullet('#', Color.PINK, Postion, 100, xDirectionBullet, 10, yDirectionBullet, "Bullet");
+                _scene.RemoveActor(bullet);
                 if (_lastTime > .50f)
                 {
-                   _scene.RemoveActor(bullet);
+                  _scene.RemoveActor(bullet);
                 }
-                if (_cooldownTimer >= currentTime)
+                if (_cooldownTimer >= deltaTime)
                 {
-                    _lastTime = currentTime;
-
                     CircleCollider BulletCollider = new CircleCollider(1, bullet);
                     bullet.Collider = BulletCollider;
-
                     _scene.AddActor(bullet);
                 }
+
+                _lastTime = 0;
             }
 
             //Create a vector tht stores the move input
