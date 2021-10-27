@@ -22,6 +22,7 @@ namespace MathForGames
         private Vector2 _position;
         //made started a bool so we can see if actors is there or not.
         private bool _started;
+        private Matrix3 _transform = Matrix3.Identity;
 
         public bool Started
         {
