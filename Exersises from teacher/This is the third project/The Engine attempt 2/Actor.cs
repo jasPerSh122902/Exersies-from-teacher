@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MathLibaray;
 using Raylib_cs;
+using MathLibaray;
 
 namespace MathForGames
 {
@@ -24,6 +24,7 @@ namespace MathForGames
         private bool _started;
         private float _speed;
         private Vector2 _forward = new Vector2(1,0);
+        private Matrix3 _transform = Matrix3.Identity;
         private Collider _coollider;
        
 
