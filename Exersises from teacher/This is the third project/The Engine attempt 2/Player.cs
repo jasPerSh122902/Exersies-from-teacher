@@ -13,8 +13,6 @@ namespace MathForGames
         private float _speed;
         private int _health = 5;
         private float _cooldownTimer;
-        private float _lastTime ;
-        Stopwatch _stopwatch = new Stopwatch();
         private Vector2 _velocity;
         public Scene _scene;
 
@@ -64,14 +62,13 @@ namespace MathForGames
             int yDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN));
 
-            _lastTime += deltaTime;
+           
             //
-            if ((xDirectionBullet != 0  || yDirectionBullet != 0) && (deltaTime >= _lastTime))
+            if ((xDirectionBullet != 0  || yDirectionBullet != 0) && (deltaTime <= _cooldownTimer))
             {
 
                 Bullet bullet = new Bullet('#', Color.PINK, Postion, 100, xDirectionBullet, 10, yDirectionBullet, "Bullet");
-                _scene.RemoveActor(bullet);
-                if (_lastTime > .50f)
+                if (_cooldownTimer > .50f)
                 {
                   _scene.RemoveActor(bullet);
                 }
@@ -80,9 +77,8 @@ namespace MathForGames
                     CircleCollider BulletCollider = new CircleCollider(1, bullet);
                     bullet.Collider = BulletCollider;
                     _scene.AddActor(bullet);
+                    _cooldownTimer += deltaTime;
                 }
-
-                _lastTime = 0;
             }
 
             //Create a vector tht stores the move input
