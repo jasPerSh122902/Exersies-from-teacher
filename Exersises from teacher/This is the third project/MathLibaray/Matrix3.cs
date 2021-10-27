@@ -34,21 +34,64 @@ namespace MathLibaray
         /// <summary>
         /// Creates a new matrix that has been rotated by the given value in radians
         /// </summary>
-        /// <param name="radians">the result of the rotation</param>
-        /// <returns></returns>
-       public static Matrix3 CreateRotation(float radians)
+        /// <param name="radians">The result of the rotation</param>
+        public static Matrix3 CreateRotation(float radians)
         {
 
         }
 
-        public static Matrix3 CreateTranslation(Vector2 translation)
+        /// <summary>
+        /// Creates a new matrix that has been translated by the given value
+        /// </summary>
+        /// <param name="x">The x position of the new matrix</param>
+        /// <param name="y">The y position of the new matrix</param>
+        public static Matrix3 CreateTranslation(float x, float y)
         {
 
         }
-        
-        public static Matrix3 CreateScale()
+
+        /// <summary>
+        /// Creates a new matrix that has been scaled by teh given value
+        /// </summary>
+        /// <param name="x">The value to use to scale the matrix in the x axis</param>
+        /// <param name="y">The value to use to scale the matrix in the y axis</param>
+        /// <returns>The result of the scale</returns>
+        public static Matrix3 CreateScale(float x, float y)
         {
 
+        }
+
+        /// <summary>
+        /// Adds the Matrix3
+        /// </summary>
+        /// <param name="lhs">left hand Matrix</param>
+        /// <param name="rhs">Right hand Matrix</param>
+        /// <returns>the added Matriexes</returns>
+        public static Matrix3 operator +(Matrix3 lhs, Matrix3 rhs)
+        {
+            return new Matrix3 { lhs + rhs };
+        }
+
+        /// <summary>
+        /// Subtracts the Matrix
+        /// </summary>
+        /// <param name="lhs">left hand Matrix</param>
+        /// <param name="rhs">Right hand Matrix</param>
+        /// <returns>returns the subtracted Matriexes</returns>
+        public static Matrix3 operator -(Matrix3 lhs, Matrix3 rhs)
+        {
+            return new Matrix3 { lhs - rhs };
+        }
+
+        /// <summary>
+        /// Multiplies the Matrixes but they order will allwayes be the left hand then the right
+        /// </summary>
+        /// <param name="lhs">Left hand is beeing scaled </param>
+        /// <param name="rhs">the right hand is the scaler </param>
+        /// <returns>The multipied Matrixes</returns>
+        public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
+        {
+            return new Matrix3 { lhs * rhs };
         }
     }
 }
