@@ -13,6 +13,7 @@ namespace MathForGames
         private float _speed;
         private int _health = 5;
         private float _cooldownTimer;
+        private bool _ifTimeTrue;
         private Vector2 _velocity;
         public Scene _scene;
 
@@ -61,18 +62,23 @@ namespace MathForGames
             int yDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN));
 
-            if ((xDirectionBullet != 0 || yDirectionBullet != 0))
-            {
-
-                Bullet bullet = new Bullet( Postion, 100, xDirectionBullet, 10, yDirectionBullet, "Bullet");
-
-                CircleCollider BulletCollider = new CircleCollider(1, bullet);
-                bullet.Collider = BulletCollider;
-                _scene.AddActor(bullet);
+            if (_ifTimeTrue = false)//if it equals true means that it all ready shot
                 _cooldownTimer += deltaTime;
 
-            }
+            //takes in a diraction if it dos then...
+            if (_cooldownTimer >= .05 &&(xDirectionBullet != 0 || yDirectionBullet != 0))
+            {
+                //gets the instence of bullet
+                Bullet bullet = new Bullet( Postion, 100, xDirectionBullet, 10, yDirectionBullet, "Bullet");
 
+                //spows the colliider
+                CircleCollider BulletCollider = new CircleCollider(1, bullet);
+                //enables the collider
+                bullet.Collider = BulletCollider;
+                //addes the actor to scene
+                _scene.AddActor(bullet);
+            }
+           
             //Create a vector tht stores the move input
             Vector2 moveDirection = new Vector2(xDiretion, yDiretion);
 
@@ -88,7 +94,7 @@ namespace MathForGames
         {
             if (actor is Enemey)
             {
-                Engine.CloseApplication();
+                
             }
         }
 

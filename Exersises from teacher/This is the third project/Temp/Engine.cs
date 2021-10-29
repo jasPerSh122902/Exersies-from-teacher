@@ -85,6 +85,7 @@ namespace MathForGames
             actor.Collider = enemyBoxCollider;
             actor.SetScale(50, 50);
 
+
             Enemey actor2 = new Enemey(50, 0, 500, 1, player, "Actor2", "Images/enemy.png");
             Enemey actor3 = new Enemey(85, 0, 500, 1, player, "Actor3", "Images/enemy.png");
             UIText Ui = new UIText(0, 50, "TextBox", Color.BLUE, 0, 100, 200, 20, "This is thest Text. That dos nothing. ");

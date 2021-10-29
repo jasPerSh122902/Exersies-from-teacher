@@ -180,7 +180,8 @@ namespace MathForGames
         /// <param name="translationY">The new y position</param>
         public void SetTranslation(float translationX, float translationY)
         {
-
+            //adds teh translationx and y and casts as floats
+            _translation = ((float)translationX + (float)translationY);
         }
 
         /// <summary>
@@ -190,7 +191,8 @@ namespace MathForGames
         /// <param name="translationY">The amount to move on the yparam>
         public void Translate(float translationX, float translationY)
         {
-
+            //is meant to take in the translationx and Y then add it to the postion of each.
+            _translation = (float)(translationX + Postion.X) + (float)(translationY + Postion.Y);
         }
 
         /// <summary>
@@ -199,7 +201,7 @@ namespace MathForGames
         /// <param name="radians">The angle of the new rotation in radians.</param>
         public void SetRotation(float radians)
         {
-
+            (float)Math.Cos(radians) + (float)Math.Sin(radians);
         }
 
         /// <summary>
@@ -208,7 +210,7 @@ namespace MathForGames
         /// <param name="radians">The angle in radians to turn.</param>
         public void Rotate(float radians)
         {
-
+            _rotation = SetRotation(radians, radians);
         }
 
         /// <summary>
@@ -229,7 +231,7 @@ namespace MathForGames
         /// <param name="y">The value to scale on the y axis</param>
         public void Scale(float x, float y)
         {
-
+            
         }
     }
 }
