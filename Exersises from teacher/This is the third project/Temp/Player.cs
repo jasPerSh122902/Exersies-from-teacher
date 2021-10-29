@@ -64,7 +64,7 @@ namespace MathForGames
             if ((xDirectionBullet != 0 || yDirectionBullet != 0))
             {
 
-                Bullet bullet = new Bullet('#', Color.PINK, Postion, 100, xDirectionBullet, 10, yDirectionBullet, "Bullet");
+                Bullet bullet = new Bullet( Postion, 100, xDirectionBullet, 10, yDirectionBullet, "Bullet");
 
                 CircleCollider BulletCollider = new CircleCollider(1, bullet);
                 bullet.Collider = BulletCollider;

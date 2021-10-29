@@ -50,7 +50,7 @@ namespace MathLibaray
         /// <param name="lhs">The left hand side of the operation</param>
         /// <param name="rhs">THe right hand side of the operation</param>
         /// <returns>The dot product of the first vector onto the second</returns>
-        public static float GetDotProduct(Vector2 lhs, Vector2 rhs)
+        public static float DotProduct(Vector2 lhs, Vector2 rhs)
         {
             return (lhs.X * rhs.X) + (lhs.Y * rhs.Y);
         }

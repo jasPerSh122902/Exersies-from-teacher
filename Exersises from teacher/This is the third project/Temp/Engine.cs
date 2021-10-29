@@ -77,13 +77,13 @@ namespace MathForGames
             player.Collider = playerBoxCollider;
             player.SetScale(50, 50);
 
-            Enemey actor = new Enemey(10, 0, 100, 1, player, Color.GOLD, "Images/enemy.png");
+            Enemey actor = new Enemey(10, 0, 100, 1, player, "Images/enemy.png");
 
             //adds the collsion to the enemy
             CircleCollider enemyCollider = new CircleCollider(5, actor);
             AABBCollider enemyBoxCollider = new AABBCollider(50, 50, actor);
             actor.Collider = enemyBoxCollider;
-            enemey.SetScale(50, 50);
+            actor.SetScale(50, 50);
 
             Enemey actor2 = new Enemey(50, 0, 500, 1, player, "Actor2", "Images/enemy.png");
             Enemey actor3 = new Enemey(85, 0, 500, 1, player, "Actor3", "Images/enemy.png");

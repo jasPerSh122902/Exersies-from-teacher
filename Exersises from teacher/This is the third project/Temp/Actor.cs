@@ -25,10 +25,11 @@ namespace MathForGames
         private float _speed;
         private Vector2 _forward = new Vector2(1, 0);
         private Matrix3 _transform = Matrix3.Identity;
-        private Martirx3 _translation = Matrix3.Identity;
+        private Matrix3 _translation = Matrix3.Identity;
         private Matrix3 _rotation = Matrix3.Identity;
         private Matrix3 _scale = Matrix3.Identity;
         private Collider _coollider;
+        private Sprite _sprite;
         public bool Started
         {
             get { return _started; }
@@ -72,33 +73,43 @@ namespace MathForGames
             set { _coollider = value; }
         }
 
+
+        public Sprite Sprite
+        {
+            get { return _sprite; }
+            set { _sprite = value; }
+        }
         //emptyiy actor class
         public Actor() { }
 
         /// <summary>
         /// takes the Actor constructor and add the float x and y but takes out y
+        /// Path is for the sprites
         /// </summary>
         /// <param name="x">is the replace the Vector2</param>
         /// <param name="y">is the replacement for the veoctor2</param>
-        public Actor(char icon, float x, float y, float speed, Color color, string name = "Actor") :
-            this(icon, new Vector2 { X = x, Y = y }, color, name)
+        public Actor( float x, float y, float speed, string name = "Actor", string path = "") :
+            this( new Vector2 { X = x, Y = y }, name, path)
         { }
 
 
         /// <summary>
         /// Is a constructor for the actor that hold is definition.
+        /// path  is for the sprites
         /// </summary>
         /// <param name="icon">The icon that all this information applies to</param>
         /// <param name="position">is the loctation that the icon is in</param>
         /// <param name="name">current Actor name</param>
         /// <param name="color">The color that the neame or icon will be</param>
-        public Actor(char icon, Vector2 position, Color color, string name = "Actor")
+        public Actor( Vector2 position, string name = "Actor", string path = "")
         {
             //updatede the Icon with the struct and made it take a symbol and a color
-            _icon = new Icon { Symbol = icon, color = color };
             _position = position;
             _name = name;
 
+            //checkes to see if the actor is named a sprite if it is go down the path if not skip
+            if (path != "")
+                _sprite = new Sprite(path);
         }
 
         /// <summary>
@@ -116,7 +127,6 @@ namespace MathForGames
         public virtual void Update(float deltaTime)
         {
             _transform = _translation * _rotation * _scale;
-            Console.WriteLine(_name + ":" + Postion.X + ":" + Postion.Y);
         }
 
         /// <summary>
@@ -124,7 +134,9 @@ namespace MathForGames
         /// </summary>
         public virtual void Draw()
         {
-            Raylib.DrawText(Icon.Symbol.ToString(), (int)Postion.X - 15, (int)Postion.Y - 25, 50, Icon.color);
+            //if the sprite dos not esist skip but if it can be draw transform the actor
+            if (_sprite != null)
+                _sprite.Draw(_transform);
         }
 
 

@@ -69,7 +69,9 @@ namespace MathLibaray
         /// <returns>the added Matriexes</returns>
         public static Matrix3 operator +(Matrix3 lhs, Matrix3 rhs)
         {
-            return new Matrix3 { lhs + rhs };
+            return new Matrix3(lhs.M00 + rhs.M00, lhs.M01 + rhs.M01, lhs.M02 + rhs.M02,
+                   lhs.M10 + rhs.M10, lhs.M11 + rhs.M11, lhs.M12 + rhs.M12,
+                   lhs.M20 + rhs.M20, lhs.M21 + rhs.M21, lhs.M22 + rhs.M22);
         }
 
         /// <summary>
@@ -80,7 +82,9 @@ namespace MathLibaray
         /// <returns>returns the subtracted Matriexes</returns>
         public static Matrix3 operator -(Matrix3 lhs, Matrix3 rhs)
         {
-            return new Matrix3 { lhs - rhs };
+            return new Matrix3(lhs.M00 - rhs.M00, lhs.M01 - rhs.M01, lhs.M02 - rhs.M02,
+                    lhs.M10 - rhs.M10, lhs.M11 - rhs.M11, lhs.M12 - rhs.M12,
+                    lhs.M20 - rhs.M20, lhs.M21 - rhs.M21, lhs.M22 - rhs.M22);
         }
 
         /// <summary>
@@ -91,7 +95,15 @@ namespace MathLibaray
         /// <returns>The multipied Matrixes</returns>
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
         {
-            return new Matrix3 { lhs * rhs };
+            Matrix3 tempMatrix;
+
+            tempMatrix.M00 = (lhs.M00 * rhs.M00) + (lhs.M01 * rhs.M10) + (lhs.M02 * rhs.M20);
+            tempMatrix.M01 = (lhs.M00 * rhs.M01) + (lhs.M01 * rhs.M11) + (lhs.M02 * rhs.M21);
+            tempMatrix.M02 = (lhs.M00 * rhs.M02) + (lhs.M01 * rhs.M12) + (lhs.M02 * rhs.M22);
+            tempMatrix.M10 = (lhs.M10 * rhs.M00) + (lhs.M11 * rhs.M10) + (lhs.M12 * rhs.M20);
+            tempMatrix.M01 = (lhs.M10 * rhs.M01) + (lhs.M11 * rhs.M11) + (lhs.M12 * rhs.M21);
+
+            return tempMatrix;
         }
     }
 }
