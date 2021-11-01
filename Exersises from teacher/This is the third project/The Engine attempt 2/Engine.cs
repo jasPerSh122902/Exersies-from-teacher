@@ -61,7 +61,7 @@ namespace MathForGames
         {
             //created a window using raylib
             Raylib.InitWindow(800, 450, "The math for game. ");
-            Raylib.SetTargetFPS(0);
+            Raylib.SetTargetFPS(60);
 
             _stopwatch.Start();
 

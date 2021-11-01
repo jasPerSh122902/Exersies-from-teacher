@@ -38,6 +38,8 @@ namespace MathForGames
             //finds the scale of the sprite
             Width = (int)Math.Round(new Vector2(transform.M00, transform.M10).Magnitude);
             Height = (int)Math.Round(new Vector2(transform.M01, transform.M11).Magnitude);
+
+            //sets the sprites center to the transform origin
             System.Numerics.Vector2 position = new System.Numerics.Vector2(transform.M02, transform.M12);
             System.Numerics.Vector2 forward = new System.Numerics.Vector2(transform.M00, transform.M10);
             System.Numerics.Vector2 up = new System.Numerics.Vector2(transform.M01, transform.M11);

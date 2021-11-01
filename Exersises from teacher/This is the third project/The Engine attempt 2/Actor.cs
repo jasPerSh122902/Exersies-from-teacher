@@ -30,7 +30,7 @@ namespace MathForGames
         private Collider _coollider;
         private Sprite _sprite;
 
-
+        
         public bool Started
         {
             get { return _started; }
@@ -49,13 +49,18 @@ namespace MathForGames
         public Vector2 Postion
         {
             //takes in a posisition on the matrix...
-            get { return new Vector2(_transform.M02, _transform.M12); }
+            get { return new Vector2(_translation.M02, _translation.M12); }
             set
             {
                 //set that posistion on the matrix
-                _transform.M02 = value.X;
-                _transform.M12 = value.Y;
+                SetTranslation(value.X, value.Y);
             }
+        }
+
+        public Vector2 Size
+        {
+            get { return new Vector2(_scale.M00, _scale.M11); }
+            set { SetScale(value.X, value.Y); }
         }
 
         /// <summary>

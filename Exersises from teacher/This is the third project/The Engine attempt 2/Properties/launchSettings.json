@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MathForGames": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}

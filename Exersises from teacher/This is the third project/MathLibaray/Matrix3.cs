@@ -35,8 +35,8 @@ namespace MathLibaray
         /// <param name="radians">The result of the rotation</param>
         public static Matrix3 CreateRotation(float radians)
         {
-            return new Matrix3((float)Math.Sin(radians), -(float)Math.Cos(radians), 0,
-                               (float)Math.Sin(radians), (float)Math.Cos(radians), 0,
+            return new Matrix3((float)Math.Cos(radians), (float)Math.Sin(radians), 0,
+                               -(float)Math.Sin(radians), (float)Math.Cos(radians), 0,
                                 0, 0, 1);
         }
 
@@ -52,9 +52,8 @@ namespace MathLibaray
                                0, 0, 1);
         }
 
-
         /// <summary>
-        /// Creates a new matrix that has been scaled by teh given value
+        /// Creates a new matrix that has been scaled by the given value
         /// </summary>
         /// <param name="x">The value to use to scale the matrix in the x axis</param>
         /// <param name="y">The value to use to scale the matrix in the y axis</param>
@@ -100,14 +99,32 @@ namespace MathLibaray
         /// <returns>The multipied Matrixes</returns>
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
         {
-            Matrix3 tempMatrix = new Matrix3();
+            return new Matrix3
+                (
+                    ///The temps multiypy values is rows by coloms
+                    ///Row1, Colum1
+                    (lhs.M00 * rhs.M00) + (lhs.M01 * rhs.M10) + (lhs.M02 * rhs.M20),
+                    //Row1 , column2
+                    (lhs.M00 * rhs.M01) + (lhs.M01 * rhs.M11) + (lhs.M02 * rhs.M21),
+                    //Row1 , column 3
+                    (lhs.M00 * rhs.M02) + (lhs.M01 * rhs.M12) + (lhs.M02 * rhs.M22),
 
-            ///The temps multiypy values is rows by coloms, 3 rown.
-            tempMatrix.M00 = (lhs.M00 * rhs.M00) + (lhs.M00 * rhs.M10) + (lhs.M00 * rhs.M20) + (lhs.M00 * rhs.M01) + (lhs.M00 * rhs.M11) + (lhs.M00 * rhs.M21) + (lhs.M00 * rhs.M02) + (lhs.M00 * rhs.M12) + (lhs.M00 * rhs.M22);
-            tempMatrix.M10 = (lhs.M10 * rhs.M00) + (lhs.M10 * rhs.M10) + (lhs.M10 * rhs.M20) + (lhs.M10 * rhs.M01) + (lhs.M10 * rhs.M11) + (lhs.M10 * rhs.M21) + (lhs.M10 * rhs.M02) + (lhs.M10 * rhs.M12) + (lhs.M10 * rhs.M22);
-            tempMatrix.M20 = (lhs.M20 * rhs.M00) + (lhs.M20 * rhs.M10) + (lhs.M20 * rhs.M20) + (lhs.M20 * rhs.M01) + (lhs.M20 * rhs.M11) + (lhs.M20 * rhs.M21) + (lhs.M20 * rhs.M02) + (lhs.M20 * rhs.M12) + (lhs.M20 * rhs.M22);
+                    //Row2, columns1
+                    (lhs.M10 * rhs.M00) + (lhs.M11 * rhs.M10) + (lhs.M12 * rhs.M20),
+                    //Row2, columns2
+                    (lhs.M10 * rhs.M01) + (lhs.M11 * rhs.M11) + (lhs.M12 * rhs.M21),
+                    //Row2, columns3
+                    (lhs.M10 * rhs.M02) + (lhs.M11 * rhs.M12) + (lhs.M12 * rhs.M22),
 
-            return tempMatrix;
+                    //Row3, colum1
+                    (lhs.M20 * rhs.M00) + (lhs.M21 * rhs.M10) + (lhs.M22 * rhs.M20),
+                    //Row3, colum2
+                    (lhs.M20 * rhs.M01) + (lhs.M21 * rhs.M11) + (lhs.M22 * rhs.M21),
+                    //Row3, colum3
+                    (lhs.M20 * rhs.M02) + (lhs.M21 * rhs.M12) + (lhs.M22 * rhs.M22)
+
+
+                );
         }
     }
 }
