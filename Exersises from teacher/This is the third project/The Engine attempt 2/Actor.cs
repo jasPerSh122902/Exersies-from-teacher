@@ -222,7 +222,12 @@ namespace MathForGames
                 }
                 //if none of that is needed return true.
                 else
+                {
                     childRemoved = true;
+                    Parent = null;
+                }
+                    
+                
             }
 
             //will only happen if the child is being removed and will the set actors with temArray.

@@ -69,19 +69,17 @@ namespace MathForGames
             //the Start function smaller
             Scene scene = new Scene();
 
-            Player player = new Player( 100, 100, 150, 100, scene, "Player", "images/player.png");
 
+            Player player = new Player(100, 100, 150, 100,scene, "Player", "images/player.png");
 
-
-            
 
             player.SetScale(50, 50);
             player.SetTranslation(300, 300);
             player.SetRotation(1);
 
-            Enemey actor = new Enemey(200, 200, 1, 1, player,"Actor", "images/enemy.png");
-            Enemey actor2 = new Enemey( 100, 200, 500, 1, player, "Actor2", "images/enemy.png");
-            Enemey actor3 = new Enemey(100, 200, 500, 1, player, "Actor3", "images/enemy.png");
+            Enemey actor = new Enemey(100, 100, 100, 1, player,"Actor", "images/enemy.png");
+            Enemey actor2 = new Enemey( 100, 100, 100, 1, player, "Actor2", "images/enemy.png");
+            Enemey actor3 = new Enemey(100, 100, 100, 1, player, "Actor3", "images/enemy.png");
 
             actor.SetScale(50, 50);
             actor.SetTranslation(300, 300);
@@ -92,6 +90,9 @@ namespace MathForGames
             scene.AddActor(actor2);
             scene.AddActor(actor3);
             scene.AddActor(player);
+
+            actor.Parent = player;
+            actor.AddChild(actor);
 
             //adds the collision to the player
             CircleCollider playerCollider = new CircleCollider(5, player);
