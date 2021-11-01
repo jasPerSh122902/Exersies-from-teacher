@@ -69,32 +69,29 @@ namespace MathForGames
             //the Start function smaller
             Scene scene = new Scene();
 
-            Player player = new Player( 110, 100, 150, 100, scene, Color.RAYWHITE, 1, "Player", "Images/bullet.png");
+            Player player = new Player( 800, 100, 150, 100, scene, "Player", "images/player.png");
 
             //adds the collision to the player
             CircleCollider playerCollider = new CircleCollider(5, player);
             AABBCollider playerBoxCollider = new AABBCollider(34, 42, player);
             player.Collider = playerBoxCollider;
-            player.SetScale(50, 50);
+            player.SetScale(100, 100);
 
-            Enemey actor = new Enemey( 10, 0, 100, 1, player, Color.GOLD, "Images/enemy.png");
+            Enemey actor = new Enemey( 10, 0, 100, 1, player, "images/enemy.png");
 
             //adds the collsion to the enemy
             CircleCollider enemyCollider = new CircleCollider(5, actor);
             AABBCollider enemyBoxCollider = new AABBCollider(50, 50, actor);
             actor.Collider = enemyBoxCollider;
-            enemey.SetScale(50, 50);
+            actor.SetScale(50, 50);
 
-            Enemey actor2 = new Enemey( 50, 0, 500, 1, player, "Actor2", "Images/enemy.png");
-            Enemey actor3 = new Enemey( 85, 0, 500, 1, player, "Actor3","Images/enemy.png");
-            UIText Ui = new UIText(0, 50, "TextBox", Color.BLUE, 0, 100, 200, 20, "This is thest Text. That dos nothing. ");
-
+            Enemey actor2 = new Enemey( 50, 0, 500, 1, player, "Actor2", "images/enemy.png");
+            Enemey actor3 = new Enemey(85, 0, 500, 1, player, "Actor3", "images/enemy.png");
             //adds the actor to the scene and takes in that actor
             scene.AddActor(actor);
             scene.AddActor(actor2);
             scene.AddActor(actor3);
             scene.AddActor(player);
-            scene.AddActor(Ui);
 
             _currentSceneIndex = AddScene(scene);
 
@@ -120,6 +117,7 @@ namespace MathForGames
         {
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.BLACK);
+
 
             //add all of the icons back to the buffer
             _scenes[_currentSceneIndex].Draw();

@@ -16,7 +16,6 @@ namespace MathForGames
     }
     class Actor
     {
-        private Icon _icon;
         private string _name;
         //can make the vector2 because i used the using mathLIbaray;
         private Vector2 _position;
@@ -24,10 +23,12 @@ namespace MathForGames
         private bool _started;
         private float _speed;
         private Vector2 _forward = new Vector2(1,0);
-        private Matrix _transform = Matrix.Identity;
+        private Matrix3 _transform = Matrix3.Identity;
+        private Matrix3 _translation = Matrix3.Identity;
+        private Matrix3 _rotation = Matrix3.Identity;
+        private Matrix3 _scale = Matrix3.Identity;
         private Collider _coollider;
-        
-
+        private Sprite _sprite;
 
 
         public bool Started
@@ -47,9 +48,11 @@ namespace MathForGames
 
         public Vector2 Postion
         {
+            //takes in a posisition on the matrix...
             get { return new Vector2(_transform.M02, _transform.M12); }
             set
             {
+                //set that posistion on the matrix
                 _transform.M02 = value.X;
                 _transform.M12 = value.Y;
             }
@@ -73,6 +76,12 @@ namespace MathForGames
             set { _coollider = value; }
         }
 
+        public Sprite Sprite
+        {
+            get { return _sprite; }
+            set { _sprite = value; }
+        }
+
         //emptyiy actor class
         public Actor() { }
 
@@ -81,8 +90,8 @@ namespace MathForGames
         /// </summary>
         /// <param name="x">is the replace the Vector2</param>
         /// <param name="y">is the replacement for the veoctor2</param>
-        public Actor(char icon, float x, float y, float speed, Color color, string name = "Actor") :
-            this(icon, new Vector2 { X = x, Y = y }, color, name)
+        public Actor(float x, float y, float speed, string name = "Actor", string path = "") :
+            this( new Vector2 { X = x, Y = y }, name, path)
         { }
 
 
@@ -93,13 +102,15 @@ namespace MathForGames
         /// <param name="position">is the loctation that the icon is in</param>
         /// <param name="name">current Actor name</param>
         /// <param name="color">The color that the neame or icon will be</param>
-        public Actor(char icon, Vector2 position, Color color, string name = "Actor")
+        public Actor( Vector2 position, string name = "Actor", string path = "")
         {
             //updatede the Icon with the struct and made it take a symbol and a color
-            _icon = new Icon { Symbol = icon, color = color };
             _position = position;
             _name = name;
-           
+
+            //checkes to see if the actor is named a sprite if it is go down the path if not skip
+            if (path != "")
+                _sprite = new Sprite(path);
         }
 
         /// <summary>
@@ -116,7 +127,7 @@ namespace MathForGames
         /// <param name="deltaTime"></param>
         public virtual void Update(float deltaTime)
         {
-            Console.WriteLine(_name + ":" + Postion.X  + ":" + Postion.Y );
+            _transform = _translation * _rotation * _scale;
         }
 
         /// <summary>
@@ -124,7 +135,8 @@ namespace MathForGames
         /// </summary>
         public virtual void Draw()
         {
-            Raylib.DrawText(Icon.Symbol.ToString(), (int)Postion.X - 15, (int)Postion.Y - 25, 50, Icon.color);
+            if (_sprite != null)
+                _sprite.Draw(_transform);
         }
 
 
@@ -158,6 +170,65 @@ namespace MathForGames
             return Collider.CheckCollision(other);
 
             
+        }
+        /// <summary>
+        /// Sets the position of the actor
+        /// </summary>
+        /// <param name="translationX">The new x position</param>
+        /// <param name="translationY">The new y position</param>
+        public void SetTranslation(float translationX, float translationY)
+        {
+            
+            _translation = Matrix3.CreateTranslation(translationX, translationY);
+        }
+
+        /// <summary>
+        /// Applies the given values to the current translation
+        /// </summary>
+        /// <param name="translationX">The amount to move on the x</param>
+        /// <param name="translationY">The amount to move on the yparam>
+        public void Translate(float translationX, float translationY)
+        {
+            
+            _translation *= Matrix3.CreateTranslation(translationX, translationY);
+        }
+
+        /// <summary>
+        /// Set the rotation of the actor.
+        /// </summary>
+        /// <param name="radians">The angle of the new rotation in radians.</param>
+        public void SetRotation(float radians)
+        {
+            _rotation = Matrix3.CreateRotation(radians);
+        }
+
+        /// <summary>
+        /// Adds a roation to the current transform's rotation.
+        /// </summary>
+        /// <param name="radians">The angle in radians to turn.</param>
+        public void Rotate(float radians)
+        {
+            _rotation *= Matrix3.CreateRotation(radians);
+        }
+
+        /// <summary>
+        /// Sets the scale of the actor.
+        /// </summary>
+        /// <param name="x">The value to scale on the x axis.</param>
+        /// <param name="y">The value to scale on the y axis</param>
+        public void SetScale(float x, float y)
+        {
+            _scale = Matrix3.CreateScale(x, y);
+        }
+
+        /// <summary>
+        /// Scales the actor by the given amount.
+        /// </summary>
+        /// <param name="x">The value to scale on the x axis.</param>
+        /// <param name="y">The value to scale on the y axis</param>
+        public void Scale(float x, float y)
+        {
+            _scale *= Matrix3.CreateScale(x, y);
         }
     }
 }

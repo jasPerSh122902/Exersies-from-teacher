@@ -36,8 +36,8 @@ namespace MathForGames
         public void Draw(Matrix3 transform)
         {
             //finds the scale of the sprite
-            Width = (float)Math.Round(new Vector2(transform.M00, transform.M10).Magnitude);
-            Height = (float)Math.Round(new Vector2(transform.M01, transform.M11).Magnitude);
+            Width = (int)Math.Round(new Vector2(transform.M00, transform.M10).Magnitude);
+            Height = (int)Math.Round(new Vector2(transform.M01, transform.M11).Magnitude);
             System.Numerics.Vector2 position = new System.Numerics.Vector2(transform.M02, transform.M12);
             System.Numerics.Vector2 forward = new System.Numerics.Vector2(transform.M00, transform.M10);
             System.Numerics.Vector2 up = new System.Numerics.Vector2(transform.M01, transform.M11);
@@ -46,7 +46,7 @@ namespace MathForGames
             position -= System.Numerics.Vector2.Normalize(up) * Height / 2;
 
             //find the transform rotation in radians
-            float rotation = (float)Math.Atan(transform.M10, transform.M00);
+            float rotation = (float)Math.Atan2(transform.M10, transform.M00);
 
             Raylib.DrawTextureEx(_texture, position, (float)(rotation * 180 / Math.PI), 1, Color.WHITE);
         }
