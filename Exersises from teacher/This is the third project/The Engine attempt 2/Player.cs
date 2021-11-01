@@ -16,7 +16,6 @@ namespace MathForGames
         private bool _ifTimeTrue;
         private Vector2 _velocity;
         public Scene _scene;
-
         public float Speed
         {
             get { return _speed; }
@@ -62,6 +61,7 @@ namespace MathForGames
             //Create a vector tht stores the move input
             Vector2 moveDirection = new Vector2(xDiretion, yDiretion);
 
+            //makes the Velocity if its greater than 0 to forward.
             if (Velocity.Magnitude > 0)
                 Forward = Velocity.Normalized;
 

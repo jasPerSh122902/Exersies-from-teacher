@@ -23,14 +23,16 @@ namespace MathForGames
         private bool _started;
         private float _speed;
         private Vector2 _forward = new Vector2(1,0);
-        private Matrix3 _transform = Matrix3.Identity;
+        private Matrix3 _globalTransform = Matrix3.Identity;
+        private Matrix3 _LocalTransform = Matrix3.Identity;
         private Matrix3 _translation = Matrix3.Identity;
         private Matrix3 _rotation = Matrix3.Identity;
         private Matrix3 _scale = Matrix3.Identity;
         private Collider _coollider;
+        private Actor[] _children = new Actor[0];
+        private Actor _parent;
         private Sprite _sprite;
 
-        
         public bool Started
         {
             get { return _started; }
@@ -46,7 +48,7 @@ namespace MathForGames
             get { return _speed; }
         }
 
-        public Vector2 Postion
+        public Vector2 LocalPosistion
         {
             //takes in a posisition on the matrix...
             get { return new Vector2(_translation.M02, _translation.M12); }
@@ -56,6 +58,36 @@ namespace MathForGames
                 SetTranslation(value.X, value.Y);
             }
         }
+
+        public Vector2 WorldPosistion
+        {
+            get {; }
+            set {; }
+        }
+
+        public Matrix3 GolbalTransform
+        {
+            get {; }
+            set {; }
+        }
+
+        public Matrix3 LocalTransform
+        {
+            get {; }
+            set {; }
+        }
+
+        public Actor Parent
+        {
+            get {return _parent; }
+            set {; }
+        }
+
+        public Actor[] Children
+        {
+            get {; }
+        }
+
 
         public Vector2 Size
         {
@@ -72,7 +104,7 @@ namespace MathForGames
             set 
             { 
                 
-                Vector2 point = value.Normalized + Postion;
+                Vector2 point = value.Normalized + LocalPosistion;
                 LookAt(point);
             }
         }
@@ -124,6 +156,33 @@ namespace MathForGames
         }
 
         /// <summary>
+        /// Updates the current transform (the scene).
+        /// </summary>
+        public void UpdateTransform()
+        {
+
+        }
+
+        /// <summary>
+        /// Adds the child to the scene
+        /// </summary>
+        /// <param name="child"></param>
+        public void AddChild(Actor child)
+        {
+
+        }
+
+        /// <summary>
+        /// Removes child from the scene
+        /// </summary>
+        /// <param name="child"></param>
+        /// <returns></returns>
+        public bool RemoveChild(Actor child)
+        {
+
+        }
+
+        /// <summary>
         /// Is the start of the actor
         /// </summary>
         public virtual void Start()
@@ -137,7 +196,7 @@ namespace MathForGames
         /// <param name="deltaTime"></param>
         public virtual void Update(float deltaTime)
         {
-            _transform = _translation * _rotation * _scale;
+            _LocalTransform = _translation * _rotation * _scale;
             
         }
 
@@ -147,7 +206,7 @@ namespace MathForGames
         public virtual void Draw()
         {
             if (_sprite != null)
-                _sprite.Draw(_transform);
+                _sprite.Draw(_LocalTransform);
         }
 
 
@@ -249,7 +308,7 @@ namespace MathForGames
         public void LookAt(Vector2 position)
         {
             //got the direction the actor should look in
-            Vector2 direction = (position - Postion).Normalized;
+            Vector2 direction = (position - LocalPosistion).Normalized;
 
             //use the dot product to find the angel the actor needs to rotate
             float dotProd = Vector2.DotProduct(direction, Forward);

@@ -14,7 +14,6 @@ namespace MathForGames
         private int _health = 1;
         public Scene _scene;
 
-
         public float Speed
         {
             get { return _speed; }

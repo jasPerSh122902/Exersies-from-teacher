@@ -71,15 +71,9 @@ namespace MathForGames
 
             Player player = new Player( 100, 100, 150, 100, scene, "Player", "images/player.png");
 
-            //adds the collision to the player
-            CircleCollider playerCollider = new CircleCollider(5, player);
-            AABBCollider playerBoxCollider = new AABBCollider(34, 42, player);
 
-            //adds the collsion to the enemy
-            CircleCollider enemyCollider = new CircleCollider(5, actor);
-            AABBCollider enemyBoxCollider = new AABBCollider(50, 50, actor);
 
-            player.Collider = playerBoxCollider;
+            
 
             player.SetScale(50, 50);
             player.SetTranslation(300, 300);
@@ -89,18 +83,25 @@ namespace MathForGames
             Enemey actor2 = new Enemey( 100, 200, 500, 1, player, "Actor2", "images/enemy.png");
             Enemey actor3 = new Enemey(100, 200, 500, 1, player, "Actor3", "images/enemy.png");
 
-
-
-            actor.Collider = enemyBoxCollider;
             actor.SetScale(50, 50);
             actor.SetTranslation(300, 300);
-            actor.LookAt(200, 200);
+            //this is the error
+            actor.LookAt(actor);
 
             //adds the actor to the scene and takes in that actor
             scene.AddActor(actor);
             scene.AddActor(actor2);
             scene.AddActor(actor3);
             scene.AddActor(player);
+
+            //adds the collision to the player
+            CircleCollider playerCollider = new CircleCollider(5, player);
+            AABBCollider playerBoxCollider = new AABBCollider(34, 42, player);
+            player.Collider = playerBoxCollider;
+            //adds the collsion to the enemy
+            CircleCollider enemyCollider = new CircleCollider(5, actor);
+            AABBCollider enemyBoxCollider = new AABBCollider(50, 50, actor);
+            actor.Collider = enemyBoxCollider;
 
             _currentSceneIndex = AddScene(scene);
 
