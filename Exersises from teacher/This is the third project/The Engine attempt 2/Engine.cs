@@ -69,24 +69,33 @@ namespace MathForGames
             //the Start function smaller
             Scene scene = new Scene();
 
-            Player player = new Player( 800, 100, 150, 100, scene, "Player", "images/player.png");
+            Player player = new Player( 100, 100, 150, 100, scene, "Player", "images/player.png");
 
             //adds the collision to the player
             CircleCollider playerCollider = new CircleCollider(5, player);
             AABBCollider playerBoxCollider = new AABBCollider(34, 42, player);
-            player.Collider = playerBoxCollider;
-            player.SetScale(100, 100);
-
-            Enemey actor = new Enemey( 10, 0, 100, 1, player, "images/enemy.png");
 
             //adds the collsion to the enemy
             CircleCollider enemyCollider = new CircleCollider(5, actor);
             AABBCollider enemyBoxCollider = new AABBCollider(50, 50, actor);
+
+            player.Collider = playerBoxCollider;
+
+            player.SetScale(50, 50);
+            player.SetTranslation(300, 300);
+            player.SetRotation(1);
+
+            Enemey actor = new Enemey(200, 200, 1, 1, player,"Actor", "images/enemy.png");
+            Enemey actor2 = new Enemey( 100, 200, 500, 1, player, "Actor2", "images/enemy.png");
+            Enemey actor3 = new Enemey(100, 200, 500, 1, player, "Actor3", "images/enemy.png");
+
+
+
             actor.Collider = enemyBoxCollider;
             actor.SetScale(50, 50);
+            actor.SetTranslation(300, 300);
+            actor.LookAt(200, 200);
 
-            Enemey actor2 = new Enemey( 50, 0, 500, 1, player, "Actor2", "images/enemy.png");
-            Enemey actor3 = new Enemey(85, 0, 500, 1, player, "Actor3", "images/enemy.png");
             //adds the actor to the scene and takes in that actor
             scene.AddActor(actor);
             scene.AddActor(actor2);

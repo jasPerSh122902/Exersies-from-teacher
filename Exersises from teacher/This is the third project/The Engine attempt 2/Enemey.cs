@@ -91,7 +91,7 @@ namespace MathForGames
                 Console.WriteLine("o2iakjdflaskjdflaskdjflaskjdf");
                 if (_health == 0)
                 {
-                    _scene.RemoveActor(actor);
+                    
                 }
             }
         }

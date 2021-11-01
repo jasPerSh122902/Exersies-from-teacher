@@ -68,8 +68,13 @@ namespace MathForGames
         /// </summary>
         public Vector2 Forward
         {
-            get { return _forward; }
-            set { _forward = value; }
+            get { return new Vector2(_rotation.M00, _rotation.M10); }
+            set 
+            { 
+                
+                Vector2 point = value.Normalized + Postion;
+                LookAt(point);
+            }
         }
 
         /// <summary>
@@ -133,6 +138,7 @@ namespace MathForGames
         public virtual void Update(float deltaTime)
         {
             _transform = _translation * _rotation * _scale;
+            
         }
 
         /// <summary>
@@ -234,6 +240,37 @@ namespace MathForGames
         public void Scale(float x, float y)
         {
             _scale *= Matrix3.CreateScale(x, y);
+        }
+
+        /// <summary>
+        /// Roatates the actor to face the given position
+        /// </summary>
+        /// <param name="position">The posistion the actor should be looking toward</param>
+        public void LookAt(Vector2 position)
+        {
+            //got the direction the actor should look in
+            Vector2 direction = (position - Postion).Normalized;
+
+            //use the dot product to find the angel the actor needs to rotate
+            float dotProd = Vector2.DotProduct(direction, Forward);
+
+            if (dotProd > 1)
+                dotProd = 1;
+
+            float angle = (float)Math.Acos(dotProd);
+
+            //find a perpindicula vector to the direction
+            Vector2 perpDirection = new Vector2(direction.Y, -direction.X);
+
+            //find the dot product of the perpindicular vector and the current forward
+            float perpDot = Vector2.DotProduct(perpDirection, Forward);
+
+            //if the result isn't 0, use it to change the sign of the angle to be iether positive or negative
+            if (perpDot != 0)
+                angle *= -perpDot / Math.Abs(perpDot);
+
+            //rotates the actor with the angle of the other actor
+            Rotate(angle);
         }
     }
 }

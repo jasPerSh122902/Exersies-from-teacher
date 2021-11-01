@@ -50,6 +50,7 @@ namespace MathForGames
             //find the transform rotation in radians
             float rotation = (float)Math.Atan2(transform.M10, transform.M00);
 
+            //Draw the sprite
             Raylib.DrawTextureEx(_texture, position, (float)(rotation * 180 / Math.PI), 1, Color.WHITE);
         }
     }
