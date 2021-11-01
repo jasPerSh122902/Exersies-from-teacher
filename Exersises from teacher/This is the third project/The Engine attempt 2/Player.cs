@@ -78,7 +78,8 @@ namespace MathForGames
             if ((xDirectionBullet != 0  && _cooldownTimer <= .05 || yDirectionBullet != 0 && _cooldownTimer <= .05))
             {
                 //the bullet instence
-                Bullet bullet = new Bullet( Postion, 100, xDirectionBullet, 10, yDirectionBullet, "Bullet", "images/bullet.png");
+                //changed the posision to localPosistion
+                Bullet bullet = new Bullet(LocalPosistion, 100, xDirectionBullet, 10, yDirectionBullet, "Bullet", "images/bullet.png");
                 //if timers is greater than the .50 then...
                 if (_cooldownTimer > .50f)
                 {

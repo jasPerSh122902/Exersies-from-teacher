@@ -14,6 +14,7 @@ namespace MathForGames
         private int _health = 1;
         public Scene _scene;
 
+
         public float Speed
         {
             get { return _speed; }
@@ -49,13 +50,13 @@ namespace MathForGames
             //Create a vector tht stores the move input
             Vector2 moveDirection = new Vector2();
 
-            moveDirection = _player.Postion - Postion;
+            moveDirection = _player.LocalPosistion - LocalPosistion;
 
             //caculates the veclocity 
             Velocity = moveDirection.Normalized * Speed * deltaTime;
 
             if (GetTargetInSight())
-                Postion += Velocity;
+                LocalPosistion += Velocity;
 
             base.Update(deltaTime);
 
@@ -74,9 +75,9 @@ namespace MathForGames
 
             //makes dirctionofTarget the Positin of palyer and Position of enemy and normalized
             //...The result.
-            Vector2 directionOfTarget = (_player.Postion - Postion).Normalized;
+            Vector2 directionOfTarget = (_player.LocalPosistion - LocalPosistion).Normalized;
 
-            distace = (_player.Postion - Postion).Magnitude;
+            distace = (_player.LocalPosistion - LocalPosistion).Magnitude;
             //55 is the degress increase it for the feild of view
             return (Math.Acos(Vector2.DotProduct(directionOfTarget, Forward))
                 * 180 / Math.PI < 55) && distace < 150; ;

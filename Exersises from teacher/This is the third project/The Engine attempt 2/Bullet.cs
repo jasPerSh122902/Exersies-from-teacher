@@ -68,9 +68,9 @@ namespace MathForGames
             {
                 _lastTime = currentTime;
             }
-                _moveDirection = new Vector2(_xDirection, _yDirection);
+            _moveDirection = new Vector2(_xDirection, _yDirection);
             _velocity = _moveDirection * Speed * deltaTime;
-            Postion += _velocity;
+            LocalPosistion += _velocity;
         }
 
         public override void OnCollision(Actor actor)

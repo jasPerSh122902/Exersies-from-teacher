@@ -86,7 +86,6 @@ namespace MathForGames
             actor.SetScale(50, 50);
             actor.SetTranslation(300, 300);
             //this is the error
-            actor.LookAt(actor);
 
             //adds the actor to the scene and takes in that actor
             scene.AddActor(actor);

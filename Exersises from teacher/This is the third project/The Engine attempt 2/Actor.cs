@@ -17,17 +17,18 @@ namespace MathForGames
     class Actor
     {
         private string _name;
-        //can make the vector2 because i used the using mathLIbaray;
-        private Vector2 _position;
+        private Vector2 _localPosistion;
         //made started a bool so we can see if actors is there or not.
         private bool _started;
         private float _speed;
         private Vector2 _forward = new Vector2(1,0);
+
         private Matrix3 _globalTransform = Matrix3.Identity;
         private Matrix3 _LocalTransform = Matrix3.Identity;
         private Matrix3 _translation = Matrix3.Identity;
         private Matrix3 _rotation = Matrix3.Identity;
         private Matrix3 _scale = Matrix3.Identity;
+
         private Collider _coollider;
         private Actor[] _children = new Actor[0];
         private Actor _parent;
@@ -61,31 +62,31 @@ namespace MathForGames
 
         public Vector2 WorldPosistion
         {
-            get {; }
-            set {; }
+            get { return new Vector2(_translation.M00, _translation.M11); }
+            set { LocalPosistion = value;   }
         }
 
         public Matrix3 GolbalTransform
         {
-            get {; }
-            set {; }
+            get {return _globalTransform; }
+            set { _globalTransform = value;  }
         }
 
         public Matrix3 LocalTransform
         {
-            get {; }
-            set {; }
+            get { return _LocalTransform ; }
+            set { _LocalTransform = value; }
         }
 
         public Actor Parent
         {
             get {return _parent; }
-            set {; }
+            set {_parent = value; }
         }
 
         public Actor[] Children
         {
-            get {; }
+            get {return  _children; }
         }
 
 
@@ -147,7 +148,7 @@ namespace MathForGames
         public Actor( Vector2 position, string name = "Actor", string path = "")
         {
             //updatede the Icon with the struct and made it take a symbol and a color
-            _position = position;
+            LocalPosistion = position;
             _name = name;
 
             //checkes to see if the actor is named a sprite if it is go down the path if not skip
@@ -160,26 +161,76 @@ namespace MathForGames
         /// </summary>
         public void UpdateTransform()
         {
-
+            for (int i = 0; i < _children.Length; i++)
+            {
+                
+            }
         }
 
         /// <summary>
         /// Adds the child to the scene
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="child">is a array</param>
         public void AddChild(Actor child)
         {
+            //makes a new array called temArray and mades it the lengh of actors + a nother spot
+            Actor[] temArray = new Actor[_children.Length + 1];
 
+            //incremens through the actors array
+            for (int i = 0; i < _children.Length; i++)
+            {
+                temArray[i] = _children[i];
+            }
+
+            //sets temArray to the actors array and set it to actor
+            temArray[_children.Length] = child;
+
+            //then sets actors to temarray
+            _children = temArray;
         }
 
         /// <summary>
         /// Removes child from the scene
         /// </summary>
-        /// <param name="child"></param>
-        /// <returns></returns>
+        /// <param name="child">Is a array</param>
+        /// <returns>true or false</returns>
         public bool RemoveChild(Actor child)
         {
 
+            //create a varialbe to store if the removal was successful
+            bool childRemoved = false;
+
+            //created a new array that is small than the original array.
+            Actor[] temArray = new Actor[_children.Length - 1];
+
+            //is there to the second array and not have space from removed child.
+            int j = 0;
+
+            //incremens through the temArray
+            for (int i = 0; i < temArray.Length; i++)
+            {
+                if (i > temArray.Length)
+                    i--;
+
+                //sais that if actor is not equal to the child that is choosen then dont go into but..
+                if (_children[i] != child)
+                {
+                    //make temArray have j and make it equal to child with i so there is no left over space in the array.
+                    temArray[j] = _children[i];
+                    //increment j
+                    j++;
+                }
+                //if none of that is needed return true.
+                else
+                    childRemoved = true;
+            }
+
+            //will only happen if the child is being removed and will the set actors with temArray.
+            if (childRemoved)
+                _children = temArray;
+
+            //...then returns
+            return childRemoved;
         }
 
         /// <summary>
