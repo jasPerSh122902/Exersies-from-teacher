@@ -49,6 +49,15 @@ namespace MathForGames
             get { return _speed; }
         }
 
+        public float ScaleX
+        {
+            get { return new Vector2(_globalTransform.M00, _globalTransform.M10).Magnitude; }
+        }
+        public float ScaleY
+        {
+            get { return new Vector2(_globalTransform.M00, _globalTransform.M11).Magnitude; }
+        }
+
         public Vector2 LocalPosistion
         {
             //takes in a posisition on the matrix...
@@ -60,13 +69,29 @@ namespace MathForGames
             }
         }
 
+        /// <summary>
+        /// The posistion of theis actor in the world
+        /// </summary>
         public Vector2 WorldPosistion
         {
-            get { return new Vector2((GolbalTransform.M02 ), (GolbalTransform.M12)); }
+            //returns the globaal transform's T column
+            get { return new Vector2(_globalTransform.M02 , _globalTransform.M12); }
             set 
             {
-                //set that posistion on the matrix
-                SetTranslation(value.X, value.Y);
+                //if the actor has a parent...
+                if (Parent != null)
+                {
+                    //... convert the world coordinates into loval coooridinates and translate the actor
+                    float xoffset = (value.X - Parent.WorldPosistion.X) / new Vector2(_globalTransform.M00, _globalTransform.M10).Magnitude;
+                    float yoffset = (value.Y - Parent.WorldPosistion.Y) / new Vector2(_globalTransform.M10, _globalTransform.M11).Magnitude;
+                    SetTranslation(xoffset, yoffset);
+                }
+                //if theis actor doesn't have a parent
+                else
+                    //...sets the  local posisiton to be the given value
+                    LocalPosistion = value; //set that posistion on the matrix
+
+
             }
         }
 
@@ -79,22 +104,26 @@ namespace MathForGames
         public Matrix3 LocalTransform
         {
             get { return _LocalTransform; }
-            set
-            {
-                _LocalTransform = value;
-            }
+            set { _LocalTransform = value; }
         }
 
+        /// <summary>
+        /// is the parent for actor
+        /// </summary>
         public Actor Parent
         {
             get {return _parent; }
             set {_parent = value; }
         }
 
+        /// <summary>
+        /// is the child for actor
+        /// </summary>
         public Actor[] Children
         {
             get {return  _children; }
         }
+        //This is to size the actor
         public Vector2 Size
         {
             get { return new Vector2(_scale.M00, _scale.M11); }
@@ -258,8 +287,10 @@ namespace MathForGames
         /// <param name="deltaTime"></param>
         public virtual void Update(float deltaTime)
         {
+            
+
+            this.Rotate(.01f);
             UpdateTransform();
-            deltaTime = 0;
             Console.WriteLine(_name + ":" + WorldPosistion.X + ":" + WorldPosistion.Y);
         }
 
