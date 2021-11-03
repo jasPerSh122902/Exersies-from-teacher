@@ -62,20 +62,27 @@ namespace MathForGames
 
         public Vector2 WorldPosistion
         {
-            get { return new Vector2(_translation.M00, _translation.M11); }
-            set { LocalPosistion = value;   }
+            get { return new Vector2((GolbalTransform.M02 ), (GolbalTransform.M12)); }
+            set 
+            {
+                //set that posistion on the matrix
+                SetTranslation(value.X, value.Y);
+            }
         }
 
         public Matrix3 GolbalTransform
         {
-            get {return _globalTransform; }
+            get {return _globalTransform ; }
             set { _globalTransform = value;  }
         }
 
         public Matrix3 LocalTransform
         {
-            get { return _LocalTransform ; }
-            set { _LocalTransform = value; }
+            get { return _LocalTransform; }
+            set
+            {
+                _LocalTransform = value;
+            }
         }
 
         public Actor Parent
@@ -88,8 +95,6 @@ namespace MathForGames
         {
             get {return  _children; }
         }
-
-
         public Vector2 Size
         {
             get { return new Vector2(_scale.M00, _scale.M11); }
@@ -104,7 +109,6 @@ namespace MathForGames
             get { return new Vector2(_rotation.M00, _rotation.M10); }
             set 
             { 
-                
                 Vector2 point = value.Normalized + LocalPosistion;
                 LookAt(point);
             }
@@ -161,10 +165,13 @@ namespace MathForGames
         /// </summary>
         public void UpdateTransform()
         {
-            for (int i = 0; i < _children.Length; i++)
-            {
-                
-            }
+            _LocalTransform = _translation * _rotation * _scale;
+
+            if (Parent != null)
+                GolbalTransform = Parent.GolbalTransform + LocalTransform;
+            else
+                GolbalTransform = LocalTransform;
+
         }
 
         /// <summary>
@@ -187,6 +194,8 @@ namespace MathForGames
 
             //then sets actors to temarray
             _children = temArray;
+
+            child.Parent = this;
         }
 
         /// <summary>
@@ -196,7 +205,6 @@ namespace MathForGames
         /// <returns>true or false</returns>
         public bool RemoveChild(Actor child)
         {
-
             //create a varialbe to store if the removal was successful
             bool childRemoved = false;
 
@@ -226,8 +234,6 @@ namespace MathForGames
                     childRemoved = true;
                     Parent = null;
                 }
-                    
-                
             }
 
             //will only happen if the child is being removed and will the set actors with temArray.
@@ -252,8 +258,9 @@ namespace MathForGames
         /// <param name="deltaTime"></param>
         public virtual void Update(float deltaTime)
         {
-            _LocalTransform = _translation * _rotation * _scale;
-            
+            UpdateTransform();
+            deltaTime = 0;
+            Console.WriteLine(_name + ":" + WorldPosistion.X + ":" + WorldPosistion.Y);
         }
 
         /// <summary>
@@ -262,7 +269,7 @@ namespace MathForGames
         public virtual void Draw()
         {
             if (_sprite != null)
-                _sprite.Draw(_LocalTransform);
+                _sprite.Draw(GolbalTransform);
         }
 
 

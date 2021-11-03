@@ -70,20 +70,26 @@ namespace MathForGames
             Scene scene = new Scene();
 
 
-            Player player = new Player(100, 100, 150, 100,scene, "Player", "images/player.png");
+            Player player = new Player(0, 0, 0, 100,scene, "Player", "images/player.png");
 
 
-            player.SetScale(50, 50);
-            player.SetTranslation(300, 300);
+            player.SetScale(1, 1);
+            player.SetTranslation(100, 100);
             player.SetRotation(1);
 
-            Enemey actor = new Enemey(100, 100, 100, 1, player,"Actor", "images/enemy.png");
-            Enemey actor2 = new Enemey( 100, 100, 100, 1, player, "Actor2", "images/enemy.png");
-            Enemey actor3 = new Enemey(100, 100, 100, 1, player, "Actor3", "images/enemy.png");
+            Enemey actor = new Enemey(1, 0, 0, 1, player,"Actor", "images/enemy.png");
+            Enemey actor2 = new Enemey( 1,0, 0, 1, player, "Actor2", "images/enemy.png");
+            Enemey actor3 = new Enemey(1, 0, 0, 1, player, "Actor3", "images/enemy.png");
 
-            actor.SetScale(50, 50);
-            actor.SetTranslation(300, 300);
-            //this is the error
+            actor.SetScale(.05f,.05f);
+            actor2.SetScale(.05f, .05f);
+
+
+            player.Parent = player;
+            player.AddChild(actor);
+
+            actor.Parent = actor;
+            actor.AddChild(actor2);
 
             //adds the actor to the scene and takes in that actor
             scene.AddActor(actor);
@@ -91,11 +97,8 @@ namespace MathForGames
             scene.AddActor(actor3);
             scene.AddActor(player);
 
-            actor.Parent = player;
-            actor.AddChild(actor);
-
-            //adds the collision to the player
-            CircleCollider playerCollider = new CircleCollider(5, player);
+           //adds the collision to the player
+           CircleCollider playerCollider = new CircleCollider(5, player);
             AABBCollider playerBoxCollider = new AABBCollider(34, 42, player);
             player.Collider = playerBoxCollider;
             //adds the collsion to the enemy

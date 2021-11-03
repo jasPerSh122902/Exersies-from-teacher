@@ -34,7 +34,7 @@ namespace MathForGames
         }
 
 
-        public Enemey( float x, float y, float speed,int health, Player player, string name = "Enemy", string path = "")
+        public Enemey( float x, float y, float speed,int health, Player player, string name = "Enemy", string path = "images/enemy.png")
             : base( x, y, speed, name)
         {
             //i need to the player = palyer I need to get the this.
@@ -46,7 +46,6 @@ namespace MathForGames
 
         public override void Update(float deltaTime)
         {
-
             //Create a vector tht stores the move input
             Vector2 moveDirection = new Vector2();
 
@@ -99,7 +98,7 @@ namespace MathForGames
         public override void Draw()
         {
             base.Draw();
-            //Collider.Draw();
+           // Collider.Draw();
         }
     }
 }

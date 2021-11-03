@@ -103,6 +103,8 @@ namespace MathForGames
 
             base.Translate(Velocity.X, Velocity.Y);
 
+            deltaTime = 0;
+
             base.Update(deltaTime);
 
             
