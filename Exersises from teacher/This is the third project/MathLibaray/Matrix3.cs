@@ -92,6 +92,17 @@ namespace MathLibaray
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
+        public static Vector3 operator *(Matrix3 lhs, Vector3 rhs)
+        {
+            return new Vector3();
+        }
+
+        /// <summary>
         /// Multiplies the Matrixes but they order will allwayes be the left hand then the right
         /// </summary>
         /// <param name="lhs">Left hand is beeing scaled </param>
@@ -126,6 +137,8 @@ namespace MathLibaray
 
                 );
         }
+
+       
 
     }
 }

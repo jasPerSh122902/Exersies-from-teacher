@@ -38,6 +38,7 @@ namespace MathLibaray
             }
         }
 
+
         /// <summary>
         /// Changes this vector to have a magnitude that is equal to one
         /// </summary>

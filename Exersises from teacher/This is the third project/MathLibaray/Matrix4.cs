@@ -38,11 +38,34 @@ namespace MathLibaray
         /// Creates a new matrix that has been rotated by the given value in radians
         /// </summary>
         /// <param name="radians">The result of the rotation</param>
-        public static Matrix4 CreateRotation(float radians)
+        public static Matrix4 CreateRotationZ(float radians)
+        {
+            return new Matrix4((float)Math.Cos(radians), (float)Math.Sin(radians), 0, 0,
+                               (float)Math.Sin(radians), (float)Math.Cos(radians), 0, 0,
+                                -(float)Math.Cos(radians), (float)Math.Sin(radians), 1, 0,
+                                0, 0, 0, 1);
+        }
+        /// <summary>
+        /// Creates a new matrix that has been rotated by the given value in radians
+        /// </summary>
+        /// <param name="radians">The result of the rotation</param>
+        public static Matrix4 CreateRotationY(float radians)
+        {
+            return new Matrix4((float)Math.Cos(radians), -(float)Math.Sin(radians), 0, 0,
+                               (float)Math.Sin(radians), (float)Math.Cos(radians), 0, 0,
+                                (float)Math.Cos(radians), (float)Math.Sin(radians), 1, 0,
+                                0, 0, 0, 1);
+        }
+
+        /// <summary>
+        /// Creates a new matrix that has been rotated by the given value in radians
+        /// </summary>
+        /// <param name="radians">The result of the rotation</param>
+        public static Matrix4 CreateRotationX(float radians)
         {
             return new Matrix4((float)Math.Cos(radians), (float)Math.Sin(radians), 0, 0,
                                -(float)Math.Sin(radians), (float)Math.Cos(radians), 0, 0,
-                                0, 0, 1, 0,
+                                (float)Math.Cos(radians), (float)Math.Sin(radians), 1, 0,
                                 0, 0, 0, 1);
         }
 
@@ -51,10 +74,22 @@ namespace MathLibaray
         /// </summary>
         /// <param name="x">The x position of the new matrix</param>
         /// <param name="y">The y position of the new matrix</param>
+        public static Matrix4 CreateTranslation(float x, float y, float z)
+        {
+            return new Matrix4(1, 0, 0, x,
+                               0, 1, 0, y,
+                               0, 0, 1, z,
+                               0, 0, 0, 1);
+        }
+        /// <summary>
+        /// Creates a new matrix that has been translated by the given value
+        /// </summary>
+        /// <param name="x">The x position of the new matrix</param>
+        /// <param name="y">The y position of the new matrix</param>
         public static Matrix4 CreateTranslation(float x, float y)
         {
-            return new Matrix4(1, 0, x, 0,
-                               0, 1, y, 0,
+            return new Matrix4(1, 0, 0, x,
+                               0, 1, 0, y,
                                0, 0, 1, 0,
                                0, 0, 0, 1);
         }
@@ -98,6 +133,17 @@ namespace MathLibaray
                                lhs.M10 - rhs.M10, lhs.M11 - rhs.M11, lhs.M12 - rhs.M12, lhs.M13 - rhs.M13,
                                lhs.M20 - rhs.M20, lhs.M21 - rhs.M21, lhs.M22 - rhs.M22, lhs.M23 - rhs.M23,
                                lhs.M30 - rhs.M30, lhs.M31 - rhs.M31, lhs.M32 - rhs.M32, lhs.M33 - rhs.M33);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lhs"></param>
+        /// <param name="rhs"></param>
+        /// <returns></returns>
+        public static Vector4 operator *(Matrix4 lhs, Vector4 rhs)
+        {
+            return new Vector4();
         }
 
         /// <summary>
@@ -150,5 +196,7 @@ namespace MathLibaray
 
                 );
         }
+
+
     }
 }

@@ -41,12 +41,13 @@ namespace MathForGames
         /// <param name="CollisionRadius"></param>
         /// <param name="yDirection"></param>
         /// <param name="name"></param>
-        public Bullet(Vector2 posistion, float speed, int xDirection,float CollisionRadius, int yDirection, string name = "Bullet", string path = "") 
+        public Bullet(Vector3 posistion, float speed, int xDirection,float CollisionRadius, int yDirection, int zDirection, string name = "Bullet", string path = "") 
             :base( posistion, name, path)
         {
             _speed = speed;
             _xDirection = xDirection;
             _yDirection = yDirection;
+            _zDirection = zDirection;
             _collisionRaidus = CollisionRadius;
 
         }
@@ -68,7 +69,7 @@ namespace MathForGames
             {
                 _lastTime = currentTime;
             }
-            _moveDirection = new Vector2(_xDirection, _yDirection);
+            _moveDirection = new Vector3(_xDirection, _yDirection,_zDirection );
             _velocity = _moveDirection * Speed * deltaTime;
             LocalPosistion += _velocity;
         }
