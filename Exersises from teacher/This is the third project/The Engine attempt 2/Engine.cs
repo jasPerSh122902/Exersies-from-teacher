@@ -70,11 +70,11 @@ namespace MathForGames
             Scene scene = new Scene();
 
 
-            Player player = new Player(5, 50, 6, 100,scene, "Player", "images/player.png");
+            Player player = new Player(5, 10, 0, 100,scene, "Player", "images/player.png");
 
 
             player.SetScale(10, 10);
-            player.SetTranslation(100, 100);
+            //player.SetTranslation(100, 100);
             //player.SetRotation(1);
 
             Enemey actor = new Enemey(100, 5, 4, 1, player,"Actor", "images/enemy.png");

@@ -51,11 +51,11 @@ namespace MathForGames
 
         public float ScaleX
         {
-            get { return new Vector2(_scale.M00, _scale.M10).Magnitude; }
+            get { return new Vector2(_globalTransform.M00, _globalTransform.M10).Magnitude; }
         }
         public float ScaleY
         {
-            get { return new Vector2(_scale.M01, _scale.M11).Magnitude; }
+            get { return new Vector2(_globalTransform.M00, _globalTransform.M11).Magnitude; }
         }
 
         public Vector2 LocalPosistion
@@ -69,18 +69,27 @@ namespace MathForGames
             }
         }
 
+        /// <summary>
+        /// The posistion of theis actor in the world
+        /// </summary>
         public Vector2 WorldPosistion
         {
-            get { return new Vector2(_translation.M02 , _translation.M12); }
+            //returns the globaal transform's T column
+            get { return new Vector2(_globalTransform.M02 , _globalTransform.M12); }
             set 
             {
+                //if the actor has a parent...
                 if (Parent != null)
                 {
-                    Vector2 offset = value - Parent.LocalPosistion;
-                    SetTranslation(offset.X / ScaleX, offset.Y / ScaleY);
+                    //... convert the world coordinates into loval coooridinates and translate the actor
+                    float xoffset = (value.X - ParentWorldPosistion.X) / new Vector2(_globalTransform.M00, _globalTransform.M10).Magnitude;
+                    float yoffset = (value.Y - ParentWorldPosistion.Y) / new Vector2(_globalTransform.M10, _globalTransform.M11).Magnitude
+                    SetTranslation(xoffset, yoffset);
                 }
+                //if theis actor doesn't have a parent
                 else
-                    SetTranslation(value.X, value.Y); //set that posistion on the matrix
+                    //...sets the  local posisiton to be the given value
+                    LocalPosistion = value; //set that posistion on the matrix
 
 
             }
@@ -113,7 +122,7 @@ namespace MathForGames
         }
         public Vector2 Size
         {
-            get { return new Vector2(_scale.M00, _scale.M01); }
+            get { return new Vector2(_scale.M00, _scale.M11); }
             set { SetScale(value.X, value.Y); }
         }
 
