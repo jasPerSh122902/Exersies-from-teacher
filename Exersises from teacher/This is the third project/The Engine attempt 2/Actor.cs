@@ -55,7 +55,7 @@ namespace MathForGames
             set
             {
                 //set that posistion on the matrix
-                SetTranslation(value.X, value.Y);
+                SetTranslation(value.X, value.Y, value.Z);
             }
         }
 
@@ -74,8 +74,9 @@ namespace MathForGames
                     //... convert the world coordinates into loval coooridinates and translate the actor
                     //needs the Z axis
                     float xoffset = (value.X - Parent.WorldPosistion.X) / new Vector3(_globalTransform.M00, _globalTransform.M10, _globalTransform.M20).Magnitude;
-                    float yoffset = (value.Y - Parent.WorldPosistion.Y) / new Vector3(_globalTransform.M10, _globalTransform.M11, _globalTransform.M12).Magnitude;
-                    SetTranslation(xoffset, yoffset);
+                    float yoffset = (value.Y - Parent.WorldPosistion.Y) / new Vector3(_globalTransform.M01, _globalTransform.M11, _globalTransform.M21).Magnitude;
+                    float zoffset = (value.Z - Parent.WorldPosistion.Z) / new Vector3(_globalTransform.M02, _globalTransform.M12, _globalTransform.M22).Magnitude
+                    SetTranslation(xoffset, yoffset, zoffset);
                 }
                 //if theis actor doesn't have a parent
                 else
@@ -403,31 +404,31 @@ namespace MathForGames
         /// Roatates the actor to face the given position
         /// </summary>
         /// <param name="position">The posistion the actor should be looking toward</param>
-        public void LookAt(Vector3 position)
+        public void LookAt(Vector2 position)
         {
-            //got the direction the actor should look in
-            Vector3 direction = (position - LocalPosistion).Normalized;
+            ////got the direction the actor should look in
+            //Vector3 direction = (position - LocalPosistion).Normalized;
 
-            //use the dot product to find the angel the actor needs to rotate
-            float dotProd = Vector3.DotProduct(direction, Forward);
+            ////use the dot product to find the angel the actor needs to rotate
+            //float dotProd = Vector2.DotProduct(direction, Forward);
 
-            if (dotProd > 1)
-                dotProd = 1;
+            //if (dotProd > 1)
+            //    dotProd = 1;
 
-            float angle = (float)Math.Acos(dotProd);
+            //float angle = (float)Math.Acos(dotProd);
 
-            //find a perpindicula vector to the direction
-            Vector2 perpDirection = new Vector3(direction.Y, -direction.X, direction.Z);
+            ////find a perpindicula vector to the direction
+            //Vector2 perpDirection = new Vector2(direction.Y, -direction.X);
 
-            //find the dot product of the perpindicular vector and the current forward
-            float perpDot = Vector3.DotProduct(perpDirection, Forward);
+            ////find the dot product of the perpindicular vector and the current forward
+            //float perpDot = Vector2.DotProduct(perpDirection, Forward);
 
-            //if the result isn't 0, use it to change the sign of the angle to be iether positive or negative
-            if (perpDot != 0)
-                angle *= -perpDot / Math.Abs(perpDot);
+            ////if the result isn't 0, use it to change the sign of the angle to be iether positive or negative
+            //if (perpDot != 0)
+            //    angle *= -perpDot / Math.Abs(perpDot);
 
-            //rotates the actor with the angle of the other actor
-            Rotate(angle);
+            ////rotates the actor with the angle of the other actor
+            //Rotate(angle);
         }
     }
 }
