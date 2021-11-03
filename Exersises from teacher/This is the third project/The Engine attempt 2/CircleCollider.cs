@@ -44,7 +44,7 @@ namespace MathForGames
 
 
             //gets the direction from thsi collier to the AABB
-            Vector2 direction = Owner.LocalPosistion - other.Owner.LocalPosistion;
+            Vector3 direction = Owner.LocalPosistion - other.Owner.LocalPosistion;
 
             //clamp the direciton vector to be within the bounds of the AABB
             direction.X = Math.Clamp(direction.X , -other.Width / 2, other.Width / 2);
@@ -52,10 +52,10 @@ namespace MathForGames
             direction.Y = Math.Clamp(direction.Y, -other.Height / 2, other.Height / 2);
 
             //add the direction vector to the AABB centrer to get the closest point to the circle
-            Vector2 closestPoint = other.Owner.LocalPosistion + direction;
+            Vector3 closestPoint = other.Owner.LocalPosistion + direction;
 
             //find the diestance from the circles center to the closest point
-            float distanceFromClosestPoint = Vector2.Distance(Owner.LocalPosistion, closestPoint);
+            float distanceFromClosestPoint = Vector3.Distance(Owner.LocalPosistion, closestPoint);
 
             //returns whether or not the diestace is less than the circles radius
             return distanceFromClosestPoint <= CollisionRadius;

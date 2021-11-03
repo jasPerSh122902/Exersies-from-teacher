@@ -100,11 +100,11 @@ namespace MathLibaray
         /// <param name="x">The value to use to scale the matrix in the x axis</param>
         /// <param name="y">The value to use to scale the matrix in the y axis</param>
         /// <returns>The result of the scale</returns>
-        public static Matrix4 CreateScale(float x, float y)
+        public static Matrix4 CreateScale(float x, float y, float z)
         {
             return new Matrix4(x, 0, 0, 0,
                                0, y, 0, 0,
-                               0, 0, 1, 0,
+                               0, 0, z, 0,
                                0, 0, 0, 1);
         }
         /// <summary>

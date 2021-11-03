@@ -9,7 +9,7 @@ namespace MathForGames
     class Enemey : Actor
     {
         private float _speed;
-        private Vector2 _velocity;
+        private Vector3 _velocity;
         private Player _player;
         private int _health = 1;
         public Scene _scene;
@@ -34,7 +34,7 @@ namespace MathForGames
         }
 
 
-        public Enemey( float x, float y, float speed,int health, Player player, string name = "Enemy", string path = "")
+        public Enemey( float x, float y, float speed,int health, Player player, string name = "Enemy", Shape shape = Shape.CUBE)
             : base( x, y, speed, name)
         {
             //i need to the player = palyer I need to get the this.
@@ -47,7 +47,7 @@ namespace MathForGames
         public override void Update(float deltaTime)
         {
             //Create a vector tht stores the move input
-            Vector2 moveDirection = new Vector2();
+            Vector3 moveDirection = new Vector3();
 
             moveDirection = _player.LocalPosistion - LocalPosistion;
 
@@ -74,11 +74,11 @@ namespace MathForGames
 
             //makes dirctionofTarget the Positin of palyer and Position of enemy and normalized
             //...The result.
-            Vector2 directionOfTarget = (_player.LocalPosistion - LocalPosistion).Normalized;
+            Vector3 directionOfTarget = (_player.LocalPosistion - LocalPosistion).Normalized;
 
             distace = (_player.LocalPosistion - LocalPosistion).Magnitude;
             //55 is the degress increase it for the feild of view
-            return (Math.Acos(Vector2.DotProduct(directionOfTarget, Forward))
+            return (Math.Acos(Vector3.DotProduct(directionOfTarget, Forward))
                 * 180 / Math.PI < 55) && distace < 150; ;
         }
 

@@ -6,23 +6,22 @@ using MathLibaray;
 
 namespace MathForGames
 {
-    /// <summary>
-    /// is there so i can hold the type for icon for actors or player
-    /// </summary>
-    struct Icon
+    public enum Shape
     {
-        public char Symbol;
-        public Color color;
+        CUDE,
+        SPHERE
     }
+        
     class Actor
     {
+
         private string _name;
         private Vector2 _localPosistion;
         //made started a bool so we can see if actors is there or not.
         private bool _started;
         private float _speed;
-        private Vector3 _forward = new Vector3(0,0,1);
 
+        private Vector3 _forward = new Vector3(0,0,1);
         private Matrix4 _globalTransform = Matrix4.Identity;
         private Matrix4 _LocalTransform = Matrix4.Identity;
         private Matrix4 _translation = Matrix4.Identity;
@@ -32,7 +31,7 @@ namespace MathForGames
         private Collider _coollider;
         private Actor[] _children = new Actor[0];
         private Actor _parent;
-
+        private Shape _shape;
         public bool Started
         {
             get { return _started; }
@@ -65,7 +64,7 @@ namespace MathForGames
         public Vector3 WorldPosistion
         {
             //returns the globaal transform's T column
-            get { return new Vector3(_globalTransform.M03 , _globalTransform.M13, _globalTransform.M23)  }
+            get { return new Vector3(_globalTransform.M03, _globalTransform.M13, _globalTransform.M23);  }
             set 
             {
                 //if the actor has a parent...
@@ -75,7 +74,7 @@ namespace MathForGames
                     //needs the Z axis
                     float xoffset = (value.X - Parent.WorldPosistion.X) / new Vector3(_globalTransform.M00, _globalTransform.M10, _globalTransform.M20).Magnitude;
                     float yoffset = (value.Y - Parent.WorldPosistion.Y) / new Vector3(_globalTransform.M01, _globalTransform.M11, _globalTransform.M21).Magnitude;
-                    float zoffset = (value.Z - Parent.WorldPosistion.Z) / new Vector3(_globalTransform.M02, _globalTransform.M12, _globalTransform.M22).Magnitude
+                    float zoffset = (value.Z - Parent.WorldPosistion.Z) / new Vector3(_globalTransform.M02, _globalTransform.M12, _globalTransform.M22).Magnitude;
                     SetTranslation(xoffset, yoffset, zoffset);
                 }
                 //if theis actor doesn't have a parent
@@ -122,18 +121,19 @@ namespace MathForGames
         /// <summary>
         /// Sizes the caractor or actor
         /// </summary>
-        public Vector2 Size
+        public Vector3 Size
         {
             get 
             {
                 //sets the x and y scale
-                float xScale = new Vector2(_scale.M00, _scale.M10).Magnitude;
-                float yScale = new Vector2(_scale.M01, _scale.M11).Magnitude;
+                float xScale = new Vector3(GolbalTransform.M00, GolbalTransform.M10, GolbalTransform.M20).Magnitude;
+                float yScale = new Vector3(GolbalTransform.M01, GolbalTransform.M11, GolbalTransform.M21).Magnitude;
+                float zScale = new Vector3(GolbalTransform.M02, GolbalTransform.M12, GolbalTransform.M22).Magnitude;
 
                 //returns the x and y
-                return new Vector2(xScale, yScale);
+                return new Vector2(xScale, yScale, zScale);
             }
-            set { SetScale(value.X, value.Y); }
+            set { SetScale(value.X, value.Y, value.Z); }
         }
 
         /// <summary>
@@ -162,9 +162,11 @@ namespace MathForGames
         /// </summary>
         /// <param name="x">is the replace the Vector2</param>
         /// <param name="y">is the replacement for the veoctor2</param>
-        public Actor(float x, float y, float speed, string name = "Actor") :
-            this( new Vector3 { X = x, Y = y, Z = z }, name )
+        public Actor(float x, float y, float speed, string name = "Actor", Shape shape = Shape.CUBE) :
+            this( new Vector3 { X = x, Y = y, Z = z }, name, shape)
         { }
+
+
 
 
         /// <summary>
@@ -174,11 +176,12 @@ namespace MathForGames
         /// <param name="position">is the loctation that the icon is in</param>
         /// <param name="name">current Actor name</param>
         /// <param name="color">The color that the neame or icon will be</param>
-        public Actor( Vector3 position, string name = "Actor" )
+        public Actor( Vector3 position, string name = "Actor", Shape shape = Shape.CUBE)
         {
             //updatede the Icon with the struct and made it take a symbol and a color
             LocalPosistion = position;
             _name = name;
+            _shape = shape;
 
         }
 
@@ -296,7 +299,18 @@ namespace MathForGames
         /// </summary>
         public virtual void Draw()
         {
+            System.Numerics.Vector3 position = new Systme.Numerics.Vector3(WorldPosistion.X, WorldPosistion.Y, WorldPosistion.Z);
 
+            switch (_shape)
+            {
+                case Shape.CUBE:
+                    Raylib.DrawCude(position, Size.X, Size.Y, Size.Z, Color.BLUE);
+                    break;
+                case Shape.SPHERE:
+                    xScale = new Vector3(Size.X, Size.Y, Size.Z).Magnitude;
+                    Raylib.DrawSphere(position, xScale, Color.BLUE);
+                    break;
+            }
         }
 
 

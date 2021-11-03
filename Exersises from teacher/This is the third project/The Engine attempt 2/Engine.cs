@@ -87,40 +87,21 @@ namespace MathForGames
             //the Start function smaller
             Scene scene = new Scene();
 
-
-            Player player = new Player(5, 5, 50, 100,scene, "Player", "images/player.png");
-
-
-            player.SetScale(10, 10);
-            player.SetTranslation(100, 100);
-            //player.SetRotation(1);
-
-            Enemey actor = new Enemey(5, 5, 100, 1, player,"Actor", "images/player.png");
-            Enemey actor2 = new Enemey( 1,0, 0, 1, player, "Actor2", "images/player.png");
-            Enemey actor3 = new Enemey(1, 0, 0, 1, player, "Actor3", "images/enemy.png");
-
-            actor.SetScale(50,50);
-            actor2.SetScale(50, 50);
+            Player player = new Player(5,5,10, "Player",Shape.CUBE);
 
 
-            player.Parent = player;
-            player.AddChild(actor);
+            player.SetScale(10, 10, 10);
+            player.SetTranslation(0,0);
 
-
-            //adds the actor to the scene and takes in that actor
-            scene.AddActor(actor);
-            scene.AddActor(actor2);
-            scene.AddActor(actor3);
             scene.AddActor(player);
 
            //adds the collision to the player
            CircleCollider playerCollider = new CircleCollider(5, player);
             AABBCollider playerBoxCollider = new AABBCollider(34, 42, player);
-            player.Collider = playerBoxCollider;
+
             //adds the collsion to the enemy
             CircleCollider enemyCollider = new CircleCollider(5, actor);
             AABBCollider enemyBoxCollider = new AABBCollider(50, 50, actor);
-            actor.Collider = enemyBoxCollider;
 
             _currentSceneIndex = AddScene(scene);
 

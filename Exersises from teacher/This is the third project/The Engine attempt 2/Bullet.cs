@@ -41,7 +41,7 @@ namespace MathForGames
         /// <param name="CollisionRadius"></param>
         /// <param name="yDirection"></param>
         /// <param name="name"></param>
-        public Bullet(Vector3 posistion, float speed, int xDirection,float CollisionRadius, int yDirection, int zDirection, string name = "Bullet", string path = "") 
+        public Bullet(Vector3 posistion, float speed, int xDirection,float CollisionRadius, int yDirection, int zDirection, string name = "Bullet", Shape shape = Shape.CUBE) 
             :base( posistion, name, path)
         {
             _speed = speed;
