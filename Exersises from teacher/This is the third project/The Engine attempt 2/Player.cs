@@ -58,8 +58,7 @@ namespace MathForGames
             int yDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
-            //Create a vector tht stores the move input
-            Vector2 moveDirection = new Vector2(xDiretion, yDiretion);
+
 
             //makes the Velocity if its greater than 0 to forward.
             if (Velocity.Magnitude > 0)
@@ -98,16 +97,15 @@ namespace MathForGames
                 }
             }
 
+            //Create a vector tht stores the move input
+            Vector2 moveDirection = new Vector2(xDiretion, yDiretion);
+
             //caculates the veclocity 
             Velocity = moveDirection * Speed * deltaTime;
 
-            base.Translate(Velocity.X, Velocity.Y);
-
-            deltaTime = 0;
-
+            LocalPosistion += Velocity;
             base.Update(deltaTime);
 
-            
         }
 
         /// <summary>

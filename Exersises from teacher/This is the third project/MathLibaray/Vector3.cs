@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MathLibaray
 {
-    class Vector3
+    public struct Vector3
     {
         public float X;
         public float Y;
@@ -46,9 +46,9 @@ namespace MathLibaray
         public Vector3 Normalize()
         {
             if (Magnitude == 0)
-                return new Vector4();
+                return new Vector3();
 
-            return this /= Magnitude;
+            else return this /= Magnitude;
         }
 
         /// <param name="lhs">The left hand side of the operation</param>
@@ -106,9 +106,9 @@ namespace MathLibaray
         /// <param name="vec3">The vector that is being scaled</param>
         /// <param name="scalar">The value that the vector will be scaled by</param>
         /// <returns>A new scaled vector</returns>
-        public static Vector2 operator /(Vector2 vec2, float scalar)
+        public static Vector3 operator /(Vector3 vec3, float scalar)
         {
-            return new Vector2 { X = vec2.X / scalar, Y = vec2.Y / scalar };
+            return new Vector3 { X = vec3.X / scalar, Y = vec3.Y / scalar };
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace MathLibaray
         /// <param name="lhs">The vector on the left hand side</param>
         /// <param name="rhs">The vector on the right hand side</param>
         /// <returns>True if the vectors are equal to each other</returns>
-        public static bool operator ==(Vector2 lhs, Vector2 rhs)
+        public static bool operator ==(Vector3 lhs, Vector3 rhs)
         {
             return lhs.X == rhs.X && lhs.Y == rhs.Y && lhs.Z == rhs.Z;
         }
@@ -128,7 +128,7 @@ namespace MathLibaray
         /// <param name="lhs">The vector on the left hand side</param>
         /// <param name="rhs">The vector on the right hand side</param>
         /// <returns>True if the vectors are not equal to each other</returns>
-        public static bool operator !=(Vector2 lhs, Vector2 rhs)
+        public static bool operator !=(Vector3 lhs, Vector3 rhs)
         {
             return lhs.X != rhs.X || lhs.Y != rhs.Y || lhs.Z != rhs.Z;
         }

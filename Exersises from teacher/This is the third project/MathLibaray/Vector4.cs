@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MathLibaray
 {
-    class Vector4
+    public struct Vector4
     {
         public float X;
         public float Y;
@@ -98,7 +98,7 @@ namespace MathLibaray
         /// <returns>A new scaled vector</returns>
         public static Vector4 operator *(Vector4 vec4, float scalar)
         {
-            return new Vector3 { X = vec4.X * scalar, Y = vec4.Y * scalar, Z = vec4.Z * scalar, W = vec4.w * scalar };
+            return new Vector4 { X = vec4.X * scalar, Y = vec4.Y * scalar, Z = vec4.Z * scalar, W = vec4.X * scalar };
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace MathLibaray
         /// <returns>A new scaled vector</returns>
         public static Vector4 operator /(Vector4 vec4, float scalar)
         {
-            return new Vector2 { X = vec4.X / scalar, Y = vec4.Y / scalar, W = vec4.w / scalar };
+            return new Vector4 { X = vec4.X / scalar, Y = vec4.Y / scalar, Z = vec4.Z, W = vec4.X / scalar};
         }
 
         /// <summary>

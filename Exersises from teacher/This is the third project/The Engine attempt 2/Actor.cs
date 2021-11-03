@@ -49,6 +49,15 @@ namespace MathForGames
             get { return _speed; }
         }
 
+        public float ScaleX
+        {
+            get { return new Vector2(_scale.M00, _scale.M10).Magnitude; }
+        }
+        public float ScaleY
+        {
+            get { return new Vector2(_scale.M01, _scale.M11).Magnitude; }
+        }
+
         public Vector2 LocalPosistion
         {
             //takes in a posisition on the matrix...
@@ -62,11 +71,18 @@ namespace MathForGames
 
         public Vector2 WorldPosistion
         {
-            get { return new Vector2((GolbalTransform.M02 ), (GolbalTransform.M12)); }
+            get { return new Vector2(_translation.M02 , _translation.M12); }
             set 
             {
-                //set that posistion on the matrix
-                SetTranslation(value.X, value.Y);
+                if (Parent != null)
+                {
+                    Vector2 offset = value - Parent.LocalPosistion;
+                    SetTranslation(offset.X / ScaleX, offset.Y / ScaleY);
+                }
+                else
+                    SetTranslation(value.X, value.Y); //set that posistion on the matrix
+
+
             }
         }
 
@@ -165,7 +181,7 @@ namespace MathForGames
         /// </summary>
         public void UpdateTransform()
         {
-            _LocalTransform = _translation * _rotation * _scale;
+            
 
             if (Parent != null)
                 GolbalTransform = Parent.GolbalTransform + LocalTransform;
@@ -258,6 +274,9 @@ namespace MathForGames
         /// <param name="deltaTime"></param>
         public virtual void Update(float deltaTime)
         {
+            _LocalTransform = _translation * _rotation * _scale;
+
+            this.Rotate(0.1f);
             UpdateTransform();
             Console.WriteLine(_name + ":" + WorldPosistion.X + ":" + WorldPosistion.Y);
         }

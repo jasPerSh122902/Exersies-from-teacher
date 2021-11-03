@@ -42,7 +42,7 @@ namespace MathLibaray
         {
             return new Matrix4((float)Math.Cos(radians), (float)Math.Sin(radians), 0, 0,
                                -(float)Math.Sin(radians), (float)Math.Cos(radians), 0, 0,
-                                0, 0, 1, 0
+                                0, 0, 1, 0,
                                 0, 0, 0, 1);
         }
 
@@ -118,7 +118,7 @@ namespace MathLibaray
                     //Row1 , column 3
                     (lhs.M00 * rhs.M02) + (lhs.M01 * rhs.M12) + (lhs.M02 * rhs.M22) + (lhs.M03 + rhs.M32),
                     //Row1 , column 4
-                    (lhs.M00 * rhs.M03) + (lhs.M01 * rhs.M13) + (lhs.M02 * rhs.M23) + (lhs.M03 + rhs.M33)
+                    (lhs.M00 * rhs.M03) + (lhs.M01 * rhs.M13) + (lhs.M02 * rhs.M23) + (lhs.M03 + rhs.M33),
 
                     //Row2, columns1
                     (lhs.M10 * rhs.M00) + (lhs.M11 * rhs.M10) + (lhs.M12 * rhs.M20) + (lhs.M13 * rhs.M30),
@@ -136,7 +136,16 @@ namespace MathLibaray
                     //Row3, colum3
                     (lhs.M20 * rhs.M02) + (lhs.M21 * rhs.M12) + (lhs.M22 * rhs.M22) + (lhs.M23 * rhs.M32),
                     //Row3, colum4
-                    (lhs.M20 * rhs.M02) + (lhs.M21 * rhs.M12) + (lhs.M22 * rhs.M22) + (lhs.M23 * rhs.M33)
+                    (lhs.M20 * rhs.M02) + (lhs.M21 * rhs.M12) + (lhs.M22 * rhs.M22) + (lhs.M23 * rhs.M33),
+
+                    //Row3, colum1
+                    (lhs.M30 * rhs.M00) + (lhs.M31 * rhs.M10) + (lhs.M32 * rhs.M20) + (lhs.M33 * rhs.M30),
+                    //Row3, colum2
+                    (lhs.M30 * rhs.M01) + (lhs.M31 * rhs.M11) + (lhs.M32 * rhs.M21) + (lhs.M33 * rhs.M31),
+                    //Row3, colum3
+                    (lhs.M30 * rhs.M02) + (lhs.M31 * rhs.M12) + (lhs.M32 * rhs.M22) + (lhs.M33 * rhs.M32),
+                    //Row3, colum4
+                    (lhs.M30 * rhs.M02) + (lhs.M31 * rhs.M12) + (lhs.M32 * rhs.M22) + (lhs.M33 * rhs.M33)
 
 
                 );
