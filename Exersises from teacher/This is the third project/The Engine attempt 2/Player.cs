@@ -61,9 +61,7 @@ namespace MathForGames
             //Create a vector tht stores the move input
             Vector2 moveDirection = new Vector2(xDiretion, yDiretion);
 
-            //makes the Velocity if its greater than 0 to forward.
-            if (Velocity.Magnitude > 0)
-                Forward = Velocity.Normalized;
+
 
             //gets the palyers input direction for the shoot by using arrow key
             int xDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))

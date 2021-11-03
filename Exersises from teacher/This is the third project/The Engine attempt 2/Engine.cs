@@ -70,26 +70,24 @@ namespace MathForGames
             Scene scene = new Scene();
 
 
-            Player player = new Player(5, 10, 0, 100,scene, "Player", "images/player.png");
+            Player player = new Player(5, 5, 50, 100,scene, "Player", "images/player.png");
 
 
             player.SetScale(10, 10);
-            //player.SetTranslation(100, 100);
+            player.SetTranslation(100, 100);
             //player.SetRotation(1);
 
-            Enemey actor = new Enemey(100, 5, 4, 1, player,"Actor", "images/enemy.png");
-            Enemey actor2 = new Enemey( 1,0, 0, 1, player, "Actor2", "images/enemy.png");
+            Enemey actor = new Enemey(5, 5, 100, 1, player,"Actor", "images/player.png");
+            Enemey actor2 = new Enemey( 1,0, 0, 1, player, "Actor2", "images/player.png");
             Enemey actor3 = new Enemey(1, 0, 0, 1, player, "Actor3", "images/enemy.png");
 
-            actor.SetScale(1,1);
-            actor2.SetScale(1, 1);
+            actor.SetScale(50,50);
+            actor2.SetScale(50, 50);
 
 
             player.Parent = player;
             player.AddChild(actor);
 
-            actor.Parent = actor;
-            actor.AddChild(actor2);
 
             //adds the actor to the scene and takes in that actor
             scene.AddActor(actor);
