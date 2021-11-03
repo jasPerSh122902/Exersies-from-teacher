@@ -312,7 +312,7 @@ namespace MathForGames
         public virtual void Draw()
         {
             if (_sprite != null)
-                _sprite.Draw(_LocalTransform);
+                _sprite.Draw(GolbalTransform);
         }
 
 

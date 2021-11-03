@@ -14,7 +14,7 @@ namespace MathForGames
         private static int _currentSceneIndex;
         private Scene[] _scenes = new Scene[0];
         private Stopwatch _stopwatch = new Stopwatch();
-
+        private Camera3D _camera = new Camera3D();
 
 
         /// <summary>
@@ -54,6 +54,22 @@ namespace MathForGames
             End();
         }
 
+        private void InitializeCamera()
+        {
+            // Camera position
+            _camera.position = new System.Numerics.Vector3(0, 10, 10);
+            //Point the camera is focused on
+            _camera.target = new System.Numerics.Vector3(0, 0, 0);
+            //Camera up vector (roation towards target)
+            _camera.up = new System.Numerics.Vector3(0, 1, 0);
+            // The point of view of the camera
+            _camera.fovy = 70;
+            //Camera mode type
+            _camera.projection = CameraProjection.CAMERA_PERSPECTIVE;
+
+
+        }
+
         /// <summary>
         /// Called when the applicaiton starts
         /// </summary>
@@ -62,6 +78,8 @@ namespace MathForGames
             //created a window using raylib
             Raylib.InitWindow(800, 450, "The math for game. ");
             Raylib.SetTargetFPS(60);
+
+            InitializeCamera();
 
             _stopwatch.Start();
 
@@ -127,12 +145,17 @@ namespace MathForGames
         private void Draw()
         {
             Raylib.BeginDrawing();
-            Raylib.ClearBackground(Color.BLACK);
+            Raylib.BeginMode3D(_camera);
+
+            Raylib.ClearBackground(Color.BLUE);
+            Raylib.DrawGrid(50, 1);
 
 
             //add all of the icons back to the buffer
             _scenes[_currentSceneIndex].Draw();
 
+
+            Raylib.EndMode3D();
             Raylib.EndDrawing();
 
         }
