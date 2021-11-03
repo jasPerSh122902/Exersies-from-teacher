@@ -259,7 +259,6 @@ namespace MathForGames
         public virtual void Update(float deltaTime)
         {
             UpdateTransform();
-            deltaTime = 0;
             Console.WriteLine(_name + ":" + WorldPosistion.X + ":" + WorldPosistion.Y);
         }
 
