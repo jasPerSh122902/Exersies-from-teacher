@@ -70,7 +70,7 @@ namespace MathForGames
             Scene scene = new Scene();
 
 
-            Player player = new Player(0, 0, 0, 100,scene, "Player", "images/player.png");
+            Player player = new Player(5, 50, 6, 100,scene, "Player", "images/player.png");
 
 
             player.SetScale(10, 10);
@@ -81,7 +81,7 @@ namespace MathForGames
             Enemey actor2 = new Enemey( 1,0, 0, 1, player, "Actor2", "images/enemy.png");
             Enemey actor3 = new Enemey(1, 0, 0, 1, player, "Actor3", "images/enemy.png");
 
-            actor.SetScale(50,50);
+            actor.SetScale(1,1);
             actor2.SetScale(1, 1);
 
 

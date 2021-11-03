@@ -113,7 +113,7 @@ namespace MathForGames
         }
         public Vector2 Size
         {
-            get { return new Vector2(_scale.M00, _scale.M11); }
+            get { return new Vector2(_scale.M00, _scale.M01); }
             set { SetScale(value.X, value.Y); }
         }
 
@@ -181,7 +181,7 @@ namespace MathForGames
         /// </summary>
         public void UpdateTransform()
         {
-            
+            _LocalTransform = _translation * _rotation * _scale;
 
             if (Parent != null)
                 GolbalTransform = Parent.GolbalTransform + LocalTransform;
@@ -274,9 +274,9 @@ namespace MathForGames
         /// <param name="deltaTime"></param>
         public virtual void Update(float deltaTime)
         {
-            _LocalTransform = _translation * _rotation * _scale;
+            
 
-            this.Rotate(0.1f);
+            this.Rotate(.01f);
             UpdateTransform();
             Console.WriteLine(_name + ":" + WorldPosistion.X + ":" + WorldPosistion.Y);
         }
