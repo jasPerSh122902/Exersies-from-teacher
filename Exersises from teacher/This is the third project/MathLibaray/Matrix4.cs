@@ -67,10 +67,79 @@ namespace MathLibaray
         /// <returns>The result of the scale</returns>
         public static Matrix4 CreateScale(float x, float y)
         {
-            return new Matrix4(x, 0, 0, 0.
+            return new Matrix4(x, 0, 0, 0,
                                0, y, 0, 0,
-                               0, 0, 1, 0
+                               0, 0, 1, 0,
                                0, 0, 0, 1);
+        }
+        /// <summary>
+        /// Adds the Matrix3
+        /// </summary>
+        /// <param name="lhs">left hand Matrix</param>
+        /// <param name="rhs">Right hand Matrix</param>
+        /// <returns>the added Matriexes</returns>
+        public static Matrix4 operator +(Matrix4 lhs, Matrix4 rhs)
+        {
+            return new Matrix4(lhs.M00 + rhs.M00, lhs.M01 + rhs.M01, lhs.M02 + rhs.M02, lhs.M03 + rhs.M03,
+                               lhs.M10 + rhs.M10, lhs.M11 + rhs.M11, lhs.M12 + rhs.M12, lhs.M13 + rhs.M13,
+                               lhs.M20 + rhs.M20, lhs.M21 + rhs.M21, lhs.M22 + rhs.M22, lhs.M23 + rhs.M23,
+                               lhs.M30 + rhs.M30, lhs.M31 + rhs.M31, lhs.M32 + rhs.M32, lhs.M33 + rhs.M33);
+        }
+
+        /// <summary>
+        /// Subtracts the Matrix
+        /// </summary>
+        /// <param name="lhs">left hand Matrix</param>
+        /// <param name="rhs">Right hand Matrix</param>
+        /// <returns>returns the subtracted Matriexes</returns>
+        public static Matrix4 operator -(Matrix4 lhs, Matrix4 rhs)
+        {
+            return new Matrix4(lhs.M00 - rhs.M00, lhs.M01 - rhs.M01, lhs.M02 - rhs.M02, lhs.M03 - rhs.M03,
+                               lhs.M10 - rhs.M10, lhs.M11 - rhs.M11, lhs.M12 - rhs.M12, lhs.M13 - rhs.M13,
+                               lhs.M20 - rhs.M20, lhs.M21 - rhs.M21, lhs.M22 - rhs.M22, lhs.M23 - rhs.M23,
+                               lhs.M30 - rhs.M30, lhs.M31 - rhs.M31, lhs.M32 - rhs.M32, lhs.M33 - rhs.M33);
+        }
+
+        /// <summary>
+        /// Multiplies the Matrixes but they order will allwayes be the left hand then the right
+        /// </summary>
+        /// <param name="lhs">Left hand is beeing scaled </param>
+        /// <param name="rhs">the right hand is the scaler </param>
+        /// <returns>The multipied Matrixes</returns>
+        public static Matrix4 operator *(Matrix4 lhs, Matrix4 rhs)
+        {
+            return new Matrix4
+                (
+                    ///The temps multiypy values is rows by coloms
+                    ///Row1, Colum1
+                    (lhs.M00 * rhs.M00) + (lhs.M01 * rhs.M10) + (lhs.M02 * rhs.M20) + (lhs.M03 + rhs.M30),
+                    //Row1 , column2
+                    (lhs.M00 * rhs.M01) + (lhs.M01 * rhs.M11) + (lhs.M02 * rhs.M21) + (lhs.M03 + rhs.M31),
+                    //Row1 , column 3
+                    (lhs.M00 * rhs.M02) + (lhs.M01 * rhs.M12) + (lhs.M02 * rhs.M22) + (lhs.M03 + rhs.M32),
+                    //Row1 , column 4
+                    (lhs.M00 * rhs.M03) + (lhs.M01 * rhs.M13) + (lhs.M02 * rhs.M23) + (lhs.M03 + rhs.M33)
+
+                    //Row2, columns1
+                    (lhs.M10 * rhs.M00) + (lhs.M11 * rhs.M10) + (lhs.M12 * rhs.M20) + (lhs.M13 * rhs.M30),
+                    //Row2, columns2
+                    (lhs.M10 * rhs.M01) + (lhs.M11 * rhs.M11) + (lhs.M12 * rhs.M21) + (lhs.M13 * rhs.M31),
+                    //Row2, columns3
+                    (lhs.M10 * rhs.M02) + (lhs.M11 * rhs.M12) + (lhs.M12 * rhs.M22) + (lhs.M13 * rhs.M32),
+                    //Row2, columns4
+                    (lhs.M10 * rhs.M02) + (lhs.M11 * rhs.M12) + (lhs.M12 * rhs.M22) + (lhs.M13 * rhs.M33),
+
+                    //Row3, colum1
+                    (lhs.M20 * rhs.M00) + (lhs.M21 * rhs.M10) + (lhs.M22 * rhs.M20) + (lhs.M23 * rhs.M30),
+                    //Row3, colum2
+                    (lhs.M20 * rhs.M01) + (lhs.M21 * rhs.M11) + (lhs.M22 * rhs.M21) + (lhs.M23 * rhs.M31),
+                    //Row3, colum3
+                    (lhs.M20 * rhs.M02) + (lhs.M21 * rhs.M12) + (lhs.M22 * rhs.M22) + (lhs.M23 * rhs.M32),
+                    //Row3, colum4
+                    (lhs.M20 * rhs.M02) + (lhs.M21 * rhs.M12) + (lhs.M22 * rhs.M22) + (lhs.M23 * rhs.M33)
+
+
+                );
         }
     }
 }
