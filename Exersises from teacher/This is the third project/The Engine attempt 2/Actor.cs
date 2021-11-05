@@ -8,7 +8,7 @@ namespace MathForGames
 {
     public enum Shape
     {
-        CUDE,
+        CUBE,
         SPHERE
     }
         
@@ -131,7 +131,7 @@ namespace MathForGames
                 float zScale = new Vector3(GolbalTransform.M02, GolbalTransform.M12, GolbalTransform.M22).Magnitude;
 
                 //returns the x and y
-                return new Vector2(xScale, yScale, zScale);
+                return new Vector3(xScale, yScale, zScale);
             }
             set { SetScale(value.X, value.Y, value.Z); }
         }
@@ -162,8 +162,8 @@ namespace MathForGames
         /// </summary>
         /// <param name="x">is the replace the Vector2</param>
         /// <param name="y">is the replacement for the veoctor2</param>
-        public Actor(float x, float y, float speed, string name = "Actor", Shape shape = Shape.CUBE) :
-            this( new Vector3 { X = x, Y = y, Z = z }, name, shape)
+        public Actor(float x, float y, float z, float speed, string name = "Actor", Shape shape = Shape.CUBE) :
+            this( new Vector3 { X = x, Y = y, Z = z}, name, shape)
         { }
 
 
@@ -299,16 +299,15 @@ namespace MathForGames
         /// </summary>
         public virtual void Draw()
         {
-            System.Numerics.Vector3 position = new Systme.Numerics.Vector3(WorldPosistion.X, WorldPosistion.Y, WorldPosistion.Z);
+            System.Numerics.Vector3 position = new System.Numerics.Vector3(WorldPosistion.X, WorldPosistion.Y, WorldPosistion.Z);
 
             switch (_shape)
             {
                 case Shape.CUBE:
-                    Raylib.DrawCude(position, Size.X, Size.Y, Size.Z, Color.BLUE);
+                    Raylib.DrawCube(position, Size.X, Size.Y, Size.Z, Color.BLUE);
                     break;
                 case Shape.SPHERE:
-                    xScale = new Vector3(Size.X, Size.Y, Size.Z).Magnitude;
-                    Raylib.DrawSphere(position, xScale, Color.BLUE);
+                    Raylib.DrawSphere(position, Size.X, Color.BLUE);
                     break;
             }
         }
@@ -378,7 +377,7 @@ namespace MathForGames
             Matrix4 rotationY = Matrix4.CreateRotationY(radiansY);
             Matrix4 rotationZ = Matrix4.CreateRotationZ(radiansZ);
 
-            _rotation = rotationsX * rotationsY * rotationZ;
+            _rotation = rotationX * rotationY * rotationZ;
         }
 
         /// <summary>
@@ -391,7 +390,7 @@ namespace MathForGames
             Matrix4 rotationY = Matrix4.CreateRotationY(radiansY);
             Matrix4 rotationZ = Matrix4.CreateRotationZ(radiansZ);
 
-            _rotation *= rotationsX * rotationsY * rotationZ;
+            _rotation *= rotationX * rotationY * rotationZ;
         }
 
         /// <summary>

@@ -3,64 +3,128 @@ using System.Collections.Generic;
 using System.Text;
 using MathLibaray;
 using Raylib_cs;
+using System.Threading;
+using System.Diagnostics;
 
 namespace MathForGames
 {
     class Player : Actor
     {
         private float _speed;
-        private Vector2 _velocity;
-
+        private int _health = 5;
+        private float _cooldownTimer;
+        private bool _ifTimeTrue;
+        private Vector3 _velocity;
+        public Scene _scene;
         public float Speed
         {
             get { return _speed; }
             set { _speed = value; }
         }
 
-        public Vector2 Velocity
+        public Vector3 Velocity
         {
             get { return _velocity; }
             set { _velocity = value; }
         }
 
-        public Player(char icon, float x, float y, float speed, Color color, string name = "Actor")
-            : base(icon, x, y, color, name)
+        public int Health
         {
-            _speed = speed;
-
+            get { return _health; }
+            set { _health = value; }
         }
 
+        public Player( float x, float y,float z, float speed, string name = "Player", Shape shape = Shape.CUBE)
+            : base( x, y,z, speed, name, shape)
+        {
+            _speed = speed;
+        }
+
+
+        public override void Start()
+        {
+            base.Start();
+        }
+            
+        /// <summary>
+        /// Updates the players infromation on the screen and console.
+        /// </summary>
+        /// <param name="deltaTime"></param>
         public override void Update(float deltaTime)
         {
+
+            _cooldownTimer += deltaTime;
+
             //get the player input direction
             int xDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
-            int yDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
+            int zDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
             //Create a vector tht stores the move input
-            Vector2 moveDirection = new Vector2(xDiretion, yDiretion);
+            Vector3 moveDirection = new Vector3(xDiretion,0, zDiretion);
+
+
+
+            //gets the palyers input direction for the shoot by using arrow key
+            int xDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
+                   + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT));
+            int yDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
+                + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN));
+
 
             //caculates the veclocity 
-            Velocity = moveDirection.Normalized * Speed * deltaTime;
+            Velocity = moveDirection * Speed * deltaTime;
 
+            LocalPosistion += Velocity;
             base.Update(deltaTime);
-            //moves the player
-            Postion += Velocity;
 
+            ////takes ina direction and set sets a timer
+            ////if cooldowntimer is less than .05 then spawn if not then no spawn
+            //if ((xDirectionBullet != 0  && _cooldownTimer <= .05 || yDirectionBullet != 0 && _cooldownTimer <= .05))
+            //{
+            //    //the bullet instence
+            //    //changed the posision to localPosistion
+            //    Bullet bullet = new Bullet(LocalPosistion, 100, xDirectionBullet, 10, yDirectionBullet, "Bullet", "images/bullet.png");
+            //    //if timers is greater than the .50 then...
+            //    if (_cooldownTimer > .50f)
+            //    {
+            //        //...remove the actor from scene
+            //      _scene.RemoveActor(bullet);
+            //    }
+            //    if (_cooldownTimer >= deltaTime)
+            //    {
+            //        //spawns the collider
+            //        CircleCollider BulletCollider = new CircleCollider(1, bullet);
+            //        //sets the collider
+            //        bullet.Collider = BulletCollider;
+            //        //addes the actor bullet to the scene
+            //        _scene.AddActor(bullet);
+                    
+            //    }
+            //}
         }
 
+        /// <summary>
+        /// uses the collider on the current actor
+        /// </summary>
+        /// <param name="actor"></param>
         public override void OnCollision(Actor actor)
         {
-            if (actor.Name == "Actor1")
+            //if actor is touched by teh enenmy end the game
+            if (actor is Enemey)
             {
-                Console.WriteLine("Collision occured ");
-                Engine.CloseApplication();
+                
             }
-            
-               
-            
-           
+        }
+
+        /// <summary>
+        /// draws the the scene.
+        /// </summary>
+        public override void Draw()
+        {
+            base.Draw();
+            //Collider.Draw();
         }
     }
 }

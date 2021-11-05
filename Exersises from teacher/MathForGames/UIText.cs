@@ -10,6 +10,11 @@ namespace MathForGames
         private string _text;
         private int _width;
         private int _height;
+        private float _speed;
+        public Font _font;
+        public int _fontSize;
+
+
 
         /// <summary>
         /// Is the text that is located in the actor
@@ -37,6 +42,14 @@ namespace MathForGames
             set { _height = value; }
         }
 
+        public float Speed
+        {
+            get
+            {
+                return _speed;
+            }
+        }
+
 
         /// <summary>
         /// Sets the starting values for the text box
@@ -48,51 +61,20 @@ namespace MathForGames
         /// <param name="width">long the text box is </param>
         /// <param name="height">how high you text box is</param>
         /// <param name="text">The words that is with in the UI</param>
-        public UIText(float x, float y, String name, Color color, int width, int height, string text = "")
-            : base('\0', x, y, color, name)
+        public UIText(float x, float y,float z, String name, Color color,float speed, int width, int height,int fontSize, string text = "")
+            : base( x, y, z, speed)
         {
             Text = text;
             Width = width;
             Height = height;
+            _font = Raylib.LoadFont("resources/fonts/alagard.png");
+            _fontSize = fontSize;
         }
 
         public override void Draw()
         {
-            int cursorPosX = (int)Postion.X;
-            int cursorPosY = (int)Postion.Y;
-
-            Icon currentLetter = new Icon { color = Icon.color };
-
-            char[] textChars = Text.ToCharArray();
-
-            for (int i = 0; i < textChars.Length; i++)
-            {
-                currentLetter.Symbol = textChars[i];
-
-
-
-                if (currentLetter.Symbol == '\n')
-                {
-                    cursorPosX = (int)Postion.X;
-                    cursorPosY++;
-                    //the continue key word allow me to go into a loop and hit the continue...
-                    //...it will leave the rest of the loop and go back to the top.
-                    continue;
-                }
-                cursorPosX++;
-
-                if (cursorPosX > (int)Postion.X + Width)
-                {
-                    cursorPosX = (int)Postion.X;
-                    cursorPosY++;
-                }
-
-                //if the cursor has reached the maximum hieght...
-                if (cursorPosY > (int)Postion.Y + Height)
-                    //...leave the loop
-                    break;
-            }
-
+            Rectangle textBox = new Rectangle(LocalPosistion.X, LocalPosistion.Y, Width, Height);
+            Raylib.DrawTextRec(_font, Text, textBox, _fontSize,1, true, Color.BLUE);
         }
     }
 }

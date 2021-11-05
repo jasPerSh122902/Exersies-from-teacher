@@ -21,7 +21,7 @@ namespace MathForGames
             set { _speed = value; }
         }
 
-        public Vector2 Velocity
+        public Vector3 Velocity
         {
             get { return _velocity; }
             set { _velocity = value; }
@@ -34,8 +34,8 @@ namespace MathForGames
         }
 
 
-        public Enemey( float x, float y, float speed,int health, Player player, string name = "Enemy", Shape shape = Shape.CUBE)
-            : base( x, y, speed, name)
+        public Enemey( float x, float y,float z, float speed,int health, Player player, string name = "Enemy", Shape shape = Shape.CUBE)
+            : base( x, y, z, speed, name, shape)
         {
             //i need to the player = palyer I need to get the this.
             _speed = speed;

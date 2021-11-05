@@ -15,7 +15,7 @@ namespace MathForGames
         private Scene[] _scenes = new Scene[0];
         private Stopwatch _stopwatch = new Stopwatch();
         private Camera3D _camera = new Camera3D();
-
+        
 
         /// <summary>
         /// is the call to start the application
@@ -83,15 +83,17 @@ namespace MathForGames
 
             _stopwatch.Start();
 
+            
+
             //prevously made a function to hold the actors and players to make...
             //the Start function smaller
             Scene scene = new Scene();
 
-            Player player = new Player(5,5,10, "Player",Shape.CUBE);
+            Player player = new Player(5,5,10, 10, "Player", Shape.CUBE);
 
 
             player.SetScale(10, 10, 10);
-            player.SetTranslation(0,0);
+            player.SetTranslation(0,0,0);
 
             scene.AddActor(player);
 
@@ -100,8 +102,6 @@ namespace MathForGames
             AABBCollider playerBoxCollider = new AABBCollider(34, 42, player);
 
             //adds the collsion to the enemy
-            CircleCollider enemyCollider = new CircleCollider(5, actor);
-            AABBCollider enemyBoxCollider = new AABBCollider(50, 50, actor);
 
             _currentSceneIndex = AddScene(scene);
 

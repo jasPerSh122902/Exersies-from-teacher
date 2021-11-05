@@ -12,8 +12,9 @@ namespace MathForGames
         private float _speed;
         private int _xDirection;
         private int _yDirection;
-        private Vector2 _velocity;
-        private Vector2 _moveDirection;
+        private int _zDirection;
+        private Vector3 _velocity;
+        private Vector3 _moveDirection;
         private float _collisionRaidus;
         private Scene _scene;
         private float _cooldownTimer;
@@ -42,7 +43,7 @@ namespace MathForGames
         /// <param name="yDirection"></param>
         /// <param name="name"></param>
         public Bullet(Vector3 posistion, float speed, int xDirection,float CollisionRadius, int yDirection, int zDirection, string name = "Bullet", Shape shape = Shape.CUBE) 
-            :base( posistion, name, path)
+            :base( posistion, name)
         {
             _speed = speed;
             _xDirection = xDirection;
@@ -69,7 +70,7 @@ namespace MathForGames
             {
                 _lastTime = currentTime;
             }
-            _moveDirection = new Vector3(_xDirection, _yDirection,_zDirection );
+            _moveDirection = new Vector3(_xDirection, _yDirection, _zDirection );
             _velocity = _moveDirection * Speed * deltaTime;
             LocalPosistion += _velocity;
         }

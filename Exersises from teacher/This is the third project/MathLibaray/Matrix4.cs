@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MathLibaray
 {
-    class Matrix4
+    public struct Matrix4
     {
         public float M00, M01, M02, M03, M10, M11, M12, M13, M20, M21, M22, M23, M30, M31, M32 , M33;
 

@@ -24,10 +24,6 @@ namespace MathForGames
         /// </summary>
         public virtual void Start()
         {
-            for (int i = 0; i < _actors.Length; i++)
-                _actors[i].Start();
-
-
 
         }
 
@@ -48,14 +44,11 @@ namespace MathForGames
                 {
                     //sees if the position of the actor 1 and actor 2 are on the same...
                     //position but at the end it sais if actor 2 is actor 1...
-                    if (_actors[i].Postion == _actors[j].Postion && j != i)
+                    if (_actors[i].CheckForCollision(_actors[j]) && j != i)
                         //then start on Collision for actor 1 by making actor 2 be collied with.
                         _actors[i].OnCollision(_actors[j]);
                 }
-
-
             }
-
         }
 
         /// <summary>
@@ -118,6 +111,9 @@ namespace MathForGames
             //incremens through the temArray
             for (int i = 0; i < temArray.Length; i++)
             {
+                if (i > temArray.Length)
+                    i--;
+
                 //sais that if actor is not equal to the actor that is choosen then dont go into but..
                 if (_actors[i] != actor)
                 {
@@ -129,7 +125,6 @@ namespace MathForGames
                 //if none of that is needed return true.
                 else
                     actorRemoved = true;
-
             }
 
             //will only happen if the actor is being removed and will the set actors with temArray.

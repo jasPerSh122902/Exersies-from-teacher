@@ -34,13 +34,14 @@ namespace MathForGames
             set { _health = value; }
         }
 
-        public Player( float x, float y, float speed, string name = "Player", Shape shape = Shape.CUBE)
-            : base( x, y, speed, name, shape)
+        public Player( float x, float y,float z, float speed, string name = "Player", Shape shape = Shape.CUBE)
+            : base( x, y,z, speed, name, shape)
         {
             _speed = speed;
         }
 
-        public override Start()
+
+        public override void Start()
         {
             base.Start();
         }
@@ -57,11 +58,11 @@ namespace MathForGames
             //get the player input direction
             int xDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
-            int zDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
+            int yDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
             //Create a vector tht stores the move input
-            Vector3 moveDirection = new Vector3(xDiretion,0, zDiretion);
+            Vector3 moveDirection = new Vector3(xDiretion, 0, yDiretion);
 
 
 
@@ -123,7 +124,7 @@ namespace MathForGames
         public override void Draw()
         {
             base.Draw();
-            Collider.Draw();
+            //Collider.Draw();
         }
     }
 }
