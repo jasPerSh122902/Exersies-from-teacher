@@ -15,6 +15,7 @@ namespace MathForGames
         private Scene[] _scenes = new Scene[0];
         private Stopwatch _stopwatch = new Stopwatch();
         private Camera3D _camera = new Camera3D();
+        private Player _cameraPlayer;
 
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace MathForGames
         private void InitializeCamera()
         {
             // Camera position
-            _camera.position = new System.Numerics.Vector3(0, 10, 10);
+            _camera.position = new System.Numerics.Vector3(0, 10, 0);
             //Point the camera is focused on
             _camera.target = new System.Numerics.Vector3(0, 0, 0);
             //Camera up vector (roation towards target)
@@ -90,9 +91,9 @@ namespace MathForGames
             Scene scene = new Scene();
 
             Player player = new Player(5, 5, 10, 10, "Player", Shape.CUBE);
+            _cameraPlayer = player;
 
-
-            player.SetScale(10, 10, 10);
+            player.SetScale(5, 3, 5);
             player.SetTranslation(0, 0, 0);
 
             scene.AddActor(player);
@@ -116,6 +117,10 @@ namespace MathForGames
         {
             _scenes[_currentSceneIndex].Update(deltaTime);
 
+            _camera.position = new System.Numerics.Vector3(_cameraPlayer.WorldPosistion.X, _cameraPlayer.WorldPosistion.Y + 10, _cameraPlayer.WorldPosistion.Z + 10);
+            // Point the camera is focused on
+            _camera.target = new System.Numerics.Vector3(_cameraPlayer.WorldPosistion.X, _cameraPlayer.WorldPosistion.Y, _cameraPlayer.WorldPosistion.Z);
+
             while (Console.KeyAvailable)
                 Console.ReadKey(true);
         }
@@ -128,7 +133,7 @@ namespace MathForGames
             Raylib.BeginDrawing();
             Raylib.BeginMode3D(_camera);
 
-            Raylib.ClearBackground(Color.BLUE);
+            Raylib.ClearBackground(Color.MAGENTA);
             Raylib.DrawGrid(50, 1);
 
 
@@ -140,6 +145,8 @@ namespace MathForGames
             Raylib.EndDrawing();
 
         }
+
+
         /// <summary>
         /// end the appliction 
         /// </summary>

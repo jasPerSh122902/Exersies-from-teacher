@@ -58,18 +58,21 @@ namespace MathForGames
             //get the player input direction
             int xDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
-            int yDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
+            int zDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
+            int yDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_SPACE));
+                
 
             //Create a vector tht stores the move input
-            Vector3 moveDirection = new Vector3(xDiretion, 0, yDiretion);
+            Vector3 moveDirection = new Vector3(xDiretion, yDiretion , zDiretion);
 
 
 
             //gets the palyers input direction for the shoot by using arrow key
             int xDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
                    + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT));
-            int yDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
+            int yDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_P));
+            int zDirectionBullet = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_UP))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_DOWN));
 
 
@@ -79,30 +82,24 @@ namespace MathForGames
             LocalPosistion += Velocity;
             base.Update(deltaTime);
 
-            ////takes ina direction and set sets a timer
-            ////if cooldowntimer is less than .05 then spawn if not then no spawn
-            //if ((xDirectionBullet != 0  && _cooldownTimer <= .05 || yDirectionBullet != 0 && _cooldownTimer <= .05))
-            //{
-            //    //the bullet instence
-            //    //changed the posision to localPosistion
-            //    Bullet bullet = new Bullet(LocalPosistion, 100, xDirectionBullet, 10, yDirectionBullet, "Bullet", "images/bullet.png");
-            //    //if timers is greater than the .50 then...
-            //    if (_cooldownTimer > .50f)
-            //    {
-            //        //...remove the actor from scene
-            //      _scene.RemoveActor(bullet);
-            //    }
-            //    if (_cooldownTimer >= deltaTime)
-            //    {
-            //        //spawns the collider
-            //        CircleCollider BulletCollider = new CircleCollider(1, bullet);
-            //        //sets the collider
-            //        bullet.Collider = BulletCollider;
-            //        //addes the actor bullet to the scene
-            //        _scene.AddActor(bullet);
+            //takes ina direction and set sets a timer
+            //if cooldowntimer is less than .05 then spawn if not then no spawn
+            if ((xDirectionBullet != 0  || yDirectionBullet != 0  || zDirectionBullet != 0 ))
+            {
+                //the bullet instence
+                //changed the posision to localPosistion
+                Bullet bullet = new Bullet(LocalPosistion, 100, xDirectionBullet, zDirectionBullet, yDirectionBullet, "Bullet", Shape.SPHERE);
 
-            //    }
-            //}
+                //spawns the collider
+                CircleCollider BulletCollider = new CircleCollider(1, bullet);
+                //sets the collider
+                bullet.Collider = BulletCollider;
+                //addes the actor bullet to the scene
+                //error of null
+                _scene.AddActor(bullet);
+
+
+            }
         }
 
         /// <summary>

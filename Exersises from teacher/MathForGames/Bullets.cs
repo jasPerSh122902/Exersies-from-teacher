@@ -42,14 +42,13 @@ namespace MathForGames
         /// <param name="CollisionRadius"></param>
         /// <param name="yDirection"></param>
         /// <param name="name"></param>
-        public Bullet(Vector3 posistion, float speed, int xDirection, float CollisionRadius, int yDirection, int zDirection, string name = "Bullet", Shape shape = Shape.CUBE)
+        public Bullet(Vector3 posistion, float speed, int xDirection, int yDirection, int zDirection, string name = "Bullet", Shape shape = Shape.CUBE)
             : base(posistion, name)
         {
             _speed = speed;
             _xDirection = xDirection;
             _yDirection = yDirection;
             _zDirection = zDirection;
-            _collisionRaidus = CollisionRadius;
 
         }
 
