@@ -21,6 +21,7 @@ namespace MathForGames
         private bool _started;
         private float _speed;
 
+
         private Vector3 _forward = new Vector3(0, 0, 1);
         private Matrix4 _globalTransform = Matrix4.Identity;
         private Matrix4 _LocalTransform = Matrix4.Identity;
@@ -417,31 +418,27 @@ namespace MathForGames
         /// Roatates the actor to face the given position
         /// </summary>
         /// <param name="position">The posistion the actor should be looking toward</param>
-        public void LookAt(Vector2 position)
+        public void LookAt(Vector3 position)
         {
-            ////got the direction the actor should look in
-            //Vector3 direction = (position - LocalPosistion).Normalized;
+            //got the direction the actor should look in
+            Vector3 direction = (position - WorldPosistion).Normalized;
 
-            ////use the dot product to find the angel the actor needs to rotate
-            //float dotProd = Vector2.DotProduct(direction, Forward);
+            if (direction.Magnitude == 0)
+                direction = new Vector3(0, 0, 1);
 
-            //if (dotProd > 1)
-            //    dotProd = 1;
 
-            //float angle = (float)Math.Acos(dotProd);
+            Vector3 alignAxis = new Vector3(0, 1, 0);
 
-            ////find a perpindicula vector to the direction
-            //Vector2 perpDirection = new Vector2(direction.Y, -direction.X);
+            Vector3 newYAxis = new Vector3(0, 1, 0);
+            Vector3 newXAxis = new Vector3(1, 0, 0);
 
-            ////find the dot product of the perpindicular vector and the current forward
-            //float perpDot = Vector2.DotProduct(perpDirection, Forward);
+            if(alignAxis == newYAxis)
+            {
 
-            ////if the result isn't 0, use it to change the sign of the angle to be iether positive or negative
-            //if (perpDot != 0)
-            //    angle *= -perpDot / Math.Abs(perpDot);
+            }
 
-            ////rotates the actor with the angle of the other actor
-            //Rotate(angle);
+            if()
+
         }
     }
 }
