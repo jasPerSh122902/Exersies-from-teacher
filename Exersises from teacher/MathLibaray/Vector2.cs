@@ -2,21 +2,20 @@
 
 namespace MathLibaray
 {
-    
     public struct Vector2
     {
         public float X;
         public float Y;
 
-        //made instece of Vector2
         public Vector2(float x, float y)
         {
             X = x;
             Y = y;
         }
 
+        
         /// <summary>
-        /// Gets the length of the vectors
+        /// Gets the length of the vector
         /// </summary>
         public float Magnitude
         {
@@ -24,7 +23,7 @@ namespace MathLibaray
         }
 
         /// <summary>
-        /// Get the normalized version of this vector without changing it.
+        /// Property that returns the normalized value of the vector2
         /// </summary>
         public Vector2 Normalized
         {
@@ -34,83 +33,100 @@ namespace MathLibaray
                 return value.Normalize();
             }
         }
+
         /// <summary>
-        /// Get the length of the vecotr to have a magnidue is equal to one.
+        /// Changes this vector to have a magnitude that is equal to one
         /// </summary>
-        /// <returns>The result of the normalization. Returns an empty vector if the magnitude is zero.</returns>
+        /// <returns>The result of the normalization
+        /// Returns an empty vector if the magnitude is zero</returns>
         public Vector2 Normalize()
         {
             if (Magnitude == 0)
                 return new Vector2();
 
-            return this / Magnitude;
-
+            else return this / Magnitude;
         }
 
-        //overrides the plus function 
-        public static Vector2 operator +(Vector2 lhs, Vector2 rhs)
+        /// <param name="lhs">The left hand side of the operation</param>
+        /// <param name="rhs">THe right hand side of the operation</param>
+        /// <returns>The dot product of the first vector onto the second</returns>
+        public static float DotProduct(Vector2 lhs, Vector2 rhs)
         {
-            //this conbines both the lest and the right int to one variable like x or y.
-            return new Vector2 { X = lhs.X + rhs.X,  Y = lhs.Y + rhs.Y };
+            return (lhs.X * rhs.X) + (lhs.Y * rhs.Y);
+        }
+
+        /// <param name="lhs">Left hand side of operation</param>
+        /// <param name="rhs">Right hand side of operation</param>
+        /// <returns>Returns the distance between two vectors</returns>
+        public static float Distance(Vector2 lhs, Vector2 rhs)
+        {
+            return (rhs - lhs).Magnitude;
         }
 
         /// <summary>
-        /// Subtracts the X and Y values form each.
+        /// Adds the x value and they values of the second vector to the first
         /// </summary>
-        /// <param name="lhs">The vector that is increaing</param>
-        /// <param name="rhs">The vector used to increase the 1st vector</param>
-        /// <returns>Returns the result of the vectors</returns>
+        /// <param name="lhs">Left hand vector2</param>
+        /// <param name="rhs">right hand vector2 that will be added to the left</param>
+        /// <returns>a new vector2 with the added X and Y variables</returns>
+        public static Vector2 operator +(Vector2 lhs, Vector2 rhs)
+        {
+            return new Vector2 { X = lhs.X + rhs.X, Y = lhs.Y + rhs.Y };
+        }
+
+        /// <summary>
+        /// Subtracts the x value and they values of the second vector from the first
+        /// </summary>
+        /// <param name="lhs">Left hand vector2</param>
+        /// <param name="rhs">right hand vector2 that will be subtracted from the first</param>
+        /// <returns>a new vector2 with the subtracted variables</returns>
         public static Vector2 operator -(Vector2 lhs, Vector2 rhs)
         {
             return new Vector2 { X = lhs.X - rhs.X, Y = lhs.Y - rhs.Y };
         }
 
         /// <summary>
-        /// divides the X and Y values form each.
+        /// Multiplies the vector's X and Y values by the scalar
         /// </summary>
-        /// <param name="lhs">The vector that is divding</param>
-        /// <param name="rhs">The vector used to divide the 1st vector</param>
-        /// <returns>Returns the result of the vectors</returns>
-        public static Vector2 operator /(Vector2 lhs, float scalar)
+        /// <param name="vec2">The vector that is being scaled</param>
+        /// <param name="scalar">The value that the vector will be scaled by</param>
+        /// <returns>A new scaled vector</returns>
+        public static Vector2 operator *(Vector2 vec2, float scalar)
         {
-            return new Vector2 { X = lhs.X / scalar, Y = lhs.Y / scalar};
+            return new Vector2 { X = vec2.X * scalar, Y = vec2.Y * scalar };
         }
 
         /// <summary>
-        /// multipling the X and Y values form each.
+        /// Divides the vector's X and Y values by the scalar
         /// </summary>
-        /// <param name="lhs">The vector that is multiplying</param>
-        /// <param name="rhs">The vector used to multinplying the 1st vector</param>
-        /// <returns>Returns the result of the vectors</returns>
-        public static Vector2 operator *(Vector2 lhs,  float scalar)
+        /// <param name="vec2">The vector that is being scaled</param>
+        /// <param name="scalar">The value that the vector will be scaled by</param>
+        /// <returns>A new scaled vector</returns>
+        public static Vector2 operator /(Vector2 vec2, float scalar)
         {
-            return new Vector2 { X = lhs.X * scalar, Y = lhs.Y * scalar};
+            return new Vector2 { X = vec2.X / scalar, Y = vec2.Y / scalar };
         }
 
         /// <summary>
-        /// Uses a bool to know if the left and right are equal to each other will using the vectors
+        /// Checks to see if two vectors are equal to each other
         /// </summary>
-        /// <param name="lhs">Is the being compared to the right</param>
-        /// <param name="rhs">Is being compared to the left</param>
-        /// <returns>true if they are equal, false if not</returns>
+        /// <param name="lhs">The vector on the left hand side</param>
+        /// <param name="rhs">The vector on the right hand side</param>
+        /// <returns>True if the vectors are equal to each other</returns>
         public static bool operator ==(Vector2 lhs, Vector2 rhs)
         {
             return lhs.X == rhs.X && lhs.Y == rhs.Y;
         }
 
         /// <summary>
-        /// Uses a bool to check if the Lest and right are not equal.  
+        /// Checks to see if two vectors are not equal to each other
         /// </summary>
-        /// <param name="lhs">Is the main number being compared is not equal</param>
-        /// <param name="rhs">is the value that is used to compare lhs</param>
-        /// <returns>If they are not equal then true is equal false.</returns>
+        /// <param name="lhs">The vector on the left hand side</param>
+        /// <param name="rhs">The vector on the right hand side</param>
+        /// <returns>True if the vectors are not equal to each other</returns>
         public static bool operator !=(Vector2 lhs, Vector2 rhs)
         {
             return lhs.X != rhs.X || lhs.Y != rhs.Y;
         }
-
-
     }
-
-
 }

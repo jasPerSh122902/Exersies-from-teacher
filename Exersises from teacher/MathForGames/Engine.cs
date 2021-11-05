@@ -14,7 +14,7 @@ namespace MathForGames
         private static int _currentSceneIndex;
         private Scene[] _scenes = new Scene[0];
         private Stopwatch _stopwatch = new Stopwatch();
-
+        private Camera3D _camera = new Camera3D();
 
 
         /// <summary>
@@ -54,6 +54,22 @@ namespace MathForGames
             End();
         }
 
+        private void InitializeCamera()
+        {
+            // Camera position
+            _camera.position = new System.Numerics.Vector3(0, 10, 10);
+            //Point the camera is focused on
+            _camera.target = new System.Numerics.Vector3(0, 0, 0);
+            //Camera up vector (roation towards target)
+            _camera.up = new System.Numerics.Vector3(0, 1, 0);
+            // The point of view of the camera
+            _camera.fovy = 70;
+            //Camera mode type
+            _camera.projection = CameraProjection.CAMERA_PERSPECTIVE;
+
+
+        }
+
         /// <summary>
         /// Called when the applicaiton starts
         /// </summary>
@@ -61,28 +77,35 @@ namespace MathForGames
         {
             //created a window using raylib
             Raylib.InitWindow(800, 450, "The math for game. ");
-            Raylib.SetTargetFPS(0);
+            Raylib.SetTargetFPS(60);
+
+            InitializeCamera();
 
             _stopwatch.Start();
+
+
 
             //prevously made a function to hold the actors and players to make...
             //the Start function smaller
             Scene scene = new Scene();
-            Actor actor = new Actor('P', 10, 0, Color.GOLD, "Actor1");
-            Actor actor2 = new Actor('E', 50, 0, Color.LIGHTGRAY, "Actor2");
-            Actor actor3 = new Actor('I', 85, 0, Color.LIME, "Actor3");
-            Player player = new Player('Q', 110, 1, 150, Color.RAYWHITE, "Player");
 
-            //adds the actor to the scene and takes in that actor
-            scene.AddActor(actor);
-            scene.AddActor(actor2);
-            scene.AddActor(actor3);
+            Player player = new Player(5, 5, 10, 10, "Player", Shape.CUBE);
+
+
+            player.SetScale(10, 10, 10);
+            player.SetTranslation(0, 0, 0);
+
             scene.AddActor(player);
+
+            //adds the collision to the player
+            CircleCollider playerCollider = new CircleCollider(5, player);
+            AABBCollider playerBoxCollider = new AABBCollider(34, 42, player);
+
+            //adds the collsion to the enemy
 
             _currentSceneIndex = AddScene(scene);
 
             _scenes[_currentSceneIndex].Start();
-
 
         }
 
@@ -91,13 +114,10 @@ namespace MathForGames
         /// </summary>
         private void Update(float deltaTime)
         {
-
             _scenes[_currentSceneIndex].Update(deltaTime);
 
             while (Console.KeyAvailable)
                 Console.ReadKey(true);
-
-
         }
 
         /// <summary>
@@ -106,11 +126,17 @@ namespace MathForGames
         private void Draw()
         {
             Raylib.BeginDrawing();
-            Raylib.ClearBackground(Color.BLACK);
+            Raylib.BeginMode3D(_camera);
+
+            Raylib.ClearBackground(Color.BLUE);
+            Raylib.DrawGrid(50, 1);
+
 
             //add all of the icons back to the buffer
             _scenes[_currentSceneIndex].Draw();
 
+
+            Raylib.EndMode3D();
             Raylib.EndDrawing();
 
         }

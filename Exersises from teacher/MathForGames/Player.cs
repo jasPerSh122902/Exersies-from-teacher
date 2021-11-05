@@ -34,8 +34,8 @@ namespace MathForGames
             set { _health = value; }
         }
 
-        public Player( float x, float y,float z, float speed, string name = "Player", Shape shape = Shape.CUBE)
-            : base( x, y,z, speed, name, shape)
+        public Player(float x, float y, float z, float speed, string name = "Player", Shape shape = Shape.CUBE)
+            : base(x, y, z, speed, name, shape)
         {
             _speed = speed;
         }
@@ -45,7 +45,7 @@ namespace MathForGames
         {
             base.Start();
         }
-            
+
         /// <summary>
         /// Updates the players infromation on the screen and console.
         /// </summary>
@@ -58,11 +58,11 @@ namespace MathForGames
             //get the player input direction
             int xDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));
-            int zDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
+            int yDiretion = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_W))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_S));
 
             //Create a vector tht stores the move input
-            Vector3 moveDirection = new Vector3(xDiretion,0, zDiretion);
+            Vector3 moveDirection = new Vector3(xDiretion, 0, yDiretion);
 
 
 
@@ -100,7 +100,7 @@ namespace MathForGames
             //        bullet.Collider = BulletCollider;
             //        //addes the actor bullet to the scene
             //        _scene.AddActor(bullet);
-                    
+
             //    }
             //}
         }
@@ -114,7 +114,7 @@ namespace MathForGames
             //if actor is touched by teh enenmy end the game
             if (actor is Enemey)
             {
-                
+
             }
         }
 
@@ -128,3 +128,4 @@ namespace MathForGames
         }
     }
 }
+

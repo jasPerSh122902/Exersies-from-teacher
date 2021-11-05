@@ -1,28 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MathLibaray;
 using Raylib_cs;
+using MathLibaray;
 
 namespace MathForGames
 {
-    /// <summary>
-    /// is there so i can hold the type for icon for actors or player
-    /// </summary>
-    struct Icon
+    public enum Shape
     {
-        public char Symbol;
-        public Color color;
+        CUBE,
+        SPHERE
     }
+
     class Actor
     {
-        private Icon _icon;
+
         private string _name;
-        //can make the vector2 because i used the using mathLIbaray;
-        private Vector2 _position;
+        private Vector2 _localPosistion;
         //made started a bool so we can see if actors is there or not.
         private bool _started;
+        private float _speed;
 
+        private Vector3 _forward = new Vector3(0, 0, 1);
+        private Matrix4 _globalTransform = Matrix4.Identity;
+        private Matrix4 _LocalTransform = Matrix4.Identity;
+        private Matrix4 _translation = Matrix4.Identity;
+        private Matrix4 _rotation = Matrix4.Identity;
+        private Matrix4 _scale = Matrix4.Identity;
+
+        private Collider _coollider;
+        private Actor[] _children = new Actor[0];
+        private Actor _parent;
+        private Shape _shape;
         public bool Started
         {
             get { return _started; }
@@ -33,24 +42,131 @@ namespace MathForGames
             get { return _name; }
         }
 
-        public Vector2 Postion
+        public float Speed
         {
-            get { return _position; }
-            set { _position = value; }
+            get { return _speed; }
         }
-        public Icon Icon
+
+        public Vector3 LocalPosistion
         {
-            get { return _icon; }
+            //takes in a posisition on the matrix...
+            get { return new Vector3(_translation.M03, _translation.M13, _translation.M23); }
+            set
+            {
+                //set that posistion on the matrix
+                SetTranslation(value.X, value.Y, value.Z);
+            }
         }
+
+        /// <summary>
+        /// The posistion of theis actor in the world
+        /// </summary>
+        public Vector3 WorldPosistion
+        {
+            //returns the globaal transform's T column
+            get { return new Vector3(_globalTransform.M03, _globalTransform.M13, _globalTransform.M23); }
+            set
+            {
+                //if the actor has a parent...
+                if (Parent != null)
+                {
+                    //... convert the world coordinates into loval coooridinates and translate the actor
+                    //needs the Z axis
+                    float xoffset = (value.X - Parent.WorldPosistion.X) / new Vector3(_globalTransform.M00, _globalTransform.M10, _globalTransform.M20).Magnitude;
+                    float yoffset = (value.Y - Parent.WorldPosistion.Y) / new Vector3(_globalTransform.M01, _globalTransform.M11, _globalTransform.M21).Magnitude;
+                    float zoffset = (value.Z - Parent.WorldPosistion.Z) / new Vector3(_globalTransform.M02, _globalTransform.M12, _globalTransform.M22).Magnitude;
+                    SetTranslation(xoffset, yoffset, zoffset);
+                }
+                //if theis actor doesn't have a parent
+                else
+                    //...sets the  local posisiton to be the given value
+                    LocalPosistion = value; //set that posistion on the matrix
+
+
+            }
+        }
+        /// <summary>
+        /// The world transform meant for bigger movement.
+        /// </summary>
+        public Matrix4 GolbalTransform
+        {
+            get { return _globalTransform; }
+            set { _globalTransform = value; }
+        }
+
+        /// <summary>
+        /// The small or naborhood transform meant for smaller movement.
+        /// </summary>
+        public Matrix4 LocalTransform
+        {
+            get { return _LocalTransform; }
+            set { _LocalTransform = value; }
+        }
+        /// <summary>
+        /// is the parent for actor
+        /// </summary>
+        public Actor Parent
+        {
+            get { return _parent; }
+            set { _parent = value; }
+        }
+
+        /// <summary>
+        /// is the child for actor
+        /// </summary>
+        public Actor[] Children
+        {
+            get { return _children; }
+        }
+        /// <summary>
+        /// Sizes the caractor or actor
+        /// </summary>
+        public Vector3 Size
+        {
+            get
+            {
+                //sets the x and y scale
+                float xScale = new Vector3(GolbalTransform.M00, GolbalTransform.M10, GolbalTransform.M20).Magnitude;
+                float yScale = new Vector3(GolbalTransform.M01, GolbalTransform.M11, GolbalTransform.M21).Magnitude;
+                float zScale = new Vector3(GolbalTransform.M02, GolbalTransform.M12, GolbalTransform.M22).Magnitude;
+
+                //returns the x and y
+                return new Vector3(xScale, yScale, zScale);
+            }
+            set { SetScale(value.X, value.Y, value.Z); }
+        }
+
+        /// <summary>
+        /// Is meant to indicate where the front of the actor is.
+        /// </summary>
+        public Vector3 Forward
+        {
+            get { return new Vector3(_rotation.M02, _rotation.M12, _rotation.M22); }
+            //need a vector 3 set for forward
+        }
+
+        /// <summary>
+        /// IS the collider for the actor 
+        /// </summary>
+        public Collider Collider
+        {
+            get { return _coollider; }
+            set { _coollider = value; }
+        }
+
+        //emptyiy actor class
+        public Actor() { }
 
         /// <summary>
         /// takes the Actor constructor and add the float x and y but takes out y
         /// </summary>
         /// <param name="x">is the replace the Vector2</param>
         /// <param name="y">is the replacement for the veoctor2</param>
-        public Actor(char icon, float x, float y, Color color, string name = "Actor") :
-            this(icon, new Vector2 { X = x, Y = y }, color, name)
+        public Actor(float x, float y, float z, float speed, string name = "Actor", Shape shape = Shape.CUBE) :
+            this(new Vector3 { X = x, Y = y, Z = z }, name, shape)
         { }
+
+
 
 
         /// <summary>
@@ -60,29 +176,146 @@ namespace MathForGames
         /// <param name="position">is the loctation that the icon is in</param>
         /// <param name="name">current Actor name</param>
         /// <param name="color">The color that the neame or icon will be</param>
-        public Actor(char icon, Vector2 position, Color color, string name = "Actor")
+        public Actor(Vector3 position, string name = "Actor", Shape shape = Shape.CUBE)
         {
             //updatede the Icon with the struct and made it take a symbol and a color
-            _icon = new Icon { Symbol = icon, color = color };
-            _position = position;
+            LocalPosistion = position;
             _name = name;
+            _shape = shape;
+
         }
 
+        /// <summary>
+        /// Updates the current transform (the scene).
+        /// </summary>
+        public void UpdateTransform()
+        {
+            _LocalTransform = _translation * _rotation * _scale;
+
+            if (Parent != null)
+                GolbalTransform = Parent.GolbalTransform * LocalTransform;
+            else
+                GolbalTransform = LocalTransform;
+
+        }
+
+        /// <summary>
+        /// Adds the child to the scene
+        /// </summary>
+        /// <param name="child">is a array</param>
+        public void AddChild(Actor child)
+        {
+            //makes a new array called temArray and mades it the lengh of actors + a nother spot
+            Actor[] temArray = new Actor[_children.Length + 1];
+
+            //incremens through the actors array
+            for (int i = 0; i < _children.Length; i++)
+            {
+                temArray[i] = _children[i];
+            }
+
+            //sets temArray to the actors array and set it to actor
+            temArray[_children.Length] = child;
+
+            child.Parent = this;
+
+            //then sets actors to temarray
+            _children = temArray;
+
+
+        }
+
+        /// <summary>
+        /// Removes child from the scene
+        /// </summary>
+        /// <param name="child">Is a array</param>
+        /// <returns>true or false</returns>
+        public bool RemoveChild(Actor child)
+        {
+            //create a varialbe to store if the removal was successful
+            bool childRemoved = false;
+
+            //created a new array that is small than the original array.
+            Actor[] temArray = new Actor[_children.Length - 1];
+
+            //is there to the second array and not have space from removed child.
+            int j = 0;
+
+            //incremens through the temArray
+            for (int i = 0; i < temArray.Length; i++)
+            {
+                if (i > temArray.Length)
+                    i--;
+
+                //sais that if actor is not equal to the child that is choosen then dont go into but..
+                if (_children[i] != child)
+                {
+                    //make temArray have j and make it equal to child with i so there is no left over space in the array.
+                    temArray[j] = _children[i];
+                    //increment j
+                    j++;
+                }
+                //if none of that is needed return true.
+                else
+                    childRemoved = true;
+
+            }
+
+            //will only happen if the child is being removed and will the set actors with temArray.
+            if (childRemoved)
+            {
+                //sets the children array to the now decremented temarray.
+                _children = temArray;
+                //makes sure that the child knows it has no parent
+                Parent = null;
+            }
+
+
+            //...then returns
+            return childRemoved;
+        }
+
+        /// <summary>
+        /// Is the start of the actor
+        /// </summary>
         public virtual void Start()
         {
             _started = true;
         }
 
+        /// <summary>
+        /// Updtated the position for the actor
+        /// </summary>
+        /// <param name="deltaTime"></param>
         public virtual void Update(float deltaTime)
         {
-            //Console.WriteLine(_name + ":" + Postion.X + ":" + Postion.Y);
+
+            UpdateTransform();
+            Console.WriteLine(_name + ":" + WorldPosistion.X + ":" + WorldPosistion.Y);
         }
 
+        /// <summary>
+        /// Draw the actor and draws the collision for actors.
+        /// </summary>
         public virtual void Draw()
         {
-            Raylib.DrawText(Icon.Symbol.ToString(), (int)Postion.X, (int)Postion.Y, 50, Icon.color);
+            System.Numerics.Vector3 position = new System.Numerics.Vector3(WorldPosistion.X, WorldPosistion.Y, WorldPosistion.Z);
+
+            switch (_shape)
+            {
+                case Shape.CUBE:
+                    Raylib.DrawCube(position, Size.X, Size.Y, Size.Z, Color.BLUE);
+                    break;
+                case Shape.SPHERE:
+                    Raylib.DrawSphere(position, Size.X, Color.BLUE);
+                    break;
+            }
         }
 
+
+        /// <summary>
+        /// The end for actor
+        /// </summary>
         public void End()
         {
 
@@ -94,6 +327,121 @@ namespace MathForGames
         public virtual void OnCollision(Actor actor)
         {
 
+        }
+
+        /// <summary>
+        /// Checks if theis actor collided with anoth actor
+        /// </summary>
+        /// <param name="other">The actor to check collision with</param>
+        /// <returns>True if the distance between the actors is less than the radii of the two combined</returns>
+        public virtual bool CheckForCollision(Actor other)
+        {
+            //Returns false if eithe actor dosen't have a collider.
+            if (Collider == null || other.Collider == null)
+                return false;
+
+            return Collider.CheckCollision(other);
+
+
+        }
+        /// <summary>
+        /// Sets the position of the actor
+        /// </summary>
+        /// <param name="translationX">The new x position</param>
+        /// <param name="translationY">The new y position</param>
+        public void SetTranslation(float translationX, float translationY, float translationZ)
+        {
+
+            _translation = Matrix4.CreateTranslation(translationX, translationY, translationZ);
+        }
+
+        /// <summary>
+        /// Applies the given values to the current translation
+        /// </summary>
+        /// <param name="translationX">The amount to move on the x</param>
+        /// <param name="translationY">The amount to move on the yparam>
+        public void Translate(float translationX, float translationY, float translationZ)
+        {
+
+            _translation *= Matrix4.CreateTranslation(translationX, translationY, translationZ);
+        }
+
+        /// <summary>
+        /// Set the rotation of the actor.
+        /// </summary>
+        /// <param name="radians">The angle of the new rotation in radians.</param>
+        public void SetRotation(float radiansX, float radiansY, float radiansZ)
+        {
+
+            Matrix4 rotationX = Matrix4.CreateRotationX(radiansX);
+            Matrix4 rotationY = Matrix4.CreateRotationY(radiansY);
+            Matrix4 rotationZ = Matrix4.CreateRotationZ(radiansZ);
+
+            _rotation = rotationX * rotationY * rotationZ;
+        }
+
+        /// <summary>
+        /// Adds a roation to the current transform's rotation.
+        /// </summary>
+        /// <param name="radians">The angle in radians to turn.</param>
+        public void Rotate(float radiansX, float radiansY, float radiansZ)
+        {
+            Matrix4 rotationX = Matrix4.CreateRotationX(radiansX);
+            Matrix4 rotationY = Matrix4.CreateRotationY(radiansY);
+            Matrix4 rotationZ = Matrix4.CreateRotationZ(radiansZ);
+
+            _rotation *= rotationX * rotationY * rotationZ;
+        }
+
+        /// <summary>
+        /// Sets the scale of the actor.
+        /// </summary>
+        /// <param name="x">The value to scale on the x axis.</param>
+        /// <param name="y">The value to scale on the y axis</param>
+        public void SetScale(float x, float y, float z)
+        {
+            _scale = Matrix4.CreateScale(x, y, z);
+        }
+
+        /// <summary>
+        /// Scales the actor by the given amount.
+        /// </summary>
+        /// <param name="x">The value to scale on the x axis.</param>
+        /// <param name="y">The value to scale on the y axis</param>
+        public void Scale(float x, float y, float z)
+        {
+            _scale *= Matrix4.CreateScale(x, y, z);
+        }
+
+        /// <summary>
+        /// Roatates the actor to face the given position
+        /// </summary>
+        /// <param name="position">The posistion the actor should be looking toward</param>
+        public void LookAt(Vector2 position)
+        {
+            ////got the direction the actor should look in
+            //Vector3 direction = (position - LocalPosistion).Normalized;
+
+            ////use the dot product to find the angel the actor needs to rotate
+            //float dotProd = Vector2.DotProduct(direction, Forward);
+
+            //if (dotProd > 1)
+            //    dotProd = 1;
+
+            //float angle = (float)Math.Acos(dotProd);
+
+            ////find a perpindicula vector to the direction
+            //Vector2 perpDirection = new Vector2(direction.Y, -direction.X);
+
+            ////find the dot product of the perpindicular vector and the current forward
+            //float perpDot = Vector2.DotProduct(perpDirection, Forward);
+
+            ////if the result isn't 0, use it to change the sign of the angle to be iether positive or negative
+            //if (perpDot != 0)
+            //    angle *= -perpDot / Math.Abs(perpDot);
+
+            ////rotates the actor with the angle of the other actor
+            //Rotate(angle);
         }
     }
 }
