@@ -36,21 +36,35 @@ namespace MathForGames
         private Shape _shape;
         private Color _color;
 
+        /// <summary>
+        /// returns the color
+        /// </summary>
+        public Color ShapeColor
+        {
+            get { return _color; }
+        }
+
+        //starts the actor
         public bool Started
         {
             get { return _started; }
         }
 
+        //sets the name for the actor
         public string Name
         {
             get { return _name; }
         }
 
+        //sets the speed
         public float Speed
         {
             get { return _speed; }
         }
 
+        /// <summary>
+        /// Returns the new Vector3 for the localPosistion and sets the Translation with the values of x, y , and Z.
+        /// </summary>
         public Vector3 LocalPosistion
         {
             //takes in a posisition on the matrix...
@@ -311,15 +325,13 @@ namespace MathForGames
             switch (_shape)
             {
                 case Shape.CUBE:
-                    Raylib.DrawCube(position, Size.X, Size.Y, Size.Z, Color.BLUE);
+                    Raylib.DrawCube(position, Size.X, Size.Y, Size.Z, ShapeColor);
                     break;
                 case Shape.SPHERE:
-                    Raylib.DrawSphere(position, Size.X, Color.BLUE);
+                    Raylib.DrawSphere(position, Size.X, ShapeColor);
                     break;
             }
-            if (_drawLines = true)
-                Raylib.DrawLine3D(startPos, endPos, Color.RED);
-                
+
         }
 
 
@@ -446,7 +458,7 @@ namespace MathForGames
             Vector3 newXAxis = new Vector3(1, 0, 0);
 
             //if the direction vector is parallel to the alignAxis vector...
-            if(Math.Abs(direction.Y) > 0 && direction.X == 0 && direction.Z == 0)
+            if (Math.Abs(direction.Y) > 0 && direction.X == 0 && direction.Z == 0)
             {
                 //...set the slignAxis vector to point ot the right
                 alignAxis = new Vector3(1, 0, 0);
@@ -457,10 +469,10 @@ namespace MathForGames
                 newYAxis.Normalize();
 
                 // Gets the cross product of the newYAxis and the direction to find a new X axis
-                 newXAxis = Vector3.CrossProduct(newYAxis, direction);
+                newXAxis = Vector3.CrossProduct(newYAxis, direction);
                 //normalizes the distince to prevent the matrix from being scaled
                 newXAxis.Normalize();
-                
+
             }
             //if it is not parellel
             else
@@ -483,5 +495,22 @@ namespace MathForGames
                                     0, 0, 0, 1);
 
         }
+
+        //sets the color based on the raylibs color class
+        public void SetColor(Color color)
+        {
+            _color = color;
+        }
+
+        /// <summary>
+        /// is the overloat for SetColor
+        /// </summary>
+        /// <param name="colorValue"></param>
+        public void SetColor (Vector4 colorValue)
+        {
+            // the x is red, y is green, Z is brown, W is alfa
+            _color = new Color((int)colorValue.X, (int)colorValue.Y, (int)colorValue.Z, (int)colorValue.W);
+        }
+
     }
 }

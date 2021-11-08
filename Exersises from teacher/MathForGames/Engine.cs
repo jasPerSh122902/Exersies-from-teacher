@@ -96,13 +96,17 @@ namespace MathForGames
             
             Enemey enemey1 = new Enemey(10, 1, 10, 10, 4, player, "Enemy1", Shape.SPHERE);
 
+            Actor actor1 = new Actor(3,0,0,0, "Actor", Shape.CUBE);
+
+            player.AddChild(actor1);
+
             player.SetScale(5, 3, 5);
             player.SetTranslation(0, 0, 0);
+            player.SetColor(new Vector4(5, 5, 65, 5));
 
             enemey1.SetScale(5, 3, 5);
             enemey1.SetTranslation(0, 0, 0);
 
-            player.LookAt(new Vector3(1,0,0));
             scene.AddActor(player);
             scene.AddActor(enemey1);
 
@@ -139,10 +143,10 @@ namespace MathForGames
         private void Draw()
         {
             Raylib.BeginDrawing();
-            Raylib.BeginMode3D(_camera);
+           
 
-            Raylib.ClearBackground(Color.MAGENTA);
-            Raylib.DrawGrid(50, 1);
+            Raylib.ClearBackground(Color.BLACK);
+            Raylib.DrawGrid(50, 100);
 
 
             //add all of the icons back to the buffer
