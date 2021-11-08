@@ -62,9 +62,9 @@ namespace MathForGames
             //Point the camera is focused on
             _camera.target = new System.Numerics.Vector3(0, 0, 0);
             //Camera up vector (roation towards target)
-            _camera.up = new System.Numerics.Vector3(0, 1, 0);
+            _camera.up = new System.Numerics.Vector3(0, 5, 0);
             // The point of view of the camera
-            _camera.fovy = 70;
+            _camera.fovy = 90;
             //Camera mode type
             _camera.projection = CameraProjection.CAMERA_PERSPECTIVE;
 
@@ -93,10 +93,18 @@ namespace MathForGames
             Player player = new Player(5, 5, 10, 10, "Player", Shape.CUBE);
             _cameraPlayer = player;
 
+            
+            Enemey enemey1 = new Enemey(10, 1, 10, 10, 4, player, "Enemy1", Shape.SPHERE);
+
             player.SetScale(5, 3, 5);
             player.SetTranslation(0, 0, 0);
 
+            enemey1.SetScale(5, 3, 5);
+            enemey1.SetTranslation(0, 0, 0);
+
+            player.LookAt(new Vector3(1,0,0));
             scene.AddActor(player);
+            scene.AddActor(enemey1);
 
             //adds the collision to the player
             CircleCollider playerCollider = new CircleCollider(5, player);

@@ -79,7 +79,7 @@ namespace MathForGames
             distace = (_player.LocalPosistion - LocalPosistion).Magnitude;
             //55 is the degress increase it for the feild of view
             return (Math.Acos(Vector3.DotProduct(directionOfTarget, Forward))
-                * 180 / Math.PI < 55) && distace < 150; ;
+                * 180 / Math.PI < 55) && distace < 150; 
         }
 
         public void Oncollision(Actor actor)

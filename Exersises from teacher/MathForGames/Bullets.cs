@@ -54,7 +54,7 @@ namespace MathForGames
 
         public override void Start()
         {
-
+            _stopwatch.Start();
         }
         public override void Update(float deltaTime)
         {

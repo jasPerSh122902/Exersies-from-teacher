@@ -20,6 +20,7 @@ namespace MathForGames
         //made started a bool so we can see if actors is there or not.
         private bool _started;
         private float _speed;
+        private bool _drawLines;
 
 
         private Vector3 _forward = new Vector3(0, 0, 1);
@@ -33,6 +34,8 @@ namespace MathForGames
         private Actor[] _children = new Actor[0];
         private Actor _parent;
         private Shape _shape;
+        private Color _color;
+
         public bool Started
         {
             get { return _started; }
@@ -302,6 +305,9 @@ namespace MathForGames
         {
             System.Numerics.Vector3 position = new System.Numerics.Vector3(WorldPosistion.X, WorldPosistion.Y, WorldPosistion.Z);
 
+            System.Numerics.Vector3 startPos = new System.Numerics.Vector3(WorldPosistion.X, WorldPosistion.Y, WorldPosistion.Z);
+            System.Numerics.Vector3 endPos = new System.Numerics.Vector3(WorldPosistion.X + Forward.X * 10, WorldPosistion.Y + Forward.Y * 10, WorldPosistion.Z + Forward.Z * 10);
+
             switch (_shape)
             {
                 case Shape.CUBE:
@@ -311,6 +317,9 @@ namespace MathForGames
                     Raylib.DrawSphere(position, Size.X, Color.BLUE);
                     break;
             }
+            if (_drawLines = true)
+                Raylib.DrawLine3D(startPos, endPos, Color.RED);
+                
         }
 
 
@@ -423,22 +432,55 @@ namespace MathForGames
             //got the direction the actor should look in
             Vector3 direction = (position - WorldPosistion).Normalized;
 
+            //if the direciton has a length of Zero...
             if (direction.Magnitude == 0)
+                //...set it to be the default forward
                 direction = new Vector3(0, 0, 1);
 
-
+            //A new constent vector 3 that is just up
             Vector3 alignAxis = new Vector3(0, 1, 0);
 
+            //new Y axis as a Vector3
             Vector3 newYAxis = new Vector3(0, 1, 0);
+            //new X axis as a Vector3
             Vector3 newXAxis = new Vector3(1, 0, 0);
 
+            //if the direction vector is parallel to the alignAxis vector...
             if(Math.Abs(direction.Y) > 0 && direction.X == 0 && direction.Z == 0)
             {
+                //...set the slignAxis vector to point ot the right
                 alignAxis = new Vector3(1, 0, 0);
 
+                //Gets the cross product of the direciton and the right to find the new y axis
                 newYAxis = Vector3.CrossProduct(direction, alignAxis);
+                //normalizes the distince to prevent the matrix from being scaled
+                newYAxis.Normalize();
+
+                // Gets the cross product of the newYAxis and the direction to find a new X axis
+                 newXAxis = Vector3.CrossProduct(newYAxis, direction);
+                //normalizes the distince to prevent the matrix from being scaled
+                newXAxis.Normalize();
+                
+            }
+            //if it is not parellel
+            else
+            {
+
+                // Gets the cross product of the alignAxis and the direction to find a new X axis
+                newXAxis = Vector3.CrossProduct(alignAxis, direction);
+                //normalizes the distince to prevent the matrix from being scaled
+                newXAxis.Normalize();
+                // Gets the cross product of the direction and the newXAxis to find a new X axis
+                newYAxis = Vector3.CrossProduct(direction, newXAxis);
+                //normalizes the distince to prevent the matrix from being scaled
                 newYAxis.Normalize();
             }
+
+            //rotaties the curretn Matrix4 on all values other than the W
+            _rotation = new Matrix4(newXAxis.X, newYAxis.X, direction.X, 0,
+                                    newXAxis.Y, newYAxis.Y, direction.Y, 0,
+                                    newXAxis.Z, newYAxis.Z, direction.Z, 0,
+                                    0, 0, 0, 1);
 
         }
     }
