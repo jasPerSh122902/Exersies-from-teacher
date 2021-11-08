@@ -69,6 +69,18 @@ namespace MathLibaray
         }
 
         /// <summary>
+        /// Gets the crossproduct of the vector3
+        /// </summary>
+        /// <param name="lhs">Left hand sid of the operation</param>
+        /// <param name="rhs">right hand side of the operation</param>
+        /// <returns>the new Vector3 that is made</returns>
+        public static Vector3 CrossProduct(Vector3 lhs , Vector3 rhs)
+        {
+            return new Vector3(lhs.Y * rhs.Z - lhs.Z * rhs.Y,
+                               lhs.Z * rhs.X - lhs.X * rhs.Z,
+                               lhs.X * rhs.Y - lhs.Y * rhs.X);
+        }
+        /// <summary>
         /// Adds the x value and they values of the second vector to the first
         /// </summary>
         /// <param name="lhs">Left hand vector3</param>
@@ -100,6 +112,7 @@ namespace MathLibaray
         {
             return new Vector3 { X = vec3.X * scalar, Y = vec3.Y * scalar, Z = vec3.Z * scalar };
         }
+
 
         /// <summary>
         /// Divides the vector's X and Y values by the scalar

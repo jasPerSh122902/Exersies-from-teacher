@@ -432,12 +432,13 @@ namespace MathForGames
             Vector3 newYAxis = new Vector3(0, 1, 0);
             Vector3 newXAxis = new Vector3(1, 0, 0);
 
-            if(alignAxis == newYAxis)
+            if(Math.Abs(direction.Y) > 0 && direction.X == 0 && direction.Z == 0)
             {
+                alignAxis = new Vector3(1, 0, 0);
 
+                newYAxis = Vector3.CrossProduct(direction, alignAxis);
+                newYAxis.Normalize();
             }
-
-            if()
 
         }
     }

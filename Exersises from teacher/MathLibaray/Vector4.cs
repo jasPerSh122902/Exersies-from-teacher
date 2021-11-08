@@ -61,6 +61,14 @@ namespace MathLibaray
             return (lhs.X * rhs.X) + (lhs.Y * rhs.Y) + (lhs.Z * rhs.Z);
         }
 
+        public static Vector4 CrossProduct(Vector4 lhs, Vector4 rhs)
+        {
+            return new Vector4(lhs.Y * rhs.Z - lhs.Z * rhs.Y,
+                               lhs.Z * rhs.X - lhs.X * rhs.Z,
+                               lhs.X * rhs.Y - lhs.Y * rhs.X,
+                               0);
+        }
+
         /// <param name="lhs">Left hand side of operation</param>
         /// <param name="rhs">Right hand side of operation</param>
         /// <returns>Returns the distance between two vectors</returns>
